@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **createOAuthClient**
-> createOAuthClient($name, $redirect_uri)
+> \Swagger\Client\Model\OAuthClient createOAuthClient($name, $redirect_uri)
 
 Create an OAuth Client
 
@@ -30,7 +30,8 @@ $name = "name_example"; // string | The name of the OAuth client. e.g. MyCrm DEV
 $redirect_uri = "redirect_uri_example"; // string | The URI to direct the client to after logging in.
 
 try {
-    $api_instance->createOAuthClient($name, $redirect_uri);
+    $result = $api_instance->createOAuthClient($name, $redirect_uri);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UtilitiesApi->createOAuthClient: ', $e->getMessage(), PHP_EOL;
 }
@@ -46,7 +47,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**\Swagger\Client\Model\OAuthClient**](../Model/OAuthClient.md)
 
 ### Authorization
 
@@ -107,7 +108,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getOAuthClients**
-> getOAuthClients()
+> \Swagger\Client\Model\OAuthClient[] getOAuthClients()
 
 Lists OAuth Clients
 
@@ -124,7 +125,8 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_AC
 $api_instance = new Swagger\Client\Api\UtilitiesApi();
 
 try {
-    $api_instance->getOAuthClients();
+    $result = $api_instance->getOAuthClients();
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UtilitiesApi->getOAuthClients: ', $e->getMessage(), PHP_EOL;
 }
@@ -136,7 +138,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**\Swagger\Client\Model\OAuthClient[]**](../Model/OAuthClient.md)
 
 ### Authorization
 

@@ -13,7 +13,7 @@
 /**
  * BombBomb
  *
- * We make it easy to use simple video to build relationships
+ * We make it easy to build relationships using simple videos.
  *
  * OpenAPI spec version: 2.0
  * 
@@ -107,8 +107,8 @@ class PromptsApi
      *
      * Prompts user to send a video
      *
-     * @param \Swagger\Client\Model\JerichoConfiguration $prompt The Video Email Prompt to be created (required)
-     * @return void
+     * @param \Swagger\Client\Model\VideoEmailPrompt $prompt The Video Email Prompt to be created (required)
+     * @return \Swagger\Client\Model\VideoEmailPrompt
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function createVideoEmailPrompt($prompt)
@@ -122,8 +122,8 @@ class PromptsApi
      *
      * Prompts user to send a video
      *
-     * @param \Swagger\Client\Model\JerichoConfiguration $prompt The Video Email Prompt to be created (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @param \Swagger\Client\Model\VideoEmailPrompt $prompt The Video Email Prompt to be created (required)
+     * @return Array of \Swagger\Client\Model\VideoEmailPrompt, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function createVideoEmailPromptWithHttpInfo($prompt)
@@ -159,6 +159,10 @@ class PromptsApi
         } elseif (count($formParams) > 0) {
             $httpBody = $formParams; // for HTTP post (form)
         }
+        // this endpoint requires OAuth (access token)
+        if (strlen($this->apiClient->getConfig()->getAccessToken()) !== 0) {
+            $headerParams['Authorization'] = 'Bearer ' . $this->apiClient->getConfig()->getAccessToken();
+        }
         // make the API Call
         try {
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
@@ -167,13 +171,29 @@ class PromptsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                null,
+                '\Swagger\Client\Model\VideoEmailPrompt',
                 '/prompt'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\VideoEmailPrompt', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\VideoEmailPrompt', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
             }
 
             throw $e;
@@ -186,7 +206,7 @@ class PromptsApi
      * Gets a prompt
      *
      * @param string $id The Id of the prompt (required)
-     * @return void
+     * @return \Swagger\Client\Model\VideoEmailPrompt
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function getVideoEmailPrompt($id)
@@ -201,7 +221,7 @@ class PromptsApi
      * Gets a prompt
      *
      * @param string $id The Id of the prompt (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \Swagger\Client\Model\VideoEmailPrompt, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function getVideoEmailPromptWithHttpInfo($id)
@@ -252,13 +272,33 @@ class PromptsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                null,
+                '\Swagger\Client\Model\VideoEmailPrompt',
                 '/prompt/{id}'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\VideoEmailPrompt', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\VideoEmailPrompt', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
             }
 
             throw $e;
@@ -273,7 +313,7 @@ class PromptsApi
      * @param string $id The id of the prompt. (required)
      * @param string $choice The users&#39; selection. Can be: WithVideo, WithoutVideo, Cancel (required)
      * @param string $video_id The id of the video. (optional)
-     * @return void
+     * @return \Swagger\Client\Model\VideoEmailPrompt
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function respondToVideoEmailPrompt($id, $choice, $video_id = null)
@@ -290,7 +330,7 @@ class PromptsApi
      * @param string $id The id of the prompt. (required)
      * @param string $choice The users&#39; selection. Can be: WithVideo, WithoutVideo, Cancel (required)
      * @param string $video_id The id of the video. (optional)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \Swagger\Client\Model\VideoEmailPrompt, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function respondToVideoEmailPromptWithHttpInfo($id, $choice, $video_id = null)
@@ -349,13 +389,33 @@ class PromptsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                null,
+                '\Swagger\Client\Model\VideoEmailPrompt',
                 '/prompt/{id}/response'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\VideoEmailPrompt', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\VideoEmailPrompt', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
             }
 
             throw $e;

@@ -1,6 +1,6 @@
 <?php
 /**
- * String
+ * BBWebHook
  *
  * PHP version 5
  *
@@ -44,29 +44,33 @@ namespace Swagger\Client\Model;
 use \ArrayAccess;
 
 /**
- * String Class Doc Comment
+ * BBWebHook Class Doc Comment
  *
  * @category    Class */
+ // @description The BBWebHook class
 /** 
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class String implements ArrayAccess
+class BBWebHook implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'string';
+    protected static $swaggerModelName = 'BBWebHook';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        
+        'user_id' => 'string',
+        'hook_id' => 'int',
+        'url' => 'string',
+        'is_hidden' => 'bool'
     );
 
     public static function swaggerTypes()
@@ -79,7 +83,10 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        
+        'user_id' => 'userId',
+        'hook_id' => 'hookId',
+        'url' => 'url',
+        'is_hidden' => 'isHidden'
     );
 
     public static function attributeMap()
@@ -92,7 +99,10 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        
+        'user_id' => 'setUserId',
+        'hook_id' => 'setHookId',
+        'url' => 'setUrl',
+        'is_hidden' => 'setIsHidden'
     );
 
     public static function setters()
@@ -105,7 +115,10 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        
+        'user_id' => 'getUserId',
+        'hook_id' => 'getHookId',
+        'url' => 'getUrl',
+        'is_hidden' => 'getIsHidden'
     );
 
     public static function getters()
@@ -129,6 +142,10 @@ class String implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['user_id'] = isset($data['user_id']) ? $data['user_id'] : null;
+        $this->container['hook_id'] = isset($data['hook_id']) ? $data['hook_id'] : null;
+        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
+        $this->container['is_hidden'] = isset($data['is_hidden']) ? $data['is_hidden'] : null;
     }
 
     /**
@@ -153,6 +170,90 @@ class String implements ArrayAccess
         return true;
     }
 
+
+    /**
+     * Gets user_id
+     * @return string
+     */
+    public function getUserId()
+    {
+        return $this->container['user_id'];
+    }
+
+    /**
+     * Sets user_id
+     * @param string $user_id The user to whom the webhook belongs
+     * @return $this
+     */
+    public function setUserId($user_id)
+    {
+        $this->container['user_id'] = $user_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets hook_id
+     * @return int
+     */
+    public function getHookId()
+    {
+        return $this->container['hook_id'];
+    }
+
+    /**
+     * Sets hook_id
+     * @param int $hook_id The id of the hook
+     * @return $this
+     */
+    public function setHookId($hook_id)
+    {
+        $this->container['hook_id'] = $hook_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets url
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->container['url'];
+    }
+
+    /**
+     * Sets url
+     * @param string $url the url to send hook requests to
+     * @return $this
+     */
+    public function setUrl($url)
+    {
+        $this->container['url'] = $url;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_hidden
+     * @return bool
+     */
+    public function getIsHidden()
+    {
+        return $this->container['is_hidden'];
+    }
+
+    /**
+     * Sets is_hidden
+     * @param bool $is_hidden Whether the hook is displayed to the user
+     * @return $this
+     */
+    public function setIsHidden($is_hidden)
+    {
+        $this->container['is_hidden'] = $is_hidden;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      * @param  integer $offset Offset

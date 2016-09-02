@@ -13,7 +13,7 @@
 /**
  * BombBomb
  *
- * We make it easy to use simple video to build relationships
+ * We make it easy to build relationships using simple videos.
  *
  * OpenAPI spec version: 2.0
  * 
@@ -100,6 +100,307 @@ class TeamsApi
     {
         $this->apiClient = $apiClient;
         return $this;
+    }
+
+    /**
+     * Operation cancelJerichoSend
+     *
+     * Cancel a Jericho Send
+     *
+     * @param string $jericho_id ID of the Jericho Job to cancel (required)
+     * @return void
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function cancelJerichoSend($jericho_id)
+    {
+        list($response) = $this->cancelJerichoSendWithHttpInfo($jericho_id);
+        return $response;
+    }
+
+    /**
+     * Operation cancelJerichoSendWithHttpInfo
+     *
+     * Cancel a Jericho Send
+     *
+     * @param string $jericho_id ID of the Jericho Job to cancel (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function cancelJerichoSendWithHttpInfo($jericho_id)
+    {
+        // verify the required parameter 'jericho_id' is set
+        if ($jericho_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $jericho_id when calling cancelJerichoSend');
+        }
+        // parse inputs
+        $resourcePath = "/team/{teamId}/jericho/{jerichoId}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array());
+
+        // path params
+        if ($jericho_id !== null) {
+            $resourcePath = str_replace(
+                "{" . "jerichoId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($jericho_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // this endpoint requires OAuth (access token)
+        if (strlen($this->apiClient->getConfig()->getAccessToken()) !== 0) {
+            $headerParams['Authorization'] = 'Bearer ' . $this->apiClient->getConfig()->getAccessToken();
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'DELETE',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                null,
+                '/team/{teamId}/jericho/{jerichoId}'
+            );
+
+            return array(null, $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getClientGroupAssets
+     *
+     * Lists team assets
+     *
+     * @param string $asset_type The type of assets. (required)
+     * @param string $team_id The team containing the assets. (optional)
+     * @param string $auto_tag_name The auto tag name containing the assets. (optional)
+     * @param string $page_size The number of items to retrieve in a single db query. (optional)
+     * @param string $page Zero-based index of the page of data to retrieve from the db. (optional)
+     * @param string $search Search words. (optional)
+     * @return \Swagger\Client\Model\InlineResponse200
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function getClientGroupAssets($asset_type, $team_id = null, $auto_tag_name = null, $page_size = null, $page = null, $search = null)
+    {
+        list($response) = $this->getClientGroupAssetsWithHttpInfo($asset_type, $team_id, $auto_tag_name, $page_size, $page, $search);
+        return $response;
+    }
+
+    /**
+     * Operation getClientGroupAssetsWithHttpInfo
+     *
+     * Lists team assets
+     *
+     * @param string $asset_type The type of assets. (required)
+     * @param string $team_id The team containing the assets. (optional)
+     * @param string $auto_tag_name The auto tag name containing the assets. (optional)
+     * @param string $page_size The number of items to retrieve in a single db query. (optional)
+     * @param string $page Zero-based index of the page of data to retrieve from the db. (optional)
+     * @param string $search Search words. (optional)
+     * @return Array of \Swagger\Client\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function getClientGroupAssetsWithHttpInfo($asset_type, $team_id = null, $auto_tag_name = null, $page_size = null, $page = null, $search = null)
+    {
+        // verify the required parameter 'asset_type' is set
+        if ($asset_type === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $asset_type when calling getClientGroupAssets');
+        }
+        // parse inputs
+        $resourcePath = "/team/assets/";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array());
+
+        // query params
+        if ($asset_type !== null) {
+            $queryParams['assetType'] = $this->apiClient->getSerializer()->toQueryValue($asset_type);
+        }
+        // query params
+        if ($team_id !== null) {
+            $queryParams['teamId'] = $this->apiClient->getSerializer()->toQueryValue($team_id);
+        }
+        // query params
+        if ($auto_tag_name !== null) {
+            $queryParams['autoTagName'] = $this->apiClient->getSerializer()->toQueryValue($auto_tag_name);
+        }
+        // query params
+        if ($page_size !== null) {
+            $queryParams['pageSize'] = $this->apiClient->getSerializer()->toQueryValue($page_size);
+        }
+        // query params
+        if ($page !== null) {
+            $queryParams['page'] = $this->apiClient->getSerializer()->toQueryValue($page);
+        }
+        // query params
+        if ($search !== null) {
+            $queryParams['search'] = $this->apiClient->getSerializer()->toQueryValue($search);
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // this endpoint requires OAuth (access token)
+        if (strlen($this->apiClient->getConfig()->getAccessToken()) !== 0) {
+            $headerParams['Authorization'] = 'Bearer ' . $this->apiClient->getConfig()->getAccessToken();
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\Swagger\Client\Model\InlineResponse200',
+                '/team/assets/'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\InlineResponse200', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getJerichoSends
+     *
+     * List Jericho Sends
+     *
+     * @param string $team_id The team whose Jericho sends you wish to see. (required)
+     * @return \Swagger\Client\Model\JerichoConfiguration[]
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function getJerichoSends($team_id)
+    {
+        list($response) = $this->getJerichoSendsWithHttpInfo($team_id);
+        return $response;
+    }
+
+    /**
+     * Operation getJerichoSendsWithHttpInfo
+     *
+     * List Jericho Sends
+     *
+     * @param string $team_id The team whose Jericho sends you wish to see. (required)
+     * @return Array of \Swagger\Client\Model\JerichoConfiguration[], HTTP status code, HTTP response headers (array of strings)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function getJerichoSendsWithHttpInfo($team_id)
+    {
+        // verify the required parameter 'team_id' is set
+        if ($team_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $team_id when calling getJerichoSends');
+        }
+        // parse inputs
+        $resourcePath = "/team/{teamId}/jericho";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array());
+
+        // path params
+        if ($team_id !== null) {
+            $resourcePath = str_replace(
+                "{" . "teamId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($team_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // this endpoint requires OAuth (access token)
+        if (strlen($this->apiClient->getConfig()->getAccessToken()) !== 0) {
+            $headerParams['Authorization'] = 'Bearer ' . $this->apiClient->getConfig()->getAccessToken();
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\Swagger\Client\Model\JerichoConfiguration[]',
+                '/team/{teamId}/jericho'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\JerichoConfiguration[]', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\JerichoConfiguration[]', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
     }
 
     /**
@@ -197,6 +498,14 @@ class TeamsApi
                     $e->setResponseObject($data);
                     break;
                 case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
                     $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;

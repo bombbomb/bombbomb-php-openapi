@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **createVideoEmailPrompt**
-> createVideoEmailPrompt($prompt)
+> \Swagger\Client\Model\VideoEmailPrompt createVideoEmailPrompt($prompt)
 
 Prompts user to send a video
 
@@ -21,11 +21,15 @@ Sends the account holder an email prompting them to add a video to a scheduled o
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
 $api_instance = new Swagger\Client\Api\PromptsApi();
-$prompt = new \Swagger\Client\Model\JerichoConfiguration(); // \Swagger\Client\Model\JerichoConfiguration | The Video Email Prompt to be created
+$prompt = new \Swagger\Client\Model\VideoEmailPrompt(); // \Swagger\Client\Model\VideoEmailPrompt | The Video Email Prompt to be created
 
 try {
-    $api_instance->createVideoEmailPrompt($prompt);
+    $result = $api_instance->createVideoEmailPrompt($prompt);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->createVideoEmailPrompt: ', $e->getMessage(), PHP_EOL;
 }
@@ -36,15 +40,15 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **prompt** | [**\Swagger\Client\Model\JerichoConfiguration**](../Model/\Swagger\Client\Model\JerichoConfiguration.md)| The Video Email Prompt to be created |
+ **prompt** | [**\Swagger\Client\Model\VideoEmailPrompt**](../Model/\Swagger\Client\Model\VideoEmailPrompt.md)| The Video Email Prompt to be created |
 
 ### Return type
 
-void (empty response body)
+[**\Swagger\Client\Model\VideoEmailPrompt**](../Model/VideoEmailPrompt.md)
 
 ### Authorization
 
-No authorization required
+[BBOAuth2](../../README.md#BBOAuth2)
 
 ### HTTP request headers
 
@@ -54,7 +58,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getVideoEmailPrompt**
-> getVideoEmailPrompt($id)
+> \Swagger\Client\Model\VideoEmailPrompt getVideoEmailPrompt($id)
 
 Gets a prompt
 
@@ -72,7 +76,8 @@ $api_instance = new Swagger\Client\Api\PromptsApi();
 $id = "id_example"; // string | The Id of the prompt
 
 try {
-    $api_instance->getVideoEmailPrompt($id);
+    $result = $api_instance->getVideoEmailPrompt($id);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->getVideoEmailPrompt: ', $e->getMessage(), PHP_EOL;
 }
@@ -87,7 +92,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**\Swagger\Client\Model\VideoEmailPrompt**](../Model/VideoEmailPrompt.md)
 
 ### Authorization
 
@@ -101,7 +106,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **respondToVideoEmailPrompt**
-> respondToVideoEmailPrompt($id, $choice, $video_id)
+> \Swagger\Client\Model\VideoEmailPrompt respondToVideoEmailPrompt($id, $choice, $video_id)
 
 Respond to a prompt
 
@@ -118,7 +123,8 @@ $choice = "choice_example"; // string | The users' selection. Can be: WithVideo,
 $video_id = "video_id_example"; // string | The id of the video.
 
 try {
-    $api_instance->respondToVideoEmailPrompt($id, $choice, $video_id);
+    $result = $api_instance->respondToVideoEmailPrompt($id, $choice, $video_id);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->respondToVideoEmailPrompt: ', $e->getMessage(), PHP_EOL;
 }
@@ -135,7 +141,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**\Swagger\Client\Model\VideoEmailPrompt**](../Model/VideoEmailPrompt.md)
 
 ### Authorization
 

@@ -14,7 +14,7 @@
 /**
  * BombBomb
  *
- * We make it easy to use simple video to build relationships
+ * We make it easy to build relationships using simple videos.
  *
  * OpenAPI spec version: 2.0
  * 
@@ -75,7 +75,8 @@ class JerichoConfiguration implements ArrayAccess
         'prompt_body' => 'string',
         'email_subject' => 'string',
         'email_body' => 'string',
-        'send_without_video' => 'bool'
+        'send_without_video' => 'bool',
+        'status' => 'string'
     );
 
     public static function swaggerTypes()
@@ -97,7 +98,8 @@ class JerichoConfiguration implements ArrayAccess
         'prompt_body' => 'promptBody',
         'email_subject' => 'emailSubject',
         'email_body' => 'emailBody',
-        'send_without_video' => 'sendWithoutVideo'
+        'send_without_video' => 'sendWithoutVideo',
+        'status' => 'status'
     );
 
     public static function attributeMap()
@@ -119,7 +121,8 @@ class JerichoConfiguration implements ArrayAccess
         'prompt_body' => 'setPromptBody',
         'email_subject' => 'setEmailSubject',
         'email_body' => 'setEmailBody',
-        'send_without_video' => 'setSendWithoutVideo'
+        'send_without_video' => 'setSendWithoutVideo',
+        'status' => 'setStatus'
     );
 
     public static function setters()
@@ -141,7 +144,8 @@ class JerichoConfiguration implements ArrayAccess
         'prompt_body' => 'getPromptBody',
         'email_subject' => 'getEmailSubject',
         'email_body' => 'getEmailBody',
-        'send_without_video' => 'getSendWithoutVideo'
+        'send_without_video' => 'getSendWithoutVideo',
+        'status' => 'getStatus'
     );
 
     public static function getters()
@@ -175,6 +179,7 @@ class JerichoConfiguration implements ArrayAccess
         $this->container['email_subject'] = isset($data['email_subject']) ? $data['email_subject'] : null;
         $this->container['email_body'] = isset($data['email_body']) ? $data['email_body'] : null;
         $this->container['send_without_video'] = isset($data['send_without_video']) ? $data['send_without_video'] : null;
+        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
     }
 
     /**
@@ -412,6 +417,27 @@ class JerichoConfiguration implements ArrayAccess
     public function setSendWithoutVideo($send_without_video)
     {
         $this->container['send_without_video'] = $send_without_video;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     * @param string $status The state of the send.
+     * @return $this
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
 
         return $this;
     }

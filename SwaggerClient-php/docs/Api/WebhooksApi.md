@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **addWebHook**
-> addWebHook($hook_url)
+> \Swagger\Client\Model\BBWebHook addWebHook($hook_url)
 
 Add Webhook
 
@@ -29,7 +29,8 @@ $api_instance = new Swagger\Client\Api\WebhooksApi();
 $hook_url = "hook_url_example"; // string | The Url of your listener
 
 try {
-    $api_instance->addWebHook($hook_url);
+    $result = $api_instance->addWebHook($hook_url);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling WebhooksApi->addWebHook: ', $e->getMessage(), PHP_EOL;
 }
@@ -44,7 +45,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**\Swagger\Client\Model\BBWebHook**](../Model/BBWebHook.md)
 
 ### Authorization
 
@@ -58,7 +59,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteWebHook**
-> deleteWebHook($hook_id)
+> string deleteWebHook($hook_id)
 
 Deletes Webhook
 
@@ -76,7 +77,8 @@ $api_instance = new Swagger\Client\Api\WebhooksApi();
 $hook_id = "hook_id_example"; // string | The id of the webhook to delete
 
 try {
-    $api_instance->deleteWebHook($hook_id);
+    $result = $api_instance->deleteWebHook($hook_id);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling WebhooksApi->deleteWebHook: ', $e->getMessage(), PHP_EOL;
 }
@@ -91,7 +93,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**string**
 
 ### Authorization
 
@@ -105,7 +107,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getWebHooks**
-> getWebHooks()
+> \Swagger\Client\Model\BBWebHook[] getWebHooks()
 
 Lists Webhooks
 
@@ -122,7 +124,8 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_AC
 $api_instance = new Swagger\Client\Api\WebhooksApi();
 
 try {
-    $api_instance->getWebHooks();
+    $result = $api_instance->getWebHooks();
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling WebhooksApi->getWebHooks: ', $e->getMessage(), PHP_EOL;
 }
@@ -134,7 +137,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**\Swagger\Client\Model\BBWebHook[]**](../Model/BBWebHook.md)
 
 ### Authorization
 

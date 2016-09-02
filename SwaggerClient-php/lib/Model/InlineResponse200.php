@@ -1,6 +1,6 @@
 <?php
 /**
- * String
+ * InlineResponse200
  *
  * PHP version 5
  *
@@ -44,7 +44,7 @@ namespace Swagger\Client\Model;
 use \ArrayAccess;
 
 /**
- * String Class Doc Comment
+ * InlineResponse200 Class Doc Comment
  *
  * @category    Class */
 /** 
@@ -53,20 +53,21 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class String implements ArrayAccess
+class InlineResponse200 implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'string';
+    protected static $swaggerModelName = 'inline_response_200';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        
+        'total_pages' => 'int',
+        'items' => '\Swagger\Client\Model\InlineResponse200Items[]'
     );
 
     public static function swaggerTypes()
@@ -79,7 +80,8 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        
+        'total_pages' => 'totalPages',
+        'items' => 'items'
     );
 
     public static function attributeMap()
@@ -92,7 +94,8 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        
+        'total_pages' => 'setTotalPages',
+        'items' => 'setItems'
     );
 
     public static function setters()
@@ -105,7 +108,8 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        
+        'total_pages' => 'getTotalPages',
+        'items' => 'getItems'
     );
 
     public static function getters()
@@ -129,6 +133,8 @@ class String implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['total_pages'] = isset($data['total_pages']) ? $data['total_pages'] : null;
+        $this->container['items'] = isset($data['items']) ? $data['items'] : null;
     }
 
     /**
@@ -153,6 +159,48 @@ class String implements ArrayAccess
         return true;
     }
 
+
+    /**
+     * Gets total_pages
+     * @return int
+     */
+    public function getTotalPages()
+    {
+        return $this->container['total_pages'];
+    }
+
+    /**
+     * Sets total_pages
+     * @param int $total_pages
+     * @return $this
+     */
+    public function setTotalPages($total_pages)
+    {
+        $this->container['total_pages'] = $total_pages;
+
+        return $this;
+    }
+
+    /**
+     * Gets items
+     * @return \Swagger\Client\Model\InlineResponse200Items[]
+     */
+    public function getItems()
+    {
+        return $this->container['items'];
+    }
+
+    /**
+     * Sets items
+     * @param \Swagger\Client\Model\InlineResponse200Items[] $items
+     * @return $this
+     */
+    public function setItems($items)
+    {
+        $this->container['items'] = $items;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      * @param  integer $offset Offset

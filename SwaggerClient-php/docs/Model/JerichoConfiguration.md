@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **email_subject** | **string** | Video Prompt: The subject line of the final sent email | [optional] 
 **email_body** | **string** | Video Prompt: The HTML body of the final sent email. | [optional] 
 **send_without_video** | **bool** | Video Prompt: Whether to send the final email if no video was recorded. | [optional] 
+**status** | **string** | The state of the send. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

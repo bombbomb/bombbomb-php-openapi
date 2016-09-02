@@ -13,7 +13,7 @@
 /**
  * BombBomb
  *
- * We make it easy to use simple video to build relationships
+ * We make it easy to build relationships using simple videos.
  *
  * OpenAPI spec version: 2.0
  * 
@@ -108,7 +108,7 @@ class WebhooksApi
      * Add Webhook
      *
      * @param string $hook_url The Url of your listener (required)
-     * @return void
+     * @return \Swagger\Client\Model\BBWebHook
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function addWebHook($hook_url)
@@ -123,7 +123,7 @@ class WebhooksApi
      * Add Webhook
      *
      * @param string $hook_url The Url of your listener (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \Swagger\Client\Model\BBWebHook, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function addWebHookWithHttpInfo($hook_url)
@@ -170,13 +170,29 @@ class WebhooksApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                null,
+                '\Swagger\Client\Model\BBWebHook',
                 '/webhook'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\BBWebHook', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\BBWebHook', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
             }
 
             throw $e;
@@ -189,7 +205,7 @@ class WebhooksApi
      * Deletes Webhook
      *
      * @param string $hook_id The id of the webhook to delete (required)
-     * @return void
+     * @return string
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function deleteWebHook($hook_id)
@@ -204,7 +220,7 @@ class WebhooksApi
      * Deletes Webhook
      *
      * @param string $hook_id The id of the webhook to delete (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of string, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function deleteWebHookWithHttpInfo($hook_id)
@@ -255,13 +271,29 @@ class WebhooksApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                null,
+                'string',
                 '/webhook/{hookId}'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, 'string', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
             }
 
             throw $e;
@@ -273,7 +305,7 @@ class WebhooksApi
      *
      * Lists Webhooks
      *
-     * @return void
+     * @return \Swagger\Client\Model\BBWebHook[]
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function getWebHooks()
@@ -287,7 +319,7 @@ class WebhooksApi
      *
      * Lists Webhooks
      *
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \Swagger\Client\Model\BBWebHook[], HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function getWebHooksWithHttpInfo()
@@ -326,13 +358,29 @@ class WebhooksApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                null,
+                '\Swagger\Client\Model\BBWebHook[]',
                 '/webhook/'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\BBWebHook[]', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\BBWebHook[]', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
             }
 
             throw $e;

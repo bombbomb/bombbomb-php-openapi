@@ -1,6 +1,6 @@
 <?php
 /**
- * String
+ * OAuthClient
  *
  * PHP version 5
  *
@@ -44,7 +44,7 @@ namespace Swagger\Client\Model;
 use \ArrayAccess;
 
 /**
- * String Class Doc Comment
+ * OAuthClient Class Doc Comment
  *
  * @category    Class */
 /** 
@@ -53,20 +53,25 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class String implements ArrayAccess
+class OAuthClient implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'string';
+    protected static $swaggerModelName = 'OAuthClient';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        
+        'identifier' => 'string',
+        'name' => 'string',
+        'client_secret' => 'string',
+        'grants_allowed' => 'string',
+        'owning_user_id' => 'string',
+        'redirect_uri' => 'string'
     );
 
     public static function swaggerTypes()
@@ -79,7 +84,12 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        
+        'identifier' => 'identifier',
+        'name' => 'name',
+        'client_secret' => 'clientSecret',
+        'grants_allowed' => 'grantsAllowed',
+        'owning_user_id' => 'owningUserId',
+        'redirect_uri' => 'redirectUri'
     );
 
     public static function attributeMap()
@@ -92,7 +102,12 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        
+        'identifier' => 'setIdentifier',
+        'name' => 'setName',
+        'client_secret' => 'setClientSecret',
+        'grants_allowed' => 'setGrantsAllowed',
+        'owning_user_id' => 'setOwningUserId',
+        'redirect_uri' => 'setRedirectUri'
     );
 
     public static function setters()
@@ -105,7 +120,12 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        
+        'identifier' => 'getIdentifier',
+        'name' => 'getName',
+        'client_secret' => 'getClientSecret',
+        'grants_allowed' => 'getGrantsAllowed',
+        'owning_user_id' => 'getOwningUserId',
+        'redirect_uri' => 'getRedirectUri'
     );
 
     public static function getters()
@@ -129,6 +149,12 @@ class String implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['identifier'] = isset($data['identifier']) ? $data['identifier'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['client_secret'] = isset($data['client_secret']) ? $data['client_secret'] : null;
+        $this->container['grants_allowed'] = isset($data['grants_allowed']) ? $data['grants_allowed'] : null;
+        $this->container['owning_user_id'] = isset($data['owning_user_id']) ? $data['owning_user_id'] : null;
+        $this->container['redirect_uri'] = isset($data['redirect_uri']) ? $data['redirect_uri'] : null;
     }
 
     /**
@@ -153,6 +179,132 @@ class String implements ArrayAccess
         return true;
     }
 
+
+    /**
+     * Gets identifier
+     * @return string
+     */
+    public function getIdentifier()
+    {
+        return $this->container['identifier'];
+    }
+
+    /**
+     * Sets identifier
+     * @param string $identifier The id of the OAuth Client
+     * @return $this
+     */
+    public function setIdentifier($identifier)
+    {
+        $this->container['identifier'] = $identifier;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     * @param string $name The user-facing name of the client. Eg. MyCrm
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets client_secret
+     * @return string
+     */
+    public function getClientSecret()
+    {
+        return $this->container['client_secret'];
+    }
+
+    /**
+     * Sets client_secret
+     * @param string $client_secret The secret supplied to the OAuth Application
+     * @return $this
+     */
+    public function setClientSecret($client_secret)
+    {
+        $this->container['client_secret'] = $client_secret;
+
+        return $this;
+    }
+
+    /**
+     * Gets grants_allowed
+     * @return string
+     */
+    public function getGrantsAllowed()
+    {
+        return $this->container['grants_allowed'];
+    }
+
+    /**
+     * Sets grants_allowed
+     * @param string $grants_allowed The grants allowed
+     * @return $this
+     */
+    public function setGrantsAllowed($grants_allowed)
+    {
+        $this->container['grants_allowed'] = $grants_allowed;
+
+        return $this;
+    }
+
+    /**
+     * Gets owning_user_id
+     * @return string
+     */
+    public function getOwningUserId()
+    {
+        return $this->container['owning_user_id'];
+    }
+
+    /**
+     * Sets owning_user_id
+     * @param string $owning_user_id The user who controls the OAuth App
+     * @return $this
+     */
+    public function setOwningUserId($owning_user_id)
+    {
+        $this->container['owning_user_id'] = $owning_user_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets redirect_uri
+     * @return string
+     */
+    public function getRedirectUri()
+    {
+        return $this->container['redirect_uri'];
+    }
+
+    /**
+     * Sets redirect_uri
+     * @param string $redirect_uri Where OAuth authorization sessions are returned to
+     * @return $this
+     */
+    public function setRedirectUri($redirect_uri)
+    {
+        $this->container['redirect_uri'] = $redirect_uri;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      * @param  integer $offset Offset

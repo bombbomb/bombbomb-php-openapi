@@ -1,6 +1,6 @@
 <?php
 /**
- * String
+ * InlineResponse200Items
  *
  * PHP version 5
  *
@@ -44,7 +44,7 @@ namespace Swagger\Client\Model;
 use \ArrayAccess;
 
 /**
- * String Class Doc Comment
+ * InlineResponse200Items Class Doc Comment
  *
  * @category    Class */
 /** 
@@ -53,20 +53,23 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class String implements ArrayAccess
+class InlineResponse200Items implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'string';
+    protected static $swaggerModelName = 'inline_response_200_items';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        
+        'id' => 'string',
+        'name' => 'string',
+        'user_id' => 'string',
+        'thumb_url' => 'string'
     );
 
     public static function swaggerTypes()
@@ -79,7 +82,10 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        
+        'id' => 'id',
+        'name' => 'name',
+        'user_id' => 'userId',
+        'thumb_url' => 'thumbUrl'
     );
 
     public static function attributeMap()
@@ -92,7 +98,10 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        
+        'id' => 'setId',
+        'name' => 'setName',
+        'user_id' => 'setUserId',
+        'thumb_url' => 'setThumbUrl'
     );
 
     public static function setters()
@@ -105,7 +114,10 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        
+        'id' => 'getId',
+        'name' => 'getName',
+        'user_id' => 'getUserId',
+        'thumb_url' => 'getThumbUrl'
     );
 
     public static function getters()
@@ -129,6 +141,10 @@ class String implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['user_id'] = isset($data['user_id']) ? $data['user_id'] : null;
+        $this->container['thumb_url'] = isset($data['thumb_url']) ? $data['thumb_url'] : null;
     }
 
     /**
@@ -153,6 +169,90 @@ class String implements ArrayAccess
         return true;
     }
 
+
+    /**
+     * Gets id
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     * @param string $id
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     * @param string $name
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_id
+     * @return string
+     */
+    public function getUserId()
+    {
+        return $this->container['user_id'];
+    }
+
+    /**
+     * Sets user_id
+     * @param string $user_id
+     * @return $this
+     */
+    public function setUserId($user_id)
+    {
+        $this->container['user_id'] = $user_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets thumb_url
+     * @return string
+     */
+    public function getThumbUrl()
+    {
+        return $this->container['thumb_url'];
+    }
+
+    /**
+     * Sets thumb_url
+     * @param string $thumb_url
+     * @return $this
+     */
+    public function setThumbUrl($thumb_url)
+    {
+        $this->container['thumb_url'] = $thumb_url;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      * @param  integer $offset Offset

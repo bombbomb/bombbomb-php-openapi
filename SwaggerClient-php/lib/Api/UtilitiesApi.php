@@ -13,7 +13,7 @@
 /**
  * BombBomb
  *
- * We make it easy to use simple video to build relationships
+ * We make it easy to build relationships using simple videos.
  *
  * OpenAPI spec version: 2.0
  * 
@@ -109,7 +109,7 @@ class UtilitiesApi
      *
      * @param string $name The name of the OAuth client. e.g. MyCrm DEV, or MyCrm PROD (required)
      * @param string $redirect_uri The URI to direct the client to after logging in. (required)
-     * @return void
+     * @return \Swagger\Client\Model\OAuthClient
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function createOAuthClient($name, $redirect_uri)
@@ -125,7 +125,7 @@ class UtilitiesApi
      *
      * @param string $name The name of the OAuth client. e.g. MyCrm DEV, or MyCrm PROD (required)
      * @param string $redirect_uri The URI to direct the client to after logging in. (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \Swagger\Client\Model\OAuthClient, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function createOAuthClientWithHttpInfo($name, $redirect_uri)
@@ -180,13 +180,29 @@ class UtilitiesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                null,
+                '\Swagger\Client\Model\OAuthClient',
                 '/oauthclient'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\OAuthClient', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\OAuthClient', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
             }
 
             throw $e;
@@ -283,7 +299,7 @@ class UtilitiesApi
      *
      * Lists OAuth Clients
      *
-     * @return void
+     * @return \Swagger\Client\Model\OAuthClient[]
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function getOAuthClients()
@@ -297,7 +313,7 @@ class UtilitiesApi
      *
      * Lists OAuth Clients
      *
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \Swagger\Client\Model\OAuthClient[], HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function getOAuthClientsWithHttpInfo()
@@ -336,13 +352,29 @@ class UtilitiesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                null,
+                '\Swagger\Client\Model\OAuthClient[]',
                 '/oauthclient'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\OAuthClient[]', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\OAuthClient[]', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
             }
 
             throw $e;
