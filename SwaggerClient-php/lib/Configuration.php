@@ -102,7 +102,7 @@ class Configuration
      *
      * @var string
      */
-    protected $host = 'https://dev.api.bombbomb.com/v2';
+    protected $host = 'https://api.bombbomb.com/v2';
 
     /**
      * Timeout (second) of the HTTP request, by default set to 0, no timeout

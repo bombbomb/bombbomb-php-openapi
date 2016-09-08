@@ -73,7 +73,7 @@ class PromptsApi
     {
         if ($apiClient == null) {
             $apiClient = new ApiClient();
-            $apiClient->getConfig()->setHost('https://dev.api.bombbomb.com/v2');
+            $apiClient->getConfig()->setHost('https://api.bombbomb.com/v2');
         }
 
         $this->apiClient = $apiClient;

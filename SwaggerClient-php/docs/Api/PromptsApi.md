@@ -1,6 +1,6 @@
 # Swagger\Client\PromptsApi
 
-All URIs are relative to *https://dev.api.bombbomb.com/v2*
+All URIs are relative to *https://api.bombbomb.com/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
