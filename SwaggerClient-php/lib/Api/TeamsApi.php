@@ -404,6 +404,121 @@ class TeamsApi
     }
 
     /**
+     * Operation getJerichoStats
+     *
+     * Gets Jericho performance statistics
+     *
+     * @param string $jericho_id ID of the Jericho job (required)
+     * @param string $team_id ID of team through which Jericho was sent (required)
+     * @return \Swagger\Client\Model\JerichoPerformance
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function getJerichoStats($jericho_id, $team_id)
+    {
+        list($response) = $this->getJerichoStatsWithHttpInfo($jericho_id, $team_id);
+        return $response;
+    }
+
+    /**
+     * Operation getJerichoStatsWithHttpInfo
+     *
+     * Gets Jericho performance statistics
+     *
+     * @param string $jericho_id ID of the Jericho job (required)
+     * @param string $team_id ID of team through which Jericho was sent (required)
+     * @return Array of \Swagger\Client\Model\JerichoPerformance, HTTP status code, HTTP response headers (array of strings)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function getJerichoStatsWithHttpInfo($jericho_id, $team_id)
+    {
+        // verify the required parameter 'jericho_id' is set
+        if ($jericho_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $jericho_id when calling getJerichoStats');
+        }
+        // verify the required parameter 'team_id' is set
+        if ($team_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $team_id when calling getJerichoStats');
+        }
+        // parse inputs
+        $resourcePath = "/team/{teamId}/jericho/{jerichoId}/performance";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array());
+
+        // path params
+        if ($jericho_id !== null) {
+            $resourcePath = str_replace(
+                "{" . "jerichoId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($jericho_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($team_id !== null) {
+            $resourcePath = str_replace(
+                "{" . "teamId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($team_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // this endpoint requires OAuth (access token)
+        if (strlen($this->apiClient->getConfig()->getAccessToken()) !== 0) {
+            $headerParams['Authorization'] = 'Bearer ' . $this->apiClient->getConfig()->getAccessToken();
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\Swagger\Client\Model\JerichoPerformance',
+                '/team/{teamId}/jericho/{jerichoId}/performance'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\JerichoPerformance', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\JerichoPerformance', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
      * Operation queueJerichoSend
      *
      * Creates a Jericho send.

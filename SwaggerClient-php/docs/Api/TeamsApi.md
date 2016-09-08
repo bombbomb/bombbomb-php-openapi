@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**cancelJerichoSend**](TeamsApi.md#cancelJerichoSend) | **DELETE** /team/{teamId}/jericho/{jerichoId} | Cancel a Jericho Send
 [**getClientGroupAssets**](TeamsApi.md#getClientGroupAssets) | **GET** /team/assets/ | Lists team assets
 [**getJerichoSends**](TeamsApi.md#getJerichoSends) | **GET** /team/{teamId}/jericho | List Jericho Sends
+[**getJerichoStats**](TeamsApi.md#getJerichoStats) | **GET** /team/{teamId}/jericho/{jerichoId}/performance | Gets Jericho performance statistics
 [**queueJerichoSend**](TeamsApi.md#queueJerichoSend) | **POST** /team/{teamId}/jericho | Creates a Jericho send.
 
 
@@ -151,6 +152,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Swagger\Client\Model\JerichoConfiguration[]**](../Model/JerichoConfiguration.md)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getJerichoStats**
+> \Swagger\Client\Model\JerichoPerformance getJerichoStats($jericho_id, $team_id)
+
+Gets Jericho performance statistics
+
+Returns an aggregate view of the performance of a Jericho send
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$jericho_id = "jericho_id_example"; // string | ID of the Jericho job
+$team_id = "team_id_example"; // string | ID of team through which Jericho was sent
+
+try {
+    $result = $api_instance->getJerichoStats($jericho_id, $team_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->getJerichoStats: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **jericho_id** | **string**| ID of the Jericho job |
+ **team_id** | **string**| ID of team through which Jericho was sent |
+
+### Return type
+
+[**\Swagger\Client\Model\JerichoPerformance**](../Model/JerichoPerformance.md)
 
 ### Authorization
 
