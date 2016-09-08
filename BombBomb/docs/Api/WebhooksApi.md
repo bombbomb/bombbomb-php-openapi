@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **addWebHook**
-> \Swagger\Client\Model\BBWebHook addWebHook($hookUrl)
+> \BombBomb\BBWebHook addWebHook($hookUrl)
 
 Add Webhook
 
@@ -45,7 +45,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\BBWebHook**](../Model/BBWebHook.md)
+[**\BombBomb\BBWebHook**](../Model/BBWebHook.md)
 
 ### Authorization
 
@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getWebHooks**
-> \Swagger\Client\Model\BBWebHook[] getWebHooks()
+> \BombBomb\BBWebHook[] getWebHooks()
 
 Lists Webhooks
 
@@ -137,7 +137,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Swagger\Client\Model\BBWebHook[]**](../Model/BBWebHook.md)
+[**\BombBomb\BBWebHook[]**](../Model/BBWebHook.md)
 
 ### Authorization
 

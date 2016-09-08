@@ -59,7 +59,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getClientGroupAssets**
-> \Swagger\Client\Model\InlineResponse200 getClientGroupAssets($assetType, $teamId, $autoTagName, $pageSize, $page, $search)
+> \BombBomb\InlineResponse200 getClientGroupAssets($assetType, $teamId, $autoTagName, $pageSize, $page, $search)
 
 Lists team assets
 
@@ -103,7 +103,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\InlineResponse200**](../Model/InlineResponse200.md)
+[**\BombBomb\InlineResponse200**](../Model/InlineResponse200.md)
 
 ### Authorization
 
@@ -117,7 +117,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getJerichoSends**
-> \Swagger\Client\Model\JerichoConfiguration[] getJerichoSends($teamId)
+> \BombBomb\JerichoConfiguration[] getJerichoSends($teamId)
 
 List Jericho Sends
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\JerichoConfiguration[]**](../Model/JerichoConfiguration.md)
+[**\BombBomb\JerichoConfiguration[]**](../Model/JerichoConfiguration.md)
 
 ### Authorization
 
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getJerichoStats**
-> \Swagger\Client\Model\JerichoPerformance getJerichoStats($jerichoId, $teamId)
+> \BombBomb\JerichoPerformance getJerichoStats($jerichoId, $teamId)
 
 Gets Jericho performance statistics
 
@@ -201,7 +201,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\JerichoPerformance**](../Model/JerichoPerformance.md)
+[**\BombBomb\JerichoPerformance**](../Model/JerichoPerformance.md)
 
 ### Authorization
 
@@ -215,7 +215,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **queueJerichoSend**
-> \Swagger\Client\Model\JerichoConfiguration queueJerichoSend($config, $teamId)
+> \BombBomb\JerichoConfiguration queueJerichoSend($config, $teamId)
 
 Creates a Jericho send.
 
@@ -230,7 +230,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 $api_instance = new Swagger\Client\Api\TeamsApi();
-$config = new \Swagger\Client\Model\JerichoConfiguration(); // \Swagger\Client\Model\JerichoConfiguration | JSON representing a Jericho configuration
+$config = new \BombBomb\JerichoConfiguration(); // \BombBomb\JerichoConfiguration | JSON representing a Jericho configuration
 $teamId = "teamId_example"; // string | The ID of the team.
 
 try {
@@ -246,12 +246,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **config** | [**\Swagger\Client\Model\JerichoConfiguration**](../Model/\Swagger\Client\Model\JerichoConfiguration.md)| JSON representing a Jericho configuration |
+ **config** | [**\BombBomb\JerichoConfiguration**](../Model/\BombBomb\JerichoConfiguration.md)| JSON representing a Jericho configuration |
  **teamId** | **string**| The ID of the team. |
 
 ### Return type
 
-[**\Swagger\Client\Model\JerichoConfiguration**](../Model/JerichoConfiguration.md)
+[**\BombBomb\JerichoConfiguration**](../Model/JerichoConfiguration.md)
 
 ### Authorization
 

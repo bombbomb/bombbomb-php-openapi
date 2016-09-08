@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **createVideoEmailPrompt**
-> \Swagger\Client\Model\VideoEmailPrompt createVideoEmailPrompt($prompt)
+> \BombBomb\VideoEmailPrompt createVideoEmailPrompt($prompt)
 
 Prompts user to send a video
 
@@ -25,7 +25,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 $api_instance = new Swagger\Client\Api\PromptsApi();
-$prompt = new \Swagger\Client\Model\VideoEmailPrompt(); // \Swagger\Client\Model\VideoEmailPrompt | The Video Email Prompt to be created
+$prompt = new \BombBomb\VideoEmailPrompt(); // \BombBomb\VideoEmailPrompt | The Video Email Prompt to be created
 
 try {
     $result = $api_instance->createVideoEmailPrompt($prompt);
@@ -40,11 +40,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **prompt** | [**\Swagger\Client\Model\VideoEmailPrompt**](../Model/\Swagger\Client\Model\VideoEmailPrompt.md)| The Video Email Prompt to be created |
+ **prompt** | [**\BombBomb\VideoEmailPrompt**](../Model/\BombBomb\VideoEmailPrompt.md)| The Video Email Prompt to be created |
 
 ### Return type
 
-[**\Swagger\Client\Model\VideoEmailPrompt**](../Model/VideoEmailPrompt.md)
+[**\BombBomb\VideoEmailPrompt**](../Model/VideoEmailPrompt.md)
 
 ### Authorization
 
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getVideoEmailPrompt**
-> \Swagger\Client\Model\VideoEmailPrompt getVideoEmailPrompt($id)
+> \BombBomb\VideoEmailPrompt getVideoEmailPrompt($id)
 
 Gets a prompt
 
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\VideoEmailPrompt**](../Model/VideoEmailPrompt.md)
+[**\BombBomb\VideoEmailPrompt**](../Model/VideoEmailPrompt.md)
 
 ### Authorization
 
@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **respondToVideoEmailPrompt**
-> \Swagger\Client\Model\VideoEmailPrompt respondToVideoEmailPrompt($id, $choice, $videoId)
+> \BombBomb\VideoEmailPrompt respondToVideoEmailPrompt($id, $choice, $videoId)
 
 Respond to a prompt
 
@@ -141,7 +141,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\VideoEmailPrompt**](../Model/VideoEmailPrompt.md)
+[**\BombBomb\VideoEmailPrompt**](../Model/VideoEmailPrompt.md)
 
 ### Authorization
 

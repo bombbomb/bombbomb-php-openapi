@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **createOAuthClient**
-> \Swagger\Client\Model\OAuthClient createOAuthClient($name, $redirectUri)
+> \BombBomb\OAuthClient createOAuthClient($name, $redirectUri)
 
 Create an OAuth Client
 
@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\OAuthClient**](../Model/OAuthClient.md)
+[**\BombBomb\OAuthClient**](../Model/OAuthClient.md)
 
 ### Authorization
 
@@ -108,7 +108,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getOAuthClients**
-> \Swagger\Client\Model\OAuthClient[] getOAuthClients()
+> \BombBomb\OAuthClient[] getOAuthClients()
 
 Lists OAuth Clients
 
@@ -138,7 +138,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Swagger\Client\Model\OAuthClient[]**](../Model/OAuthClient.md)
+[**\BombBomb\OAuthClient[]**](../Model/OAuthClient.md)
 
 ### Authorization
 
