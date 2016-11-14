@@ -4,12 +4,72 @@ All URIs are relative to *https://api.bombbomb.com/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**addTeamMember**](TeamsApi.md#addTeamMember) | **POST** /team/{teamId}/member | Add Member to Team
 [**cancelJerichoSend**](TeamsApi.md#cancelJerichoSend) | **DELETE** /team/{teamId}/jericho/{jerichoId} | Cancel a Jericho Send
+[**createSubteam**](TeamsApi.md#createSubteam) | **POST** /team/{teamId}/subteam | Add a Subteam
+[**deleteSubteam**](TeamsApi.md#deleteSubteam) | **DELETE** /team/{teamId}/subteam | Delete Subteam
 [**getClientGroupAssets**](TeamsApi.md#getClientGroupAssets) | **GET** /team/assets/ | Lists team assets
 [**getJerichoSends**](TeamsApi.md#getJerichoSends) | **GET** /team/{teamId}/jericho | List Jericho Sends
 [**getJerichoStats**](TeamsApi.md#getJerichoStats) | **GET** /team/{teamId}/jericho/{jerichoId}/performance | Gets Jericho performance statistics
+[**getSubteams**](TeamsApi.md#getSubteams) | **GET** /team/{teamId}/subteam | List Subteams
 [**queueJerichoSend**](TeamsApi.md#queueJerichoSend) | **POST** /team/{teamId}/jericho | Creates a Jericho send.
+[**removeMemberFromTeam**](TeamsApi.md#removeMemberFromTeam) | **DELETE** /team/{teamId}/member/{userId} | Remove Member from Team
+[**updateTeam**](TeamsApi.md#updateTeam) | **POST** /team/{teamId} | Update a team
 
+
+# **addTeamMember**
+> string addTeamMember($teamId, $userId, $userEmail, $admin)
+
+Add Member to Team
+
+Adds a member to a team.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$teamId = "teamId_example"; // string | The team id
+$userId = "userId_example"; // string | The user id of the member being added to the team.
+$userEmail = "userEmail_example"; // string | The email of the member being added to the team.
+$admin = true; // bool | Set if the user is an admin of this team.
+
+try {
+    $result = $api_instance->addTeamMember($teamId, $userId, $userEmail, $admin);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->addTeamMember: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **string**| The team id |
+ **userId** | **string**| The user id of the member being added to the team. | [optional]
+ **userEmail** | **string**| The email of the member being added to the team. | [optional]
+ **admin** | **bool**| Set if the user is an admin of this team. | [optional]
+
+### Return type
+
+**string**
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **cancelJerichoSend**
 > cancelJerichoSend($jerichoId)
@@ -53,7 +113,107 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **createSubteam**
+> \Swagger\Client\Model\TeamPublicRepresentation createSubteam($teamId, $name)
+
+Add a Subteam
+
+Adds a subteam to a parent team
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$teamId = "teamId_example"; // string | The team id
+$name = "name_example"; // string | The subteam's name.
+
+try {
+    $result = $api_instance->createSubteam($teamId, $name);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->createSubteam: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **string**| The team id |
+ **name** | **string**| The subteam&#39;s name. |
+
+### Return type
+
+[**\Swagger\Client\Model\TeamPublicRepresentation**](../Model/TeamPublicRepresentation.md)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **deleteSubteam**
+> string deleteSubteam($teamId, $subteamId)
+
+Delete Subteam
+
+Deletes a subteam
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$teamId = "teamId_example"; // string | The team id
+$subteamId = "subteamId_example"; // string | The subteam you wish to delete.
+
+try {
+    $result = $api_instance->deleteSubteam($teamId, $subteamId);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->deleteSubteam: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **string**| The team id |
+ **subteamId** | **string**| The subteam you wish to delete. |
+
+### Return type
+
+**string**
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -111,7 +271,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -159,7 +319,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -209,7 +369,55 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getSubteams**
+> \Swagger\Client\Model\TeamPublicRepresentation[] getSubteams($teamId)
+
+List Subteams
+
+Returns a collection of subteams for a parent team
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$teamId = "teamId_example"; // string | The team id
+
+try {
+    $result = $api_instance->getSubteams($teamId);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->getSubteams: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **string**| The team id |
+
+### Return type
+
+[**\Swagger\Client\Model\TeamPublicRepresentation[]**](../Model/TeamPublicRepresentation.md)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -259,7 +467,107 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **removeMemberFromTeam**
+> string removeMemberFromTeam($teamId, $userId)
+
+Remove Member from Team
+
+Removes a member from a team.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$teamId = "teamId_example"; // string | The team id
+$userId = "userId_example"; // string | The user id of the member being removed.
+
+try {
+    $result = $api_instance->removeMemberFromTeam($teamId, $userId);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->removeMemberFromTeam: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **string**| The team id |
+ **userId** | **string**| The user id of the member being removed. |
+
+### Return type
+
+**string**
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **updateTeam**
+> \Swagger\Client\Model\TeamPublicRepresentation updateTeam($teamId, $name)
+
+Update a team
+
+Update fields on a team
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$teamId = "teamId_example"; // string | The team id
+$name = "name_example"; // string | The name of the team
+
+try {
+    $result = $api_instance->updateTeam($teamId, $name);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->updateTeam: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **string**| The team id |
+ **name** | **string**| The name of the team | [optional]
+
+### Return type
+
+[**\Swagger\Client\Model\TeamPublicRepresentation**](../Model/TeamPublicRepresentation.md)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

@@ -1,6 +1,6 @@
 <?php
 /**
- * InlineResponse200
+ * Curriculum
  *
  * PHP version 5
  *
@@ -44,30 +44,37 @@ namespace Swagger\Client\Model;
 use \ArrayAccess;
 
 /**
- * InlineResponse200 Class Doc Comment
+ * Curriculum Class Doc Comment
  *
  * @category    Class */
+ // @description The Curriculum class
 /** 
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class InlineResponse200 implements ArrayAccess
+class Curriculum implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'inline_response_200';
+    protected static $swaggerModelName = 'Curriculum';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        'totalPages' => 'int',
-        'items' => '\Swagger\Client\Model\InlineResponse200Items[]'
+        'id' => 'string',
+        'name' => 'string',
+        'htmlIntro' => 'string',
+        'imgUrl' => 'string',
+        'itemCount' => 'int',
+        'renderAs' => 'string',
+        'visibleToAllUsers' => 'bool',
+        'progress' => '\Swagger\Client\Model\CurriculumUserProgress[]'
     );
 
     public static function swaggerTypes()
@@ -80,8 +87,14 @@ class InlineResponse200 implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        'totalPages' => 'totalPages',
-        'items' => 'items'
+        'id' => 'id',
+        'name' => 'name',
+        'htmlIntro' => 'htmlIntro',
+        'imgUrl' => 'imgUrl',
+        'itemCount' => 'itemCount',
+        'renderAs' => 'renderAs',
+        'visibleToAllUsers' => 'visibleToAllUsers',
+        'progress' => 'progress'
     );
 
     public static function attributeMap()
@@ -94,8 +107,14 @@ class InlineResponse200 implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        'totalPages' => 'setTotalPages',
-        'items' => 'setItems'
+        'id' => 'setId',
+        'name' => 'setName',
+        'htmlIntro' => 'setHtmlIntro',
+        'imgUrl' => 'setImgUrl',
+        'itemCount' => 'setItemCount',
+        'renderAs' => 'setRenderAs',
+        'visibleToAllUsers' => 'setVisibleToAllUsers',
+        'progress' => 'setProgress'
     );
 
     public static function setters()
@@ -108,8 +127,14 @@ class InlineResponse200 implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        'totalPages' => 'getTotalPages',
-        'items' => 'getItems'
+        'id' => 'getId',
+        'name' => 'getName',
+        'htmlIntro' => 'getHtmlIntro',
+        'imgUrl' => 'getImgUrl',
+        'itemCount' => 'getItemCount',
+        'renderAs' => 'getRenderAs',
+        'visibleToAllUsers' => 'getVisibleToAllUsers',
+        'progress' => 'getProgress'
     );
 
     public static function getters()
@@ -133,8 +158,14 @@ class InlineResponse200 implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['totalPages'] = isset($data['totalPages']) ? $data['totalPages'] : null;
-        $this->container['items'] = isset($data['items']) ? $data['items'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['htmlIntro'] = isset($data['htmlIntro']) ? $data['htmlIntro'] : null;
+        $this->container['imgUrl'] = isset($data['imgUrl']) ? $data['imgUrl'] : null;
+        $this->container['itemCount'] = isset($data['itemCount']) ? $data['itemCount'] : null;
+        $this->container['renderAs'] = isset($data['renderAs']) ? $data['renderAs'] : null;
+        $this->container['visibleToAllUsers'] = isset($data['visibleToAllUsers']) ? $data['visibleToAllUsers'] : null;
+        $this->container['progress'] = isset($data['progress']) ? $data['progress'] : null;
     }
 
     /**
@@ -161,43 +192,169 @@ class InlineResponse200 implements ArrayAccess
 
 
     /**
-     * Gets totalPages
-     * @return int
+     * Gets id
+     * @return string
      */
-    public function getTotalPages()
+    public function getId()
     {
-        return $this->container['totalPages'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets totalPages
-     * @param int $totalPages
+     * Sets id
+     * @param string $id Id
      * @return $this
      */
-    public function setTotalPages($totalPages)
+    public function setId($id)
     {
-        $this->container['totalPages'] = $totalPages;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets items
-     * @return \Swagger\Client\Model\InlineResponse200Items[]
+     * Gets name
+     * @return string
      */
-    public function getItems()
+    public function getName()
     {
-        return $this->container['items'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets items
-     * @param \Swagger\Client\Model\InlineResponse200Items[] $items
+     * Sets name
+     * @param string $name Name
      * @return $this
      */
-    public function setItems($items)
+    public function setName($name)
     {
-        $this->container['items'] = $items;
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets htmlIntro
+     * @return string
+     */
+    public function getHtmlIntro()
+    {
+        return $this->container['htmlIntro'];
+    }
+
+    /**
+     * Sets htmlIntro
+     * @param string $htmlIntro HTML formatted intro
+     * @return $this
+     */
+    public function setHtmlIntro($htmlIntro)
+    {
+        $this->container['htmlIntro'] = $htmlIntro;
+
+        return $this;
+    }
+
+    /**
+     * Gets imgUrl
+     * @return string
+     */
+    public function getImgUrl()
+    {
+        return $this->container['imgUrl'];
+    }
+
+    /**
+     * Sets imgUrl
+     * @param string $imgUrl URI of header image
+     * @return $this
+     */
+    public function setImgUrl($imgUrl)
+    {
+        $this->container['imgUrl'] = $imgUrl;
+
+        return $this;
+    }
+
+    /**
+     * Gets itemCount
+     * @return int
+     */
+    public function getItemCount()
+    {
+        return $this->container['itemCount'];
+    }
+
+    /**
+     * Sets itemCount
+     * @param int $itemCount Number of curriculum items
+     * @return $this
+     */
+    public function setItemCount($itemCount)
+    {
+        $this->container['itemCount'] = $itemCount;
+
+        return $this;
+    }
+
+    /**
+     * Gets renderAs
+     * @return string
+     */
+    public function getRenderAs()
+    {
+        return $this->container['renderAs'];
+    }
+
+    /**
+     * Sets renderAs
+     * @param string $renderAs Render method for curriculum
+     * @return $this
+     */
+    public function setRenderAs($renderAs)
+    {
+        $this->container['renderAs'] = $renderAs;
+
+        return $this;
+    }
+
+    /**
+     * Gets visibleToAllUsers
+     * @return bool
+     */
+    public function getVisibleToAllUsers()
+    {
+        return $this->container['visibleToAllUsers'];
+    }
+
+    /**
+     * Sets visibleToAllUsers
+     * @param bool $visibleToAllUsers Globally visible
+     * @return $this
+     */
+    public function setVisibleToAllUsers($visibleToAllUsers)
+    {
+        $this->container['visibleToAllUsers'] = $visibleToAllUsers;
+
+        return $this;
+    }
+
+    /**
+     * Gets progress
+     * @return \Swagger\Client\Model\CurriculumUserProgress[]
+     */
+    public function getProgress()
+    {
+        return $this->container['progress'];
+    }
+
+    /**
+     * Sets progress
+     * @param \Swagger\Client\Model\CurriculumUserProgress[] $progress Collection of User Progress for Curriculum
+     * @return $this
+     */
+    public function setProgress($progress)
+    {
+        $this->container['progress'] = $progress;
 
         return $this;
     }

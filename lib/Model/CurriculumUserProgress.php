@@ -1,6 +1,6 @@
 <?php
 /**
- * String
+ * CurriculumUserProgress
  *
  * PHP version 5
  *
@@ -44,29 +44,34 @@ namespace Swagger\Client\Model;
 use \ArrayAccess;
 
 /**
- * String Class Doc Comment
+ * CurriculumUserProgress Class Doc Comment
  *
  * @category    Class */
+ // @description The CurriculumUserProgress class
 /** 
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class String implements ArrayAccess
+class CurriculumUserProgress implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'string';
+    protected static $swaggerModelName = 'CurriculumUserProgress';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        
+        'id' => 'string',
+        'userId' => 'string',
+        'curriculumItemId' => 'string',
+        'curriculumId' => 'string',
+        'completedDate' => '\DateTime'
     );
 
     public static function swaggerTypes()
@@ -79,7 +84,11 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        
+        'id' => 'id',
+        'userId' => 'userId',
+        'curriculumItemId' => 'curriculumItemId',
+        'curriculumId' => 'curriculumId',
+        'completedDate' => 'completedDate'
     );
 
     public static function attributeMap()
@@ -92,7 +101,11 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        
+        'id' => 'setId',
+        'userId' => 'setUserId',
+        'curriculumItemId' => 'setCurriculumItemId',
+        'curriculumId' => 'setCurriculumId',
+        'completedDate' => 'setCompletedDate'
     );
 
     public static function setters()
@@ -105,7 +118,11 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        
+        'id' => 'getId',
+        'userId' => 'getUserId',
+        'curriculumItemId' => 'getCurriculumItemId',
+        'curriculumId' => 'getCurriculumId',
+        'completedDate' => 'getCompletedDate'
     );
 
     public static function getters()
@@ -129,6 +146,11 @@ class String implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['userId'] = isset($data['userId']) ? $data['userId'] : null;
+        $this->container['curriculumItemId'] = isset($data['curriculumItemId']) ? $data['curriculumItemId'] : null;
+        $this->container['curriculumId'] = isset($data['curriculumId']) ? $data['curriculumId'] : null;
+        $this->container['completedDate'] = isset($data['completedDate']) ? $data['completedDate'] : null;
     }
 
     /**
@@ -153,6 +175,111 @@ class String implements ArrayAccess
         return true;
     }
 
+
+    /**
+     * Gets id
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     * @param string $id Id
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets userId
+     * @return string
+     */
+    public function getUserId()
+    {
+        return $this->container['userId'];
+    }
+
+    /**
+     * Sets userId
+     * @param string $userId User Id
+     * @return $this
+     */
+    public function setUserId($userId)
+    {
+        $this->container['userId'] = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Gets curriculumItemId
+     * @return string
+     */
+    public function getCurriculumItemId()
+    {
+        return $this->container['curriculumItemId'];
+    }
+
+    /**
+     * Sets curriculumItemId
+     * @param string $curriculumItemId Curriculum Item Id
+     * @return $this
+     */
+    public function setCurriculumItemId($curriculumItemId)
+    {
+        $this->container['curriculumItemId'] = $curriculumItemId;
+
+        return $this;
+    }
+
+    /**
+     * Gets curriculumId
+     * @return string
+     */
+    public function getCurriculumId()
+    {
+        return $this->container['curriculumId'];
+    }
+
+    /**
+     * Sets curriculumId
+     * @param string $curriculumId Curriculum Id
+     * @return $this
+     */
+    public function setCurriculumId($curriculumId)
+    {
+        $this->container['curriculumId'] = $curriculumId;
+
+        return $this;
+    }
+
+    /**
+     * Gets completedDate
+     * @return \DateTime
+     */
+    public function getCompletedDate()
+    {
+        return $this->container['completedDate'];
+    }
+
+    /**
+     * Sets completedDate
+     * @param \DateTime $completedDate When the final email is scheduled to be sent
+     * @return $this
+     */
+    public function setCompletedDate($completedDate)
+    {
+        $this->container['completedDate'] = $completedDate;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      * @param  integer $offset Offset

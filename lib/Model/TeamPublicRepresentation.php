@@ -1,6 +1,6 @@
 <?php
 /**
- * String
+ * TeamPublicRepresentation
  *
  * PHP version 5
  *
@@ -44,29 +44,32 @@ namespace Swagger\Client\Model;
 use \ArrayAccess;
 
 /**
- * String Class Doc Comment
+ * TeamPublicRepresentation Class Doc Comment
  *
  * @category    Class */
+ // @description The TeamPublicRepresentation class
 /** 
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class String implements ArrayAccess
+class TeamPublicRepresentation implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'string';
+    protected static $swaggerModelName = 'TeamPublicRepresentation';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        
+        'id' => 'string',
+        'name' => 'string',
+        'createdDate' => 'string'
     );
 
     public static function swaggerTypes()
@@ -79,7 +82,9 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        
+        'id' => 'id',
+        'name' => 'name',
+        'createdDate' => 'createdDate'
     );
 
     public static function attributeMap()
@@ -92,7 +97,9 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        
+        'id' => 'setId',
+        'name' => 'setName',
+        'createdDate' => 'setCreatedDate'
     );
 
     public static function setters()
@@ -105,7 +112,9 @@ class String implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        
+        'id' => 'getId',
+        'name' => 'getName',
+        'createdDate' => 'getCreatedDate'
     );
 
     public static function getters()
@@ -129,6 +138,9 @@ class String implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['createdDate'] = isset($data['createdDate']) ? $data['createdDate'] : null;
     }
 
     /**
@@ -153,6 +165,69 @@ class String implements ArrayAccess
         return true;
     }
 
+
+    /**
+     * Gets id
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     * @param string $id The id of the team
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     * @param string $name The name of the team
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets createdDate
+     * @return string
+     */
+    public function getCreatedDate()
+    {
+        return $this->container['createdDate'];
+    }
+
+    /**
+     * Sets createdDate
+     * @param string $createdDate The date the team was created
+     * @return $this
+     */
+    public function setCreatedDate($createdDate)
+    {
+        $this->container['createdDate'] = $createdDate;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      * @param  integer $offset Offset
