@@ -1,6 +1,6 @@
 <?php
 /**
- * UtilitiesApi
+ * VideosApi
  * PHP version 5
  *
  * @category Class
@@ -46,7 +46,7 @@ use \Swagger\Client\ApiException;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * UtilitiesApi Class Doc Comment
+ * VideosApi Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
@@ -54,7 +54,7 @@ use \Swagger\Client\ObjectSerializer;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class UtilitiesApi
+class VideosApi
 {
 
     /**
@@ -94,7 +94,7 @@ class UtilitiesApi
      *
      * @param \Swagger\Client\ApiClient $apiClient set the API client
      *
-     * @return UtilitiesApi
+     * @return VideosApi
      */
     public function setApiClient(\Swagger\Client\ApiClient $apiClient)
     {
@@ -103,43 +103,148 @@ class UtilitiesApi
     }
 
     /**
-     * Operation createOAuthClient
+     * Operation getVideoRecorder
      *
-     * Create an OAuth Client
+     * Get Live Video Recorder HTML
      *
-     * @param string $name The name of the OAuth client. e.g. MyCrm DEV, or MyCrm PROD (required)
-     * @param string $redirectUri The URI to direct the client to after logging in. (required)
-     * @return \Swagger\Client\Model\OAuthClient
+     * @param int $width The width of the recorder to present. (optional)
+     * @param string $videoId The id of the video to record (optional)
+     * @return \Swagger\Client\Model\VideoRecorderMethodResponse
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function createOAuthClient($name, $redirectUri)
+    public function getVideoRecorder($width = null, $videoId = null)
     {
-        list($response) = $this->createOAuthClientWithHttpInfo($name, $redirectUri);
+        list($response) = $this->getVideoRecorderWithHttpInfo($width, $videoId);
         return $response;
     }
 
     /**
-     * Operation createOAuthClientWithHttpInfo
+     * Operation getVideoRecorderWithHttpInfo
      *
-     * Create an OAuth Client
+     * Get Live Video Recorder HTML
      *
-     * @param string $name The name of the OAuth client. e.g. MyCrm DEV, or MyCrm PROD (required)
-     * @param string $redirectUri The URI to direct the client to after logging in. (required)
-     * @return Array of \Swagger\Client\Model\OAuthClient, HTTP status code, HTTP response headers (array of strings)
+     * @param int $width The width of the recorder to present. (optional)
+     * @param string $videoId The id of the video to record (optional)
+     * @return Array of \Swagger\Client\Model\VideoRecorderMethodResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function createOAuthClientWithHttpInfo($name, $redirectUri)
+    public function getVideoRecorderWithHttpInfo($width = null, $videoId = null)
     {
-        // verify the required parameter 'name' is set
-        if ($name === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $name when calling createOAuthClient');
+        // parse inputs
+        $resourcePath = "/videos/live/getRecorder";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
         }
-        // verify the required parameter 'redirectUri' is set
-        if ($redirectUri === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $redirectUri when calling createOAuthClient');
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/x-www-form-urlencoded'));
+
+        // query params
+        if ($width !== null) {
+            $queryParams['width'] = $this->apiClient->getSerializer()->toQueryValue($width);
+        }
+        // query params
+        if ($videoId !== null) {
+            $queryParams['videoId'] = $this->apiClient->getSerializer()->toQueryValue($videoId);
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // this endpoint requires OAuth (access token)
+        if (strlen($this->apiClient->getConfig()->getAccessToken()) !== 0) {
+            $headerParams['Authorization'] = 'Bearer ' . $this->apiClient->getConfig()->getAccessToken();
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\Swagger\Client\Model\VideoRecorderMethodResponse',
+                '/videos/live/getRecorder'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\VideoRecorderMethodResponse', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\VideoRecorderMethodResponse', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation markLiveRecordingComplete
+     *
+     * Completes a live recording
+     *
+     * @param string $videoId The id of the video to mark as done. (required)
+     * @param string $filename The filename that was chosen as the final video. (required)
+     * @param string $title The title to give the video (required)
+     * @return \Swagger\Client\Model\VideoPublicRepresentation
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function markLiveRecordingComplete($videoId, $filename, $title)
+    {
+        list($response) = $this->markLiveRecordingCompleteWithHttpInfo($videoId, $filename, $title);
+        return $response;
+    }
+
+    /**
+     * Operation markLiveRecordingCompleteWithHttpInfo
+     *
+     * Completes a live recording
+     *
+     * @param string $videoId The id of the video to mark as done. (required)
+     * @param string $filename The filename that was chosen as the final video. (required)
+     * @param string $title The title to give the video (required)
+     * @return Array of \Swagger\Client\Model\VideoPublicRepresentation, HTTP status code, HTTP response headers (array of strings)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function markLiveRecordingCompleteWithHttpInfo($videoId, $filename, $title)
+    {
+        // verify the required parameter 'videoId' is set
+        if ($videoId === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $videoId when calling markLiveRecordingComplete');
+        }
+        // verify the required parameter 'filename' is set
+        if ($filename === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $filename when calling markLiveRecordingComplete');
+        }
+        // verify the required parameter 'title' is set
+        if ($title === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $title when calling markLiveRecordingComplete');
         }
         // parse inputs
-        $resourcePath = "/oauthclient";
+        $resourcePath = "/videos/live/markComplete";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -154,12 +259,16 @@ class UtilitiesApi
         $resourcePath = str_replace("{format}", "json", $resourcePath);
 
         // form params
-        if ($name !== null) {
-            $formParams['name'] = $this->apiClient->getSerializer()->toFormValue($name);
+        if ($videoId !== null) {
+            $formParams['videoId'] = $this->apiClient->getSerializer()->toFormValue($videoId);
         }
         // form params
-        if ($redirectUri !== null) {
-            $formParams['redirectUri'] = $this->apiClient->getSerializer()->toFormValue($redirectUri);
+        if ($filename !== null) {
+            $formParams['filename'] = $this->apiClient->getSerializer()->toFormValue($filename);
+        }
+        // form params
+        if ($title !== null) {
+            $formParams['title'] = $this->apiClient->getSerializer()->toFormValue($title);
         }
         
         // for model (json/xml)
@@ -180,15 +289,15 @@ class UtilitiesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\OAuthClient',
-                '/oauthclient'
+                '\Swagger\Client\Model\VideoPublicRepresentation',
+                '/videos/live/markComplete'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\OAuthClient', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\VideoPublicRepresentation', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\OAuthClient', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\VideoPublicRepresentation', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 400:
@@ -210,37 +319,39 @@ class UtilitiesApi
     }
 
     /**
-     * Operation deleteOAuthClient
+     * Operation signUpload
      *
-     * Delete an OAuth Client
+     * Generate Signed Url
      *
-     * @param string $id The id of the OAuth Client (required)
-     * @return void
+     * @param \Swagger\Client\Model\SignUploadRequest $policy The policy to sign (required)
+     * @param bool $v4 Whether to do v4 signing (optional)
+     * @return string
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function deleteOAuthClient($id)
+    public function signUpload($policy, $v4 = null)
     {
-        list($response) = $this->deleteOAuthClientWithHttpInfo($id);
+        list($response) = $this->signUploadWithHttpInfo($policy, $v4);
         return $response;
     }
 
     /**
-     * Operation deleteOAuthClientWithHttpInfo
+     * Operation signUploadWithHttpInfo
      *
-     * Delete an OAuth Client
+     * Generate Signed Url
      *
-     * @param string $id The id of the OAuth Client (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @param \Swagger\Client\Model\SignUploadRequest $policy The policy to sign (required)
+     * @param bool $v4 Whether to do v4 signing (optional)
+     * @return Array of string, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function deleteOAuthClientWithHttpInfo($id)
+    public function signUploadWithHttpInfo($policy, $v4 = null)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling deleteOAuthClient');
+        // verify the required parameter 'policy' is set
+        if ($policy === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $policy when calling signUpload');
         }
         // parse inputs
-        $resourcePath = "/oauthclient/{id}";
+        $resourcePath = "/video/signedUpload";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -249,118 +360,44 @@ class UtilitiesApi
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/x-www-form-urlencoded'));
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
 
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
 
-        
+        // form params
+        if ($v4 !== null) {
+            $formParams['v4'] = $this->apiClient->getSerializer()->toFormValue($v4);
+        }
+        // body params
+        $_tempBody = null;
+        if (isset($policy)) {
+            $_tempBody = $policy;
+        }
+
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
         } elseif (count($formParams) > 0) {
             $httpBody = $formParams; // for HTTP post (form)
         }
-        // this endpoint requires OAuth (access token)
-        if (strlen($this->apiClient->getConfig()->getAccessToken()) !== 0) {
-            $headerParams['Authorization'] = 'Bearer ' . $this->apiClient->getConfig()->getAccessToken();
-        }
         // make the API Call
         try {
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath,
-                'DELETE',
+                'POST',
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                null,
-                '/oauthclient/{id}'
+                'string',
+                '/video/signedUpload'
             );
 
-            return array(null, $statusCode, $httpHeader);
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getOAuthClients
-     *
-     * Lists OAuth Clients
-     *
-     * @return \Swagger\Client\Model\OAuthClient[]
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function getOAuthClients()
-    {
-        list($response) = $this->getOAuthClientsWithHttpInfo();
-        return $response;
-    }
-
-    /**
-     * Operation getOAuthClientsWithHttpInfo
-     *
-     * Lists OAuth Clients
-     *
-     * @return Array of \Swagger\Client\Model\OAuthClient[], HTTP status code, HTTP response headers (array of strings)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function getOAuthClientsWithHttpInfo()
-    {
-        // parse inputs
-        $resourcePath = "/oauthclient";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/x-www-form-urlencoded'));
-
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // this endpoint requires OAuth (access token)
-        if (strlen($this->apiClient->getConfig()->getAccessToken()) !== 0) {
-            $headerParams['Authorization'] = 'Bearer ' . $this->apiClient->getConfig()->getAccessToken();
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\Swagger\Client\Model\OAuthClient[]',
-                '/oauthclient'
-            );
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\OAuthClient[]', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, 'string', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\OAuthClient[]', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 400:
@@ -375,73 +412,6 @@ class UtilitiesApi
                     $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getSpec
-     *
-     * Describes this api
-     *
-     * @return void
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function getSpec()
-    {
-        list($response) = $this->getSpecWithHttpInfo();
-        return $response;
-    }
-
-    /**
-     * Operation getSpecWithHttpInfo
-     *
-     * Describes this api
-     *
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function getSpecWithHttpInfo()
-    {
-        // parse inputs
-        $resourcePath = "/spec";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/x-www-form-urlencoded'));
-
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                null,
-                '/spec'
-            );
-
-            return array(null, $statusCode, $httpHeader);
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
             }
 
             throw $e;

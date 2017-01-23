@@ -1,6 +1,6 @@
 <?php
 /**
- * BBWebHook
+ * SignUploadResponse
  *
  * PHP version 5
  *
@@ -44,33 +44,31 @@ namespace Swagger\Client\Model;
 use \ArrayAccess;
 
 /**
- * BBWebHook Class Doc Comment
+ * SignUploadResponse Class Doc Comment
  *
  * @category    Class */
- // @description The BBWebHook class
+ // @description The SignUploadResponse class
 /** 
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class BBWebHook implements ArrayAccess
+class SignUploadResponse implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'BBWebHook';
+    protected static $swaggerModelName = 'SignUploadResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        'userId' => 'string',
-        'hookId' => 'int',
-        'url' => 'string',
-        'isHidden' => 'bool'
+        'policy' => 'string',
+        'signature' => 'string'
     );
 
     public static function swaggerTypes()
@@ -83,10 +81,8 @@ class BBWebHook implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        'userId' => 'userId',
-        'hookId' => 'hookId',
-        'url' => 'url',
-        'isHidden' => 'isHidden'
+        'policy' => 'policy',
+        'signature' => 'signature'
     );
 
     public static function attributeMap()
@@ -99,10 +95,8 @@ class BBWebHook implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        'userId' => 'setUserId',
-        'hookId' => 'setHookId',
-        'url' => 'setUrl',
-        'isHidden' => 'setIsHidden'
+        'policy' => 'setPolicy',
+        'signature' => 'setSignature'
     );
 
     public static function setters()
@@ -115,10 +109,8 @@ class BBWebHook implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        'userId' => 'getUserId',
-        'hookId' => 'getHookId',
-        'url' => 'getUrl',
-        'isHidden' => 'getIsHidden'
+        'policy' => 'getPolicy',
+        'signature' => 'getSignature'
     );
 
     public static function getters()
@@ -142,10 +134,8 @@ class BBWebHook implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['userId'] = isset($data['userId']) ? $data['userId'] : null;
-        $this->container['hookId'] = isset($data['hookId']) ? $data['hookId'] : null;
-        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
-        $this->container['isHidden'] = isset($data['isHidden']) ? $data['isHidden'] : null;
+        $this->container['policy'] = isset($data['policy']) ? $data['policy'] : null;
+        $this->container['signature'] = isset($data['signature']) ? $data['signature'] : null;
     }
 
     /**
@@ -172,85 +162,43 @@ class BBWebHook implements ArrayAccess
 
 
     /**
-     * Gets userId
+     * Gets policy
      * @return string
      */
-    public function getUserId()
+    public function getPolicy()
     {
-        return $this->container['userId'];
+        return $this->container['policy'];
     }
 
     /**
-     * Sets userId
-     * @param string $userId The user to whom the webhook belongs
+     * Sets policy
+     * @param string $policy Base64 encoded policy.
      * @return $this
      */
-    public function setUserId($userId)
+    public function setPolicy($policy)
     {
-        $this->container['userId'] = $userId;
+        $this->container['policy'] = $policy;
 
         return $this;
     }
 
     /**
-     * Gets hookId
-     * @return int
-     */
-    public function getHookId()
-    {
-        return $this->container['hookId'];
-    }
-
-    /**
-     * Sets hookId
-     * @param int $hookId The id of the hook
-     * @return $this
-     */
-    public function setHookId($hookId)
-    {
-        $this->container['hookId'] = $hookId;
-
-        return $this;
-    }
-
-    /**
-     * Gets url
+     * Gets signature
      * @return string
      */
-    public function getUrl()
+    public function getSignature()
     {
-        return $this->container['url'];
+        return $this->container['signature'];
     }
 
     /**
-     * Sets url
-     * @param string $url the url to send hook requests to
+     * Sets signature
+     * @param string $signature Signature for policy.
      * @return $this
      */
-    public function setUrl($url)
+    public function setSignature($signature)
     {
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-
-    /**
-     * Gets isHidden
-     * @return bool
-     */
-    public function getIsHidden()
-    {
-        return $this->container['isHidden'];
-    }
-
-    /**
-     * Sets isHidden
-     * @param bool $isHidden Whether the hook is displayed to the user
-     * @return $this
-     */
-    public function setIsHidden($isHidden)
-    {
-        $this->container['isHidden'] = $isHidden;
+        $this->container['signature'] = $signature;
 
         return $this;
     }

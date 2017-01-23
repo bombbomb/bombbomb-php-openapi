@@ -1,6 +1,6 @@
 <?php
 /**
- * BBWebHook
+ * VideoRecorderMethodResponse
  *
  * PHP version 5
  *
@@ -44,23 +44,23 @@ namespace Swagger\Client\Model;
 use \ArrayAccess;
 
 /**
- * BBWebHook Class Doc Comment
+ * VideoRecorderMethodResponse Class Doc Comment
  *
  * @category    Class */
- // @description The BBWebHook class
+ // @description The VideoRecorderMethodResponse class
 /** 
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class BBWebHook implements ArrayAccess
+class VideoRecorderMethodResponse implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'BBWebHook';
+    protected static $swaggerModelName = 'VideoRecorderMethodResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -68,9 +68,13 @@ class BBWebHook implements ArrayAccess
       */
     protected static $swaggerTypes = array(
         'userId' => 'string',
-        'hookId' => 'int',
-        'url' => 'string',
-        'isHidden' => 'bool'
+        'email' => 'string',
+        'clientId' => 'string',
+        'vidId' => 'string',
+        'content' => 'string',
+        'width' => 'int',
+        'height' => 'int',
+        'https' => 'bool'
     );
 
     public static function swaggerTypes()
@@ -83,10 +87,14 @@ class BBWebHook implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        'userId' => 'userId',
-        'hookId' => 'hookId',
-        'url' => 'url',
-        'isHidden' => 'isHidden'
+        'userId' => 'user_id',
+        'email' => 'email',
+        'clientId' => 'client_id',
+        'vidId' => 'vid_id',
+        'content' => 'content',
+        'width' => 'width',
+        'height' => 'height',
+        'https' => 'https'
     );
 
     public static function attributeMap()
@@ -100,9 +108,13 @@ class BBWebHook implements ArrayAccess
      */
     protected static $setters = array(
         'userId' => 'setUserId',
-        'hookId' => 'setHookId',
-        'url' => 'setUrl',
-        'isHidden' => 'setIsHidden'
+        'email' => 'setEmail',
+        'clientId' => 'setClientId',
+        'vidId' => 'setVidId',
+        'content' => 'setContent',
+        'width' => 'setWidth',
+        'height' => 'setHeight',
+        'https' => 'setHttps'
     );
 
     public static function setters()
@@ -116,9 +128,13 @@ class BBWebHook implements ArrayAccess
      */
     protected static $getters = array(
         'userId' => 'getUserId',
-        'hookId' => 'getHookId',
-        'url' => 'getUrl',
-        'isHidden' => 'getIsHidden'
+        'email' => 'getEmail',
+        'clientId' => 'getClientId',
+        'vidId' => 'getVidId',
+        'content' => 'getContent',
+        'width' => 'getWidth',
+        'height' => 'getHeight',
+        'https' => 'getHttps'
     );
 
     public static function getters()
@@ -143,9 +159,13 @@ class BBWebHook implements ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['userId'] = isset($data['userId']) ? $data['userId'] : null;
-        $this->container['hookId'] = isset($data['hookId']) ? $data['hookId'] : null;
-        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
-        $this->container['isHidden'] = isset($data['isHidden']) ? $data['isHidden'] : null;
+        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
+        $this->container['clientId'] = isset($data['clientId']) ? $data['clientId'] : null;
+        $this->container['vidId'] = isset($data['vidId']) ? $data['vidId'] : null;
+        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
+        $this->container['width'] = isset($data['width']) ? $data['width'] : null;
+        $this->container['height'] = isset($data['height']) ? $data['height'] : null;
+        $this->container['https'] = isset($data['https']) ? $data['https'] : null;
     }
 
     /**
@@ -182,7 +202,7 @@ class BBWebHook implements ArrayAccess
 
     /**
      * Sets userId
-     * @param string $userId The user to whom the webhook belongs
+     * @param string $userId The id of the user for whom this video will be recorded
      * @return $this
      */
     public function setUserId($userId)
@@ -193,64 +213,148 @@ class BBWebHook implements ArrayAccess
     }
 
     /**
-     * Gets hookId
-     * @return int
-     */
-    public function getHookId()
-    {
-        return $this->container['hookId'];
-    }
-
-    /**
-     * Sets hookId
-     * @param int $hookId The id of the hook
-     * @return $this
-     */
-    public function setHookId($hookId)
-    {
-        $this->container['hookId'] = $hookId;
-
-        return $this;
-    }
-
-    /**
-     * Gets url
+     * Gets email
      * @return string
      */
-    public function getUrl()
+    public function getEmail()
     {
-        return $this->container['url'];
+        return $this->container['email'];
     }
 
     /**
-     * Sets url
-     * @param string $url the url to send hook requests to
+     * Sets email
+     * @param string $email The email address of the user for whom this video will be recorded
      * @return $this
      */
-    public function setUrl($url)
+    public function setEmail($email)
     {
-        $this->container['url'] = $url;
+        $this->container['email'] = $email;
 
         return $this;
     }
 
     /**
-     * Gets isHidden
-     * @return bool
+     * Gets clientId
+     * @return string
      */
-    public function getIsHidden()
+    public function getClientId()
     {
-        return $this->container['isHidden'];
+        return $this->container['clientId'];
     }
 
     /**
-     * Sets isHidden
-     * @param bool $isHidden Whether the hook is displayed to the user
+     * Sets clientId
+     * @param string $clientId The client_id of the user for whom this video will be recorded
      * @return $this
      */
-    public function setIsHidden($isHidden)
+    public function setClientId($clientId)
     {
-        $this->container['isHidden'] = $isHidden;
+        $this->container['clientId'] = $clientId;
+
+        return $this;
+    }
+
+    /**
+     * Gets vidId
+     * @return string
+     */
+    public function getVidId()
+    {
+        return $this->container['vidId'];
+    }
+
+    /**
+     * Sets vidId
+     * @param string $vidId The id of the video that will be recorded
+     * @return $this
+     */
+    public function setVidId($vidId)
+    {
+        $this->container['vidId'] = $vidId;
+
+        return $this;
+    }
+
+    /**
+     * Gets content
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->container['content'];
+    }
+
+    /**
+     * Sets content
+     * @param string $content An HTML blob that displays a video recorder
+     * @return $this
+     */
+    public function setContent($content)
+    {
+        $this->container['content'] = $content;
+
+        return $this;
+    }
+
+    /**
+     * Gets width
+     * @return int
+     */
+    public function getWidth()
+    {
+        return $this->container['width'];
+    }
+
+    /**
+     * Sets width
+     * @param int $width The width of the video recorder
+     * @return $this
+     */
+    public function setWidth($width)
+    {
+        $this->container['width'] = $width;
+
+        return $this;
+    }
+
+    /**
+     * Gets height
+     * @return int
+     */
+    public function getHeight()
+    {
+        return $this->container['height'];
+    }
+
+    /**
+     * Sets height
+     * @param int $height the Height of the video recorder
+     * @return $this
+     */
+    public function setHeight($height)
+    {
+        $this->container['height'] = $height;
+
+        return $this;
+    }
+
+    /**
+     * Gets https
+     * @return bool
+     */
+    public function getHttps()
+    {
+        return $this->container['https'];
+    }
+
+    /**
+     * Sets https
+     * @param bool $https Whether communication from the recorder will be handled via HTTPS (always true)
+     * @return $this
+     */
+    public function setHttps($https)
+    {
+        $this->container['https'] = $https;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Curriculum
+ * PromptBotBot
  *
  * PHP version 5
  *
@@ -44,23 +44,23 @@ namespace Swagger\Client\Model;
 use \ArrayAccess;
 
 /**
- * Curriculum Class Doc Comment
+ * PromptBotBot Class Doc Comment
  *
  * @category    Class */
- // @description The Curriculum class
+ // @description The PromptBot\\Bot class
 /** 
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class Curriculum implements ArrayAccess
+class PromptBotBot implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Curriculum';
+    protected static $swaggerModelName = 'PromptBot\Bot';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -68,13 +68,16 @@ class Curriculum implements ArrayAccess
       */
     protected static $swaggerTypes = array(
         'id' => 'string',
-        'name' => 'string',
-        'htmlIntro' => 'string',
-        'imgUrl' => 'string',
-        'itemCount' => 'int',
-        'renderAs' => 'string',
-        'visibleToAllUsers' => 'bool',
-        'progress' => '\Swagger\Client\Model\CurriculumUserProgress[]'
+        'userId' => 'string',
+        'emailId' => 'string',
+        'listId' => 'string',
+        'promptSubject' => 'string',
+        'promptBody' => 'string',
+        'status' => 'string',
+        'startDate' => '\DateTime',
+        'endDate' => '\DateTime',
+        'botTypeId' => 'string',
+        'templateId' => 'string'
     );
 
     public static function swaggerTypes()
@@ -88,13 +91,16 @@ class Curriculum implements ArrayAccess
      */
     protected static $attributeMap = array(
         'id' => 'id',
-        'name' => 'name',
-        'htmlIntro' => 'htmlIntro',
-        'imgUrl' => 'imgUrl',
-        'itemCount' => 'itemCount',
-        'renderAs' => 'renderAs',
-        'visibleToAllUsers' => 'visibleToAllUsers',
-        'progress' => 'progress'
+        'userId' => 'userId',
+        'emailId' => 'emailId',
+        'listId' => 'listId',
+        'promptSubject' => 'promptSubject',
+        'promptBody' => 'promptBody',
+        'status' => 'status',
+        'startDate' => 'startDate',
+        'endDate' => 'endDate',
+        'botTypeId' => 'botTypeId',
+        'templateId' => 'templateId'
     );
 
     public static function attributeMap()
@@ -108,13 +114,16 @@ class Curriculum implements ArrayAccess
      */
     protected static $setters = array(
         'id' => 'setId',
-        'name' => 'setName',
-        'htmlIntro' => 'setHtmlIntro',
-        'imgUrl' => 'setImgUrl',
-        'itemCount' => 'setItemCount',
-        'renderAs' => 'setRenderAs',
-        'visibleToAllUsers' => 'setVisibleToAllUsers',
-        'progress' => 'setProgress'
+        'userId' => 'setUserId',
+        'emailId' => 'setEmailId',
+        'listId' => 'setListId',
+        'promptSubject' => 'setPromptSubject',
+        'promptBody' => 'setPromptBody',
+        'status' => 'setStatus',
+        'startDate' => 'setStartDate',
+        'endDate' => 'setEndDate',
+        'botTypeId' => 'setBotTypeId',
+        'templateId' => 'setTemplateId'
     );
 
     public static function setters()
@@ -128,13 +137,16 @@ class Curriculum implements ArrayAccess
      */
     protected static $getters = array(
         'id' => 'getId',
-        'name' => 'getName',
-        'htmlIntro' => 'getHtmlIntro',
-        'imgUrl' => 'getImgUrl',
-        'itemCount' => 'getItemCount',
-        'renderAs' => 'getRenderAs',
-        'visibleToAllUsers' => 'getVisibleToAllUsers',
-        'progress' => 'getProgress'
+        'userId' => 'getUserId',
+        'emailId' => 'getEmailId',
+        'listId' => 'getListId',
+        'promptSubject' => 'getPromptSubject',
+        'promptBody' => 'getPromptBody',
+        'status' => 'getStatus',
+        'startDate' => 'getStartDate',
+        'endDate' => 'getEndDate',
+        'botTypeId' => 'getBotTypeId',
+        'templateId' => 'getTemplateId'
     );
 
     public static function getters()
@@ -159,13 +171,16 @@ class Curriculum implements ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['htmlIntro'] = isset($data['htmlIntro']) ? $data['htmlIntro'] : null;
-        $this->container['imgUrl'] = isset($data['imgUrl']) ? $data['imgUrl'] : null;
-        $this->container['itemCount'] = isset($data['itemCount']) ? $data['itemCount'] : null;
-        $this->container['renderAs'] = isset($data['renderAs']) ? $data['renderAs'] : null;
-        $this->container['visibleToAllUsers'] = isset($data['visibleToAllUsers']) ? $data['visibleToAllUsers'] : null;
-        $this->container['progress'] = isset($data['progress']) ? $data['progress'] : null;
+        $this->container['userId'] = isset($data['userId']) ? $data['userId'] : null;
+        $this->container['emailId'] = isset($data['emailId']) ? $data['emailId'] : null;
+        $this->container['listId'] = isset($data['listId']) ? $data['listId'] : null;
+        $this->container['promptSubject'] = isset($data['promptSubject']) ? $data['promptSubject'] : null;
+        $this->container['promptBody'] = isset($data['promptBody']) ? $data['promptBody'] : null;
+        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['startDate'] = isset($data['startDate']) ? $data['startDate'] : null;
+        $this->container['endDate'] = isset($data['endDate']) ? $data['endDate'] : null;
+        $this->container['botTypeId'] = isset($data['botTypeId']) ? $data['botTypeId'] : null;
+        $this->container['templateId'] = isset($data['templateId']) ? $data['templateId'] : null;
     }
 
     /**
@@ -202,7 +217,7 @@ class Curriculum implements ArrayAccess
 
     /**
      * Sets id
-     * @param string $id Id
+     * @param string $id The identifier of the prompt bot. Read Only.
      * @return $this
      */
     public function setId($id)
@@ -213,148 +228,211 @@ class Curriculum implements ArrayAccess
     }
 
     /**
-     * Gets name
+     * Gets userId
      * @return string
      */
-    public function getName()
+    public function getUserId()
     {
-        return $this->container['name'];
+        return $this->container['userId'];
     }
 
     /**
-     * Sets name
-     * @param string $name Name
+     * Sets userId
+     * @param string $userId The prompt bot's owner. Read Only.
      * @return $this
      */
-    public function setName($name)
+    public function setUserId($userId)
     {
-        $this->container['name'] = $name;
+        $this->container['userId'] = $userId;
 
         return $this;
     }
 
     /**
-     * Gets htmlIntro
+     * Gets emailId
      * @return string
      */
-    public function getHtmlIntro()
+    public function getEmailId()
     {
-        return $this->container['htmlIntro'];
+        return $this->container['emailId'];
     }
 
     /**
-     * Sets htmlIntro
-     * @param string $htmlIntro HTML formatted intro
+     * Sets emailId
+     * @param string $emailId The default email being sent to contacts in the prompt bot list.
      * @return $this
      */
-    public function setHtmlIntro($htmlIntro)
+    public function setEmailId($emailId)
     {
-        $this->container['htmlIntro'] = $htmlIntro;
+        $this->container['emailId'] = $emailId;
 
         return $this;
     }
 
     /**
-     * Gets imgUrl
+     * Gets listId
      * @return string
      */
-    public function getImgUrl()
+    public function getListId()
     {
-        return $this->container['imgUrl'];
+        return $this->container['listId'];
     }
 
     /**
-     * Sets imgUrl
-     * @param string $imgUrl URI of header image
+     * Sets listId
+     * @param string $listId The list to attach the Prompt Bot to.
      * @return $this
      */
-    public function setImgUrl($imgUrl)
+    public function setListId($listId)
     {
-        $this->container['imgUrl'] = $imgUrl;
+        $this->container['listId'] = $listId;
 
         return $this;
     }
 
     /**
-     * Gets itemCount
-     * @return int
-     */
-    public function getItemCount()
-    {
-        return $this->container['itemCount'];
-    }
-
-    /**
-     * Sets itemCount
-     * @param int $itemCount Number of curriculum items
-     * @return $this
-     */
-    public function setItemCount($itemCount)
-    {
-        $this->container['itemCount'] = $itemCount;
-
-        return $this;
-    }
-
-    /**
-     * Gets renderAs
+     * Gets promptSubject
      * @return string
      */
-    public function getRenderAs()
+    public function getPromptSubject()
     {
-        return $this->container['renderAs'];
+        return $this->container['promptSubject'];
     }
 
     /**
-     * Sets renderAs
-     * @param string $renderAs Render method for curriculum
+     * Sets promptSubject
+     * @param string $promptSubject The prompt subject.
      * @return $this
      */
-    public function setRenderAs($renderAs)
+    public function setPromptSubject($promptSubject)
     {
-        $this->container['renderAs'] = $renderAs;
+        $this->container['promptSubject'] = $promptSubject;
 
         return $this;
     }
 
     /**
-     * Gets visibleToAllUsers
-     * @return bool
+     * Gets promptBody
+     * @return string
      */
-    public function getVisibleToAllUsers()
+    public function getPromptBody()
     {
-        return $this->container['visibleToAllUsers'];
+        return $this->container['promptBody'];
     }
 
     /**
-     * Sets visibleToAllUsers
-     * @param bool $visibleToAllUsers Globally visible
+     * Sets promptBody
+     * @param string $promptBody The prompt body.
      * @return $this
      */
-    public function setVisibleToAllUsers($visibleToAllUsers)
+    public function setPromptBody($promptBody)
     {
-        $this->container['visibleToAllUsers'] = $visibleToAllUsers;
+        $this->container['promptBody'] = $promptBody;
 
         return $this;
     }
 
     /**
-     * Gets progress
-     * @return \Swagger\Client\Model\CurriculumUserProgress[]
+     * Gets status
+     * @return string
      */
-    public function getProgress()
+    public function getStatus()
     {
-        return $this->container['progress'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets progress
-     * @param \Swagger\Client\Model\CurriculumUserProgress[] $progress Collection of User Progress for Curriculum
+     * Sets status
+     * @param string $status The status of the prompt bot. Read Only.
      * @return $this
      */
-    public function setProgress($progress)
+    public function setStatus($status)
     {
-        $this->container['progress'] = $progress;
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets startDate
+     * @return \DateTime
+     */
+    public function getStartDate()
+    {
+        return $this->container['startDate'];
+    }
+
+    /**
+     * Sets startDate
+     * @param \DateTime $startDate when the bot started
+     * @return $this
+     */
+    public function setStartDate($startDate)
+    {
+        $this->container['startDate'] = $startDate;
+
+        return $this;
+    }
+
+    /**
+     * Gets endDate
+     * @return \DateTime
+     */
+    public function getEndDate()
+    {
+        return $this->container['endDate'];
+    }
+
+    /**
+     * Sets endDate
+     * @param \DateTime $endDate when the bot should finish
+     * @return $this
+     */
+    public function setEndDate($endDate)
+    {
+        $this->container['endDate'] = $endDate;
+
+        return $this;
+    }
+
+    /**
+     * Gets botTypeId
+     * @return string
+     */
+    public function getBotTypeId()
+    {
+        return $this->container['botTypeId'];
+    }
+
+    /**
+     * Sets botTypeId
+     * @param string $botTypeId The type of bot.
+     * @return $this
+     */
+    public function setBotTypeId($botTypeId)
+    {
+        $this->container['botTypeId'] = $botTypeId;
+
+        return $this;
+    }
+
+    /**
+     * Gets templateId
+     * @return string
+     */
+    public function getTemplateId()
+    {
+        return $this->container['templateId'];
+    }
+
+    /**
+     * Sets templateId
+     * @param string $templateId The template id used to generate the default email.
+     * @return $this
+     */
+    public function setTemplateId($templateId)
+    {
+        $this->container['templateId'] = $templateId;
 
         return $this;
     }

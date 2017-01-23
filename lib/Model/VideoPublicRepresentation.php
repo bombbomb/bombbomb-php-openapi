@@ -1,6 +1,6 @@
 <?php
 /**
- * TeamPublicRepresentation
+ * VideoPublicRepresentation
  *
  * PHP version 5
  *
@@ -44,23 +44,23 @@ namespace Swagger\Client\Model;
 use \ArrayAccess;
 
 /**
- * TeamPublicRepresentation Class Doc Comment
+ * VideoPublicRepresentation Class Doc Comment
  *
  * @category    Class */
- // @description The TeamPublicRepresentation class
+ // @description The VideoPublicRepresentation class
 /** 
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class TeamPublicRepresentation implements ArrayAccess
+class VideoPublicRepresentation implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'TeamPublicRepresentation';
+    protected static $swaggerModelName = 'VideoPublicRepresentation';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -68,8 +68,16 @@ class TeamPublicRepresentation implements ArrayAccess
       */
     protected static $swaggerTypes = array(
         'id' => 'string',
+        'userId' => 'string',
+        'status' => 'string',
         'name' => 'string',
-        'createdDate' => 'string'
+        'description' => 'string',
+        'thumbUrl' => 'string',
+        'videoUrls' => 'string[]',
+        'shortUrl' => 'string',
+        'height' => 'int',
+        'width' => 'int',
+        'uploadDate' => 'string'
     );
 
     public static function swaggerTypes()
@@ -83,8 +91,16 @@ class TeamPublicRepresentation implements ArrayAccess
      */
     protected static $attributeMap = array(
         'id' => 'id',
+        'userId' => 'userId',
+        'status' => 'status',
         'name' => 'name',
-        'createdDate' => 'createdDate'
+        'description' => 'description',
+        'thumbUrl' => 'thumbUrl',
+        'videoUrls' => 'videoUrls',
+        'shortUrl' => 'shortUrl',
+        'height' => 'height',
+        'width' => 'width',
+        'uploadDate' => 'uploadDate'
     );
 
     public static function attributeMap()
@@ -98,8 +114,16 @@ class TeamPublicRepresentation implements ArrayAccess
      */
     protected static $setters = array(
         'id' => 'setId',
+        'userId' => 'setUserId',
+        'status' => 'setStatus',
         'name' => 'setName',
-        'createdDate' => 'setCreatedDate'
+        'description' => 'setDescription',
+        'thumbUrl' => 'setThumbUrl',
+        'videoUrls' => 'setVideoUrls',
+        'shortUrl' => 'setShortUrl',
+        'height' => 'setHeight',
+        'width' => 'setWidth',
+        'uploadDate' => 'setUploadDate'
     );
 
     public static function setters()
@@ -113,8 +137,16 @@ class TeamPublicRepresentation implements ArrayAccess
      */
     protected static $getters = array(
         'id' => 'getId',
+        'userId' => 'getUserId',
+        'status' => 'getStatus',
         'name' => 'getName',
-        'createdDate' => 'getCreatedDate'
+        'description' => 'getDescription',
+        'thumbUrl' => 'getThumbUrl',
+        'videoUrls' => 'getVideoUrls',
+        'shortUrl' => 'getShortUrl',
+        'height' => 'getHeight',
+        'width' => 'getWidth',
+        'uploadDate' => 'getUploadDate'
     );
 
     public static function getters()
@@ -139,8 +171,16 @@ class TeamPublicRepresentation implements ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['userId'] = isset($data['userId']) ? $data['userId'] : null;
+        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['createdDate'] = isset($data['createdDate']) ? $data['createdDate'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['thumbUrl'] = isset($data['thumbUrl']) ? $data['thumbUrl'] : null;
+        $this->container['videoUrls'] = isset($data['videoUrls']) ? $data['videoUrls'] : null;
+        $this->container['shortUrl'] = isset($data['shortUrl']) ? $data['shortUrl'] : null;
+        $this->container['height'] = isset($data['height']) ? $data['height'] : null;
+        $this->container['width'] = isset($data['width']) ? $data['width'] : null;
+        $this->container['uploadDate'] = isset($data['uploadDate']) ? $data['uploadDate'] : null;
     }
 
     /**
@@ -177,12 +217,54 @@ class TeamPublicRepresentation implements ArrayAccess
 
     /**
      * Sets id
-     * @param string $id The id of the team
+     * @param string $id The id of the video
      * @return $this
      */
     public function setId($id)
     {
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets userId
+     * @return string
+     */
+    public function getUserId()
+    {
+        return $this->container['userId'];
+    }
+
+    /**
+     * Sets userId
+     * @param string $userId The is of the owning user
+     * @return $this
+     */
+    public function setUserId($userId)
+    {
+        $this->container['userId'] = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     * @param string $status The status of the video
+     * @return $this
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
 
         return $this;
     }
@@ -198,7 +280,7 @@ class TeamPublicRepresentation implements ArrayAccess
 
     /**
      * Sets name
-     * @param string $name The name of the team
+     * @param string $name The name of the video
      * @return $this
      */
     public function setName($name)
@@ -209,22 +291,148 @@ class TeamPublicRepresentation implements ArrayAccess
     }
 
     /**
-     * Gets createdDate
+     * Gets description
      * @return string
      */
-    public function getCreatedDate()
+    public function getDescription()
     {
-        return $this->container['createdDate'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets createdDate
-     * @param string $createdDate The date the team was created
+     * Sets description
+     * @param string $description A description of the video
      * @return $this
      */
-    public function setCreatedDate($createdDate)
+    public function setDescription($description)
     {
-        $this->container['createdDate'] = $createdDate;
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets thumbUrl
+     * @return string
+     */
+    public function getThumbUrl()
+    {
+        return $this->container['thumbUrl'];
+    }
+
+    /**
+     * Sets thumbUrl
+     * @param string $thumbUrl The url of the thumbnail for the video
+     * @return $this
+     */
+    public function setThumbUrl($thumbUrl)
+    {
+        $this->container['thumbUrl'] = $thumbUrl;
+
+        return $this;
+    }
+
+    /**
+     * Gets videoUrls
+     * @return string[]
+     */
+    public function getVideoUrls()
+    {
+        return $this->container['videoUrls'];
+    }
+
+    /**
+     * Sets videoUrls
+     * @param string[] $videoUrls Urls to different formats of the video
+     * @return $this
+     */
+    public function setVideoUrls($videoUrls)
+    {
+        $this->container['videoUrls'] = $videoUrls;
+
+        return $this;
+    }
+
+    /**
+     * Gets shortUrl
+     * @return string
+     */
+    public function getShortUrl()
+    {
+        return $this->container['shortUrl'];
+    }
+
+    /**
+     * Sets shortUrl
+     * @param string $shortUrl The url to use to link to the video
+     * @return $this
+     */
+    public function setShortUrl($shortUrl)
+    {
+        $this->container['shortUrl'] = $shortUrl;
+
+        return $this;
+    }
+
+    /**
+     * Gets height
+     * @return int
+     */
+    public function getHeight()
+    {
+        return $this->container['height'];
+    }
+
+    /**
+     * Sets height
+     * @param int $height The height of the video in pixels
+     * @return $this
+     */
+    public function setHeight($height)
+    {
+        $this->container['height'] = $height;
+
+        return $this;
+    }
+
+    /**
+     * Gets width
+     * @return int
+     */
+    public function getWidth()
+    {
+        return $this->container['width'];
+    }
+
+    /**
+     * Sets width
+     * @param int $width The width of the video in pixels
+     * @return $this
+     */
+    public function setWidth($width)
+    {
+        $this->container['width'] = $width;
+
+        return $this;
+    }
+
+    /**
+     * Gets uploadDate
+     * @return string
+     */
+    public function getUploadDate()
+    {
+        return $this->container['uploadDate'];
+    }
+
+    /**
+     * Sets uploadDate
+     * @param string $uploadDate The date the video was uploaded
+     * @return $this
+     */
+    public function setUploadDate($uploadDate)
+    {
+        $this->container['uploadDate'] = $uploadDate;
 
         return $this;
     }

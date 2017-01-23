@@ -6,8 +6,12 @@ Name | Type | Description | Notes
 **id** | **string** |  | [optional] 
 **clientGroupId** | **string** |  | [optional] 
 **sendDate** | [**\DateTime**](\DateTime.md) | When the email should be sent. | [optional] 
-**isPrompt** | **bool** | Determines whether this is a static or prompted send. | 
+**isPrompt** | **bool** | Video Prompt: Determines whether this is a static or prompted send. | 
+**printToTemplate** | **bool** | Controls whether or not the content is printed into a template. | [optional] 
 **emailId** | **string** | Static send: The Email to send on behalf of the group members. | [optional] 
+**exampleVideoId** | **string** | Video Prompt: The Video to include as an example for prompted users. | [optional] 
+**followUpVideoId** | **string** | The Video to include in the tracking follow up. | [optional] 
+**promptIntro** | **string** | Video Prompt: The intro text directed toward prompted users. | [optional] 
 **promptSubject** | **string** | Video Prompt: The subject line prompting the user to record a video. | [optional] 
 **promptBody** | **string** | Video Prompt: The HTML body of the email prompting the user to record a video. | [optional] 
 **emailSubject** | **string** | Video Prompt: The subject line of the final sent email | [optional] 

@@ -1,6 +1,6 @@
 <?php
 /**
- * UtilitiesApi
+ * EmailsApi
  * PHP version 5
  *
  * @category Class
@@ -46,7 +46,7 @@ use \Swagger\Client\ApiException;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * UtilitiesApi Class Doc Comment
+ * EmailsApi Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
@@ -54,7 +54,7 @@ use \Swagger\Client\ObjectSerializer;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class UtilitiesApi
+class EmailsApi
 {
 
     /**
@@ -94,7 +94,7 @@ class UtilitiesApi
      *
      * @param \Swagger\Client\ApiClient $apiClient set the API client
      *
-     * @return UtilitiesApi
+     * @return EmailsApi
      */
     public function setApiClient(\Swagger\Client\ApiClient $apiClient)
     {
@@ -103,43 +103,53 @@ class UtilitiesApi
     }
 
     /**
-     * Operation createOAuthClient
+     * Operation createPrintingPressEmail
      *
-     * Create an OAuth Client
+     * Create an Email with Printing Press
      *
-     * @param string $name The name of the OAuth client. e.g. MyCrm DEV, or MyCrm PROD (required)
-     * @param string $redirectUri The URI to direct the client to after logging in. (required)
-     * @return \Swagger\Client\Model\OAuthClient
+     * @param string $templateId The template id to be printed. (required)
+     * @param string $content The content of the email. (required)
+     * @param bool $replace Set whether to replace video placeholders with video id. (required)
+     * @param string $videoId A video to replace video place holders with. (optional)
+     * @param string $subjectLine The subject line to be printed. (optional)
+     * @return void
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function createOAuthClient($name, $redirectUri)
+    public function createPrintingPressEmail($templateId, $content, $replace, $videoId = null, $subjectLine = null)
     {
-        list($response) = $this->createOAuthClientWithHttpInfo($name, $redirectUri);
+        list($response) = $this->createPrintingPressEmailWithHttpInfo($templateId, $content, $replace, $videoId, $subjectLine);
         return $response;
     }
 
     /**
-     * Operation createOAuthClientWithHttpInfo
+     * Operation createPrintingPressEmailWithHttpInfo
      *
-     * Create an OAuth Client
+     * Create an Email with Printing Press
      *
-     * @param string $name The name of the OAuth client. e.g. MyCrm DEV, or MyCrm PROD (required)
-     * @param string $redirectUri The URI to direct the client to after logging in. (required)
-     * @return Array of \Swagger\Client\Model\OAuthClient, HTTP status code, HTTP response headers (array of strings)
+     * @param string $templateId The template id to be printed. (required)
+     * @param string $content The content of the email. (required)
+     * @param bool $replace Set whether to replace video placeholders with video id. (required)
+     * @param string $videoId A video to replace video place holders with. (optional)
+     * @param string $subjectLine The subject line to be printed. (optional)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function createOAuthClientWithHttpInfo($name, $redirectUri)
+    public function createPrintingPressEmailWithHttpInfo($templateId, $content, $replace, $videoId = null, $subjectLine = null)
     {
-        // verify the required parameter 'name' is set
-        if ($name === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $name when calling createOAuthClient');
+        // verify the required parameter 'templateId' is set
+        if ($templateId === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $templateId when calling createPrintingPressEmail');
         }
-        // verify the required parameter 'redirectUri' is set
-        if ($redirectUri === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $redirectUri when calling createOAuthClient');
+        // verify the required parameter 'content' is set
+        if ($content === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $content when calling createPrintingPressEmail');
+        }
+        // verify the required parameter 'replace' is set
+        if ($replace === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $replace when calling createPrintingPressEmail');
         }
         // parse inputs
-        $resourcePath = "/oauthclient";
+        $resourcePath = "/emails/print";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -154,12 +164,24 @@ class UtilitiesApi
         $resourcePath = str_replace("{format}", "json", $resourcePath);
 
         // form params
-        if ($name !== null) {
-            $formParams['name'] = $this->apiClient->getSerializer()->toFormValue($name);
+        if ($templateId !== null) {
+            $formParams['templateId'] = $this->apiClient->getSerializer()->toFormValue($templateId);
         }
         // form params
-        if ($redirectUri !== null) {
-            $formParams['redirectUri'] = $this->apiClient->getSerializer()->toFormValue($redirectUri);
+        if ($content !== null) {
+            $formParams['content'] = $this->apiClient->getSerializer()->toFormValue($content);
+        }
+        // form params
+        if ($replace !== null) {
+            $formParams['replace'] = $this->apiClient->getSerializer()->toFormValue($replace);
+        }
+        // form params
+        if ($videoId !== null) {
+            $formParams['videoId'] = $this->apiClient->getSerializer()->toFormValue($videoId);
+        }
+        // form params
+        if ($subjectLine !== null) {
+            $formParams['subjectLine'] = $this->apiClient->getSerializer()->toFormValue($subjectLine);
         }
         
         // for model (json/xml)
@@ -180,29 +202,13 @@ class UtilitiesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\OAuthClient',
-                '/oauthclient'
+                null,
+                '/emails/print'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\OAuthClient', $httpHeader), $statusCode, $httpHeader);
+            return array(null, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\OAuthClient', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
             }
 
             throw $e;
@@ -210,37 +216,39 @@ class UtilitiesApi
     }
 
     /**
-     * Operation deleteOAuthClient
+     * Operation getEmailTracking
      *
-     * Delete an OAuth Client
+     * Get Email Tracking
      *
-     * @param string $id The id of the OAuth Client (required)
+     * @param string $emailId ID of the email (required)
+     * @param string $jobId ID of the Job (or null for all jobs) (optional)
      * @return void
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function deleteOAuthClient($id)
+    public function getEmailTracking($emailId, $jobId = null)
     {
-        list($response) = $this->deleteOAuthClientWithHttpInfo($id);
+        list($response) = $this->getEmailTrackingWithHttpInfo($emailId, $jobId);
         return $response;
     }
 
     /**
-     * Operation deleteOAuthClientWithHttpInfo
+     * Operation getEmailTrackingWithHttpInfo
      *
-     * Delete an OAuth Client
+     * Get Email Tracking
      *
-     * @param string $id The id of the OAuth Client (required)
+     * @param string $emailId ID of the email (required)
+     * @param string $jobId ID of the Job (or null for all jobs) (optional)
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function deleteOAuthClientWithHttpInfo($id)
+    public function getEmailTrackingWithHttpInfo($emailId, $jobId = null)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling deleteOAuthClient');
+        // verify the required parameter 'emailId' is set
+        if ($emailId === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $emailId when calling getEmailTracking');
         }
         // parse inputs
-        $resourcePath = "/oauthclient/{id}";
+        $resourcePath = "/emails/{emailId}/tracking";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -251,11 +259,15 @@ class UtilitiesApi
         }
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/x-www-form-urlencoded'));
 
+        // query params
+        if ($jobId !== null) {
+            $queryParams['jobId'] = $this->apiClient->getSerializer()->toQueryValue($jobId);
+        }
         // path params
-        if ($id !== null) {
+        if ($emailId !== null) {
             $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
+                "{" . "emailId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($emailId),
                 $resourcePath
             );
         }
@@ -277,12 +289,12 @@ class UtilitiesApi
         try {
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath,
-                'DELETE',
+                'GET',
                 $queryParams,
                 $httpBody,
                 $headerParams,
                 null,
-                '/oauthclient/{id}'
+                '/emails/{emailId}/tracking'
             );
 
             return array(null, $statusCode, $httpHeader);
@@ -295,31 +307,43 @@ class UtilitiesApi
     }
 
     /**
-     * Operation getOAuthClients
+     * Operation getEmailTrackingInteractions
      *
-     * Lists OAuth Clients
+     * Get Email Tracking Interactions
      *
-     * @return \Swagger\Client\Model\OAuthClient[]
+     * @param string $emailId ID of the email (required)
+     * @param string $jobId ID of the Job (or null for all jobs) (optional)
+     * @param string $interactionType Interaction type to order and filter by (optional)
+     * @param string $searchTerm Search term to filer by (optional)
+     * @return void
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function getOAuthClients()
+    public function getEmailTrackingInteractions($emailId, $jobId = null, $interactionType = null, $searchTerm = null)
     {
-        list($response) = $this->getOAuthClientsWithHttpInfo();
+        list($response) = $this->getEmailTrackingInteractionsWithHttpInfo($emailId, $jobId, $interactionType, $searchTerm);
         return $response;
     }
 
     /**
-     * Operation getOAuthClientsWithHttpInfo
+     * Operation getEmailTrackingInteractionsWithHttpInfo
      *
-     * Lists OAuth Clients
+     * Get Email Tracking Interactions
      *
-     * @return Array of \Swagger\Client\Model\OAuthClient[], HTTP status code, HTTP response headers (array of strings)
+     * @param string $emailId ID of the email (required)
+     * @param string $jobId ID of the Job (or null for all jobs) (optional)
+     * @param string $interactionType Interaction type to order and filter by (optional)
+     * @param string $searchTerm Search term to filer by (optional)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function getOAuthClientsWithHttpInfo()
+    public function getEmailTrackingInteractionsWithHttpInfo($emailId, $jobId = null, $interactionType = null, $searchTerm = null)
     {
+        // verify the required parameter 'emailId' is set
+        if ($emailId === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $emailId when calling getEmailTrackingInteractions');
+        }
         // parse inputs
-        $resourcePath = "/oauthclient";
+        $resourcePath = "/emails/{emailId}/tracking/interactions";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -330,6 +354,26 @@ class UtilitiesApi
         }
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/x-www-form-urlencoded'));
 
+        // query params
+        if ($jobId !== null) {
+            $queryParams['jobId'] = $this->apiClient->getSerializer()->toQueryValue($jobId);
+        }
+        // query params
+        if ($interactionType !== null) {
+            $queryParams['interactionType'] = $this->apiClient->getSerializer()->toQueryValue($interactionType);
+        }
+        // query params
+        if ($searchTerm !== null) {
+            $queryParams['searchTerm'] = $this->apiClient->getSerializer()->toQueryValue($searchTerm);
+        }
+        // path params
+        if ($emailId !== null) {
+            $resourcePath = str_replace(
+                "{" . "emailId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($emailId),
+                $resourcePath
+            );
+        }
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
 
@@ -352,29 +396,13 @@ class UtilitiesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\OAuthClient[]',
-                '/oauthclient'
+                null,
+                '/emails/{emailId}/tracking/interactions'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\OAuthClient[]', $httpHeader), $statusCode, $httpHeader);
+            return array(null, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\OAuthClient[]', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
             }
 
             throw $e;
@@ -382,31 +410,41 @@ class UtilitiesApi
     }
 
     /**
-     * Operation getSpec
+     * Operation getHourlyEmailTracking
      *
-     * Describes this api
+     * Get Hourly Email Tracking
      *
+     * @param string $emailId ID of the email (required)
+     * @param string $jobId ID of the Job (or null for all jobs) (optional)
+     * @param string $interactionType Interaction type to filter by (optional)
      * @return void
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function getSpec()
+    public function getHourlyEmailTracking($emailId, $jobId = null, $interactionType = null)
     {
-        list($response) = $this->getSpecWithHttpInfo();
+        list($response) = $this->getHourlyEmailTrackingWithHttpInfo($emailId, $jobId, $interactionType);
         return $response;
     }
 
     /**
-     * Operation getSpecWithHttpInfo
+     * Operation getHourlyEmailTrackingWithHttpInfo
      *
-     * Describes this api
+     * Get Hourly Email Tracking
      *
+     * @param string $emailId ID of the email (required)
+     * @param string $jobId ID of the Job (or null for all jobs) (optional)
+     * @param string $interactionType Interaction type to filter by (optional)
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function getSpecWithHttpInfo()
+    public function getHourlyEmailTrackingWithHttpInfo($emailId, $jobId = null, $interactionType = null)
     {
+        // verify the required parameter 'emailId' is set
+        if ($emailId === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $emailId when calling getHourlyEmailTracking');
+        }
         // parse inputs
-        $resourcePath = "/spec";
+        $resourcePath = "/emails/{emailId}/tracking/hourly";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -417,6 +455,22 @@ class UtilitiesApi
         }
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/x-www-form-urlencoded'));
 
+        // query params
+        if ($jobId !== null) {
+            $queryParams['jobId'] = $this->apiClient->getSerializer()->toQueryValue($jobId);
+        }
+        // query params
+        if ($interactionType !== null) {
+            $queryParams['interactionType'] = $this->apiClient->getSerializer()->toQueryValue($interactionType);
+        }
+        // path params
+        if ($emailId !== null) {
+            $resourcePath = str_replace(
+                "{" . "emailId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($emailId),
+                $resourcePath
+            );
+        }
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
 
@@ -427,6 +481,10 @@ class UtilitiesApi
         } elseif (count($formParams) > 0) {
             $httpBody = $formParams; // for HTTP post (form)
         }
+        // this endpoint requires OAuth (access token)
+        if (strlen($this->apiClient->getConfig()->getAccessToken()) !== 0) {
+            $headerParams['Authorization'] = 'Bearer ' . $this->apiClient->getConfig()->getAccessToken();
+        }
         // make the API Call
         try {
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
@@ -436,7 +494,7 @@ class UtilitiesApi
                 $httpBody,
                 $headerParams,
                 null,
-                '/spec'
+                '/emails/{emailId}/tracking/hourly'
             );
 
             return array(null, $statusCode, $httpHeader);

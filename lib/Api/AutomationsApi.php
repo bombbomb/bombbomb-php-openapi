@@ -1,6 +1,6 @@
 <?php
 /**
- * CurriculumApi
+ * AutomationsApi
  * PHP version 5
  *
  * @category Class
@@ -46,7 +46,7 @@ use \Swagger\Client\ApiException;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * CurriculumApi Class Doc Comment
+ * AutomationsApi Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
@@ -54,7 +54,7 @@ use \Swagger\Client\ObjectSerializer;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CurriculumApi
+class AutomationsApi
 {
 
     /**
@@ -94,7 +94,7 @@ class CurriculumApi
      *
      * @param \Swagger\Client\ApiClient $apiClient set the API client
      *
-     * @return CurriculumApi
+     * @return AutomationsApi
      */
     public function setApiClient(\Swagger\Client\ApiClient $apiClient)
     {
@@ -103,33 +103,43 @@ class CurriculumApi
     }
 
     /**
-     * Operation getCurricula
+     * Operation getDripDropStats
      *
-     * Get Curricula
+     * Get Automation Email Stats
      *
-     * @param bool $includeProgress Whether to return progress with the curriculum. (optional)
-     * @return \Swagger\Client\Model\Curriculum[]
+     * @param string $dripId The id of the drip (required)
+     * @param string $dripDropId The id of the drip drop (required)
+     * @return void
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function getCurricula($includeProgress = null)
+    public function getDripDropStats($dripId, $dripDropId)
     {
-        list($response) = $this->getCurriculaWithHttpInfo($includeProgress);
+        list($response) = $this->getDripDropStatsWithHttpInfo($dripId, $dripDropId);
         return $response;
     }
 
     /**
-     * Operation getCurriculaWithHttpInfo
+     * Operation getDripDropStatsWithHttpInfo
      *
-     * Get Curricula
+     * Get Automation Email Stats
      *
-     * @param bool $includeProgress Whether to return progress with the curriculum. (optional)
-     * @return Array of \Swagger\Client\Model\Curriculum[], HTTP status code, HTTP response headers (array of strings)
+     * @param string $dripId The id of the drip (required)
+     * @param string $dripDropId The id of the drip drop (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function getCurriculaWithHttpInfo($includeProgress = null)
+    public function getDripDropStatsWithHttpInfo($dripId, $dripDropId)
     {
+        // verify the required parameter 'dripId' is set
+        if ($dripId === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $dripId when calling getDripDropStats');
+        }
+        // verify the required parameter 'dripDropId' is set
+        if ($dripDropId === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $dripDropId when calling getDripDropStats');
+        }
         // parse inputs
-        $resourcePath = "/curricula/";
+        $resourcePath = "/automation/{dripId}/dripdrop/{dripDropId}/stats";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -140,9 +150,21 @@ class CurriculumApi
         }
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/x-www-form-urlencoded'));
 
-        // query params
-        if ($includeProgress !== null) {
-            $queryParams['includeProgress'] = $this->apiClient->getSerializer()->toQueryValue($includeProgress);
+        // path params
+        if ($dripId !== null) {
+            $resourcePath = str_replace(
+                "{" . "dripId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($dripId),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($dripDropId !== null) {
+            $resourcePath = str_replace(
+                "{" . "dripDropId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($dripDropId),
+                $resourcePath
+            );
         }
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
@@ -166,33 +188,13 @@ class CurriculumApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\Curriculum[]',
-                '/curricula/'
+                null,
+                '/automation/{dripId}/dripdrop/{dripDropId}/stats'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\Curriculum[]', $httpHeader), $statusCode, $httpHeader);
+            return array(null, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Curriculum[]', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
             }
 
             throw $e;
@@ -200,31 +202,37 @@ class CurriculumApi
     }
 
     /**
-     * Operation getUserCurriculumWithProgress
+     * Operation getDripStats
      *
-     * Get Detailed For User
+     * Get Automation Stats
      *
-     * @return \Swagger\Client\Model\CurriculumWithProgress[]
+     * @param string $id The id of the automation (required)
+     * @return void
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function getUserCurriculumWithProgress()
+    public function getDripStats($id)
     {
-        list($response) = $this->getUserCurriculumWithProgressWithHttpInfo();
+        list($response) = $this->getDripStatsWithHttpInfo($id);
         return $response;
     }
 
     /**
-     * Operation getUserCurriculumWithProgressWithHttpInfo
+     * Operation getDripStatsWithHttpInfo
      *
-     * Get Detailed For User
+     * Get Automation Stats
      *
-     * @return Array of \Swagger\Client\Model\CurriculumWithProgress[], HTTP status code, HTTP response headers (array of strings)
+     * @param string $id The id of the automation (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function getUserCurriculumWithProgressWithHttpInfo()
+    public function getDripStatsWithHttpInfo($id)
     {
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling getDripStats');
+        }
         // parse inputs
-        $resourcePath = "/curriculum/getForUserWithProgress";
+        $resourcePath = "/automation/{id}/stats";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -235,6 +243,14 @@ class CurriculumApi
         }
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/x-www-form-urlencoded'));
 
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
 
@@ -257,33 +273,13 @@ class CurriculumApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\CurriculumWithProgress[]',
-                '/curriculum/getForUserWithProgress'
+                null,
+                '/automation/{id}/stats'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\CurriculumWithProgress[]', $httpHeader), $statusCode, $httpHeader);
+            return array(null, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\CurriculumWithProgress[]', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
             }
 
             throw $e;

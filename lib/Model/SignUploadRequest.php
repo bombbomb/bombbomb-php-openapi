@@ -1,6 +1,6 @@
 <?php
 /**
- * BBWebHook
+ * SignUploadRequest
  *
  * PHP version 5
  *
@@ -44,33 +44,31 @@ namespace Swagger\Client\Model;
 use \ArrayAccess;
 
 /**
- * BBWebHook Class Doc Comment
+ * SignUploadRequest Class Doc Comment
  *
  * @category    Class */
- // @description The BBWebHook class
+ // @description The SignUploadRequest class
 /** 
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class BBWebHook implements ArrayAccess
+class SignUploadRequest implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'BBWebHook';
+    protected static $swaggerModelName = 'SignUploadRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        'userId' => 'string',
-        'hookId' => 'int',
-        'url' => 'string',
-        'isHidden' => 'bool'
+        'expiration' => '\DateTime',
+        'conditions' => 'object'
     );
 
     public static function swaggerTypes()
@@ -83,10 +81,8 @@ class BBWebHook implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        'userId' => 'userId',
-        'hookId' => 'hookId',
-        'url' => 'url',
-        'isHidden' => 'isHidden'
+        'expiration' => 'expiration',
+        'conditions' => 'conditions'
     );
 
     public static function attributeMap()
@@ -99,10 +95,8 @@ class BBWebHook implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        'userId' => 'setUserId',
-        'hookId' => 'setHookId',
-        'url' => 'setUrl',
-        'isHidden' => 'setIsHidden'
+        'expiration' => 'setExpiration',
+        'conditions' => 'setConditions'
     );
 
     public static function setters()
@@ -115,10 +109,8 @@ class BBWebHook implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        'userId' => 'getUserId',
-        'hookId' => 'getHookId',
-        'url' => 'getUrl',
-        'isHidden' => 'getIsHidden'
+        'expiration' => 'getExpiration',
+        'conditions' => 'getConditions'
     );
 
     public static function getters()
@@ -142,10 +134,8 @@ class BBWebHook implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['userId'] = isset($data['userId']) ? $data['userId'] : null;
-        $this->container['hookId'] = isset($data['hookId']) ? $data['hookId'] : null;
-        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
-        $this->container['isHidden'] = isset($data['isHidden']) ? $data['isHidden'] : null;
+        $this->container['expiration'] = isset($data['expiration']) ? $data['expiration'] : null;
+        $this->container['conditions'] = isset($data['conditions']) ? $data['conditions'] : null;
     }
 
     /**
@@ -172,85 +162,43 @@ class BBWebHook implements ArrayAccess
 
 
     /**
-     * Gets userId
-     * @return string
+     * Gets expiration
+     * @return \DateTime
      */
-    public function getUserId()
+    public function getExpiration()
     {
-        return $this->container['userId'];
+        return $this->container['expiration'];
     }
 
     /**
-     * Sets userId
-     * @param string $userId The user to whom the webhook belongs
+     * Sets expiration
+     * @param \DateTime $expiration when the upload will expire.
      * @return $this
      */
-    public function setUserId($userId)
+    public function setExpiration($expiration)
     {
-        $this->container['userId'] = $userId;
+        $this->container['expiration'] = $expiration;
 
         return $this;
     }
 
     /**
-     * Gets hookId
-     * @return int
+     * Gets conditions
+     * @return object
      */
-    public function getHookId()
+    public function getConditions()
     {
-        return $this->container['hookId'];
+        return $this->container['conditions'];
     }
 
     /**
-     * Sets hookId
-     * @param int $hookId The id of the hook
+     * Sets conditions
+     * @param object $conditions Key/Value object of request conditions.
      * @return $this
      */
-    public function setHookId($hookId)
+    public function setConditions($conditions)
     {
-        $this->container['hookId'] = $hookId;
-
-        return $this;
-    }
-
-    /**
-     * Gets url
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     * @param string $url the url to send hook requests to
-     * @return $this
-     */
-    public function setUrl($url)
-    {
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-
-    /**
-     * Gets isHidden
-     * @return bool
-     */
-    public function getIsHidden()
-    {
-        return $this->container['isHidden'];
-    }
-
-    /**
-     * Sets isHidden
-     * @param bool $isHidden Whether the hook is displayed to the user
-     * @return $this
-     */
-    public function setIsHidden($isHidden)
-    {
-        $this->container['isHidden'] = $isHidden;
+        $this->container['conditions'] = $conditions;
 
         return $this;
     }
