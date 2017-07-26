@@ -11,11 +11,11 @@ Method | HTTP request | Description
 
 
 # **createPrintingPressEmail**
-> createPrintingPressEmail($templateId, $content, $replace, $videoId, $subjectLine)
+> createPrintingPressEmail($templateId, $content, $emailId, $videoId, $subjectLine)
 
 Create an Email with Printing Press
 
-Prints an email using the template id and content to the users account.If a video id, is include it will replace any video placeholders with that video.
+Prints an email using the template id and content to the users account.If a video id is included, it will replace any video placeholders with that video.
 
 ### Example
 ```php
@@ -28,12 +28,12 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_AC
 $api_instance = new Swagger\Client\Api\EmailsApi();
 $templateId = "templateId_example"; // string | The template id to be printed.
 $content = "content_example"; // string | The content of the email.
-$replace = true; // bool | Set whether to replace video placeholders with video id.
+$emailId = "emailId_example"; // string | The email id to be printed to.
 $videoId = "videoId_example"; // string | A video to replace video place holders with.
 $subjectLine = "subjectLine_example"; // string | The subject line to be printed.
 
 try {
-    $api_instance->createPrintingPressEmail($templateId, $content, $replace, $videoId, $subjectLine);
+    $api_instance->createPrintingPressEmail($templateId, $content, $emailId, $videoId, $subjectLine);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->createPrintingPressEmail: ', $e->getMessage(), PHP_EOL;
 }
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **templateId** | **string**| The template id to be printed. |
  **content** | **string**| The content of the email. |
- **replace** | **bool**| Set whether to replace video placeholders with video id. |
+ **emailId** | **string**| The email id to be printed to. | [optional]
  **videoId** | **string**| A video to replace video place holders with. | [optional]
  **subjectLine** | **string**| The subject line to be printed. | [optional]
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Curriculum
+ * VideoEncodingStatusResponse
  *
  * PHP version 5
  *
@@ -44,37 +44,32 @@ namespace Swagger\Client\Model;
 use \ArrayAccess;
 
 /**
- * Curriculum Class Doc Comment
+ * VideoEncodingStatusResponse Class Doc Comment
  *
  * @category    Class */
- // @description The Curriculum class
+ // @description The VideoEncodingStatusResponse class
 /** 
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class Curriculum implements ArrayAccess
+class VideoEncodingStatusResponse implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Curriculum';
+    protected static $swaggerModelName = 'VideoEncodingStatusResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        'id' => 'string',
-        'name' => 'string',
-        'htmlIntro' => 'string',
-        'imgUrl' => 'string',
-        'itemCount' => 'int',
-        'renderAs' => 'string',
-        'visibleToAllUsers' => 'bool',
-        'progress' => '\Swagger\Client\Model\CurriculumUserProgress[]'
+        'isReady' => 'bool',
+        'isFailed' => 'bool',
+        'progress' => 'int'
     );
 
     public static function swaggerTypes()
@@ -87,13 +82,8 @@ class Curriculum implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        'id' => 'id',
-        'name' => 'name',
-        'htmlIntro' => 'htmlIntro',
-        'imgUrl' => 'imgUrl',
-        'itemCount' => 'itemCount',
-        'renderAs' => 'renderAs',
-        'visibleToAllUsers' => 'visibleToAllUsers',
+        'isReady' => 'isReady',
+        'isFailed' => 'isFailed',
         'progress' => 'progress'
     );
 
@@ -107,13 +97,8 @@ class Curriculum implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        'id' => 'setId',
-        'name' => 'setName',
-        'htmlIntro' => 'setHtmlIntro',
-        'imgUrl' => 'setImgUrl',
-        'itemCount' => 'setItemCount',
-        'renderAs' => 'setRenderAs',
-        'visibleToAllUsers' => 'setVisibleToAllUsers',
+        'isReady' => 'setIsReady',
+        'isFailed' => 'setIsFailed',
         'progress' => 'setProgress'
     );
 
@@ -127,13 +112,8 @@ class Curriculum implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        'id' => 'getId',
-        'name' => 'getName',
-        'htmlIntro' => 'getHtmlIntro',
-        'imgUrl' => 'getImgUrl',
-        'itemCount' => 'getItemCount',
-        'renderAs' => 'getRenderAs',
-        'visibleToAllUsers' => 'getVisibleToAllUsers',
+        'isReady' => 'getIsReady',
+        'isFailed' => 'getIsFailed',
         'progress' => 'getProgress'
     );
 
@@ -158,13 +138,8 @@ class Curriculum implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['htmlIntro'] = isset($data['htmlIntro']) ? $data['htmlIntro'] : null;
-        $this->container['imgUrl'] = isset($data['imgUrl']) ? $data['imgUrl'] : null;
-        $this->container['itemCount'] = isset($data['itemCount']) ? $data['itemCount'] : null;
-        $this->container['renderAs'] = isset($data['renderAs']) ? $data['renderAs'] : null;
-        $this->container['visibleToAllUsers'] = isset($data['visibleToAllUsers']) ? $data['visibleToAllUsers'] : null;
+        $this->container['isReady'] = isset($data['isReady']) ? $data['isReady'] : null;
+        $this->container['isFailed'] = isset($data['isFailed']) ? $data['isFailed'] : null;
         $this->container['progress'] = isset($data['progress']) ? $data['progress'] : null;
     }
 
@@ -192,155 +167,50 @@ class Curriculum implements ArrayAccess
 
 
     /**
-     * Gets id
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     * @param string $id Id
-     * @return $this
-     */
-    public function setId($id)
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     * @param string $name Name
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets htmlIntro
-     * @return string
-     */
-    public function getHtmlIntro()
-    {
-        return $this->container['htmlIntro'];
-    }
-
-    /**
-     * Sets htmlIntro
-     * @param string $htmlIntro HTML formatted intro
-     * @return $this
-     */
-    public function setHtmlIntro($htmlIntro)
-    {
-        $this->container['htmlIntro'] = $htmlIntro;
-
-        return $this;
-    }
-
-    /**
-     * Gets imgUrl
-     * @return string
-     */
-    public function getImgUrl()
-    {
-        return $this->container['imgUrl'];
-    }
-
-    /**
-     * Sets imgUrl
-     * @param string $imgUrl URI of header image
-     * @return $this
-     */
-    public function setImgUrl($imgUrl)
-    {
-        $this->container['imgUrl'] = $imgUrl;
-
-        return $this;
-    }
-
-    /**
-     * Gets itemCount
-     * @return int
-     */
-    public function getItemCount()
-    {
-        return $this->container['itemCount'];
-    }
-
-    /**
-     * Sets itemCount
-     * @param int $itemCount Number of curriculum items
-     * @return $this
-     */
-    public function setItemCount($itemCount)
-    {
-        $this->container['itemCount'] = $itemCount;
-
-        return $this;
-    }
-
-    /**
-     * Gets renderAs
-     * @return string
-     */
-    public function getRenderAs()
-    {
-        return $this->container['renderAs'];
-    }
-
-    /**
-     * Sets renderAs
-     * @param string $renderAs Render method for curriculum
-     * @return $this
-     */
-    public function setRenderAs($renderAs)
-    {
-        $this->container['renderAs'] = $renderAs;
-
-        return $this;
-    }
-
-    /**
-     * Gets visibleToAllUsers
+     * Gets isReady
      * @return bool
      */
-    public function getVisibleToAllUsers()
+    public function getIsReady()
     {
-        return $this->container['visibleToAllUsers'];
+        return $this->container['isReady'];
     }
 
     /**
-     * Sets visibleToAllUsers
-     * @param bool $visibleToAllUsers Globally visible
+     * Sets isReady
+     * @param bool $isReady Returns true if the video is done encoding and finalized.
      * @return $this
      */
-    public function setVisibleToAllUsers($visibleToAllUsers)
+    public function setIsReady($isReady)
     {
-        $this->container['visibleToAllUsers'] = $visibleToAllUsers;
+        $this->container['isReady'] = $isReady;
+
+        return $this;
+    }
+
+    /**
+     * Gets isFailed
+     * @return bool
+     */
+    public function getIsFailed()
+    {
+        return $this->container['isFailed'];
+    }
+
+    /**
+     * Sets isFailed
+     * @param bool $isFailed Returns true if the video encoding process failed.
+     * @return $this
+     */
+    public function setIsFailed($isFailed)
+    {
+        $this->container['isFailed'] = $isFailed;
 
         return $this;
     }
 
     /**
      * Gets progress
-     * @return \Swagger\Client\Model\CurriculumUserProgress[]
+     * @return int
      */
     public function getProgress()
     {
@@ -349,7 +219,7 @@ class Curriculum implements ArrayAccess
 
     /**
      * Sets progress
-     * @param \Swagger\Client\Model\CurriculumUserProgress[] $progress Collection of User Progress for Curriculum
+     * @param int $progress 0-100 value indicating progress of video encoding process.
      * @return $this
      */
     public function setProgress($progress)

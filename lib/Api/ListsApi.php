@@ -1,6 +1,6 @@
 <?php
 /**
- * UtilitiesApi
+ * ListsApi
  * PHP version 5
  *
  * @category Class
@@ -46,7 +46,7 @@ use \Swagger\Client\ApiException;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * UtilitiesApi Class Doc Comment
+ * ListsApi Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
@@ -54,7 +54,7 @@ use \Swagger\Client\ObjectSerializer;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class UtilitiesApi
+class ListsApi
 {
 
     /**
@@ -94,7 +94,7 @@ class UtilitiesApi
      *
      * @param \Swagger\Client\ApiClient $apiClient set the API client
      *
-     * @return UtilitiesApi
+     * @return ListsApi
      */
     public function setApiClient(\Swagger\Client\ApiClient $apiClient)
     {
@@ -103,144 +103,37 @@ class UtilitiesApi
     }
 
     /**
-     * Operation createOAuthClient
+     * Operation clearList
      *
-     * Create an OAuth Client
+     * Clear Contacts from List
      *
-     * @param string $name The name of the OAuth client. e.g. MyCrm DEV, or MyCrm PROD (required)
-     * @param string $redirectUri The URI to direct the client to after logging in. (required)
-     * @return \Swagger\Client\Model\OAuthClient
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function createOAuthClient($name, $redirectUri)
-    {
-        list($response) = $this->createOAuthClientWithHttpInfo($name, $redirectUri);
-        return $response;
-    }
-
-    /**
-     * Operation createOAuthClientWithHttpInfo
-     *
-     * Create an OAuth Client
-     *
-     * @param string $name The name of the OAuth client. e.g. MyCrm DEV, or MyCrm PROD (required)
-     * @param string $redirectUri The URI to direct the client to after logging in. (required)
-     * @return Array of \Swagger\Client\Model\OAuthClient, HTTP status code, HTTP response headers (array of strings)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function createOAuthClientWithHttpInfo($name, $redirectUri)
-    {
-        // verify the required parameter 'name' is set
-        if ($name === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $name when calling createOAuthClient');
-        }
-        // verify the required parameter 'redirectUri' is set
-        if ($redirectUri === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $redirectUri when calling createOAuthClient');
-        }
-        // parse inputs
-        $resourcePath = "/oauthclient";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/x-www-form-urlencoded'));
-
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        // form params
-        if ($name !== null) {
-            $formParams['name'] = $this->apiClient->getSerializer()->toFormValue($name);
-        }
-        // form params
-        if ($redirectUri !== null) {
-            $formParams['redirectUri'] = $this->apiClient->getSerializer()->toFormValue($redirectUri);
-        }
-        
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // this endpoint requires OAuth (access token)
-        if (strlen($this->apiClient->getConfig()->getAccessToken()) !== 0) {
-            $headerParams['Authorization'] = 'Bearer ' . $this->apiClient->getConfig()->getAccessToken();
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'POST',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\Swagger\Client\Model\OAuthClient',
-                '/oauthclient'
-            );
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\OAuthClient', $httpHeader), $statusCode, $httpHeader);
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\OAuthClient', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation deleteOAuthClient
-     *
-     * Delete an OAuth Client
-     *
-     * @param string $id The id of the OAuth Client (required)
+     * @param string $listId The list to be cleared. (required)
      * @return void
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function deleteOAuthClient($id)
+    public function clearList($listId)
     {
-        list($response) = $this->deleteOAuthClientWithHttpInfo($id);
+        list($response) = $this->clearListWithHttpInfo($listId);
         return $response;
     }
 
     /**
-     * Operation deleteOAuthClientWithHttpInfo
+     * Operation clearListWithHttpInfo
      *
-     * Delete an OAuth Client
+     * Clear Contacts from List
      *
-     * @param string $id The id of the OAuth Client (required)
+     * @param string $listId The list to be cleared. (required)
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function deleteOAuthClientWithHttpInfo($id)
+    public function clearListWithHttpInfo($listId)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling deleteOAuthClient');
+        // verify the required parameter 'listId' is set
+        if ($listId === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $listId when calling clearList');
         }
         // parse inputs
-        $resourcePath = "/oauthclient/{id}";
+        $resourcePath = "/lists/{listId}/clear";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -252,10 +145,10 @@ class UtilitiesApi
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/x-www-form-urlencoded'));
 
         // path params
-        if ($id !== null) {
+        if ($listId !== null) {
             $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
+                "{" . "listId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($listId),
                 $resourcePath
             );
         }
@@ -277,12 +170,12 @@ class UtilitiesApi
         try {
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath,
-                'DELETE',
+                'PUT',
                 $queryParams,
                 $httpBody,
                 $headerParams,
                 null,
-                '/oauthclient/{id}'
+                '/lists/{listId}/clear'
             );
 
             return array(null, $statusCode, $httpHeader);
@@ -295,31 +188,43 @@ class UtilitiesApi
     }
 
     /**
-     * Operation getOAuthClients
+     * Operation copyListContacts
      *
-     * Lists OAuth Clients
+     * Copy All Contacts from a List
      *
-     * @return \Swagger\Client\Model\OAuthClient[]
+     * @param string $fromListId The list to be cleared. (required)
+     * @param string $listId The list to be cleared. (required)
+     * @return void
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function getOAuthClients()
+    public function copyListContacts($fromListId, $listId)
     {
-        list($response) = $this->getOAuthClientsWithHttpInfo();
+        list($response) = $this->copyListContactsWithHttpInfo($fromListId, $listId);
         return $response;
     }
 
     /**
-     * Operation getOAuthClientsWithHttpInfo
+     * Operation copyListContactsWithHttpInfo
      *
-     * Lists OAuth Clients
+     * Copy All Contacts from a List
      *
-     * @return Array of \Swagger\Client\Model\OAuthClient[], HTTP status code, HTTP response headers (array of strings)
+     * @param string $fromListId The list to be cleared. (required)
+     * @param string $listId The list to be cleared. (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function getOAuthClientsWithHttpInfo()
+    public function copyListContactsWithHttpInfo($fromListId, $listId)
     {
+        // verify the required parameter 'fromListId' is set
+        if ($fromListId === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fromListId when calling copyListContacts');
+        }
+        // verify the required parameter 'listId' is set
+        if ($listId === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $listId when calling copyListContacts');
+        }
         // parse inputs
-        $resourcePath = "/oauthclient";
+        $resourcePath = "/lists/{listId}/copy";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -330,6 +235,103 @@ class UtilitiesApi
         }
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/x-www-form-urlencoded'));
 
+        // path params
+        if ($listId !== null) {
+            $resourcePath = str_replace(
+                "{" . "listId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($listId),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // form params
+        if ($fromListId !== null) {
+            $formParams['fromListId'] = $this->apiClient->getSerializer()->toFormValue($fromListId);
+        }
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // this endpoint requires OAuth (access token)
+        if (strlen($this->apiClient->getConfig()->getAccessToken()) !== 0) {
+            $headerParams['Authorization'] = 'Bearer ' . $this->apiClient->getConfig()->getAccessToken();
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'POST',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                null,
+                '/lists/{listId}/copy'
+            );
+
+            return array(null, $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation suppressAllInList
+     *
+     * Suppress All Contacts from List
+     *
+     * @param string $listId The list to be cleared. (required)
+     * @return void
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function suppressAllInList($listId)
+    {
+        list($response) = $this->suppressAllInListWithHttpInfo($listId);
+        return $response;
+    }
+
+    /**
+     * Operation suppressAllInListWithHttpInfo
+     *
+     * Suppress All Contacts from List
+     *
+     * @param string $listId The list to be cleared. (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function suppressAllInListWithHttpInfo($listId)
+    {
+        // verify the required parameter 'listId' is set
+        if ($listId === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $listId when calling suppressAllInList');
+        }
+        // parse inputs
+        $resourcePath = "/lists/{listId}/suppress";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/x-www-form-urlencoded'));
+
+        // path params
+        if ($listId !== null) {
+            $resourcePath = str_replace(
+                "{" . "listId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($listId),
+                $resourcePath
+            );
+        }
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
 
@@ -348,95 +350,12 @@ class UtilitiesApi
         try {
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\Swagger\Client\Model\OAuthClient[]',
-                '/oauthclient'
-            );
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\OAuthClient[]', $httpHeader), $statusCode, $httpHeader);
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\OAuthClient[]', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getSpec
-     *
-     * Describes this api
-     *
-     * @return void
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function getSpec()
-    {
-        list($response) = $this->getSpecWithHttpInfo();
-        return $response;
-    }
-
-    /**
-     * Operation getSpecWithHttpInfo
-     *
-     * Describes this api
-     *
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function getSpecWithHttpInfo()
-    {
-        // parse inputs
-        $resourcePath = "/spec";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/x-www-form-urlencoded'));
-
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
+                'PUT',
                 $queryParams,
                 $httpBody,
                 $headerParams,
                 null,
-                '/spec'
+                '/lists/{listId}/suppress'
             );
 
             return array(null, $statusCode, $httpHeader);

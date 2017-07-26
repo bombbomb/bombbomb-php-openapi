@@ -4,10 +4,59 @@ All URIs are relative to *https://api.bombbomb.com/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**getVideoEncodingStatus**](VideosApi.md#getVideoEncodingStatus) | **GET** /videos/{videoId}/status | Video Encoding Status
 [**getVideoRecorder**](VideosApi.md#getVideoRecorder) | **GET** /videos/live/getRecorder | Get Live Video Recorder HTML
 [**markLiveRecordingComplete**](VideosApi.md#markLiveRecordingComplete) | **POST** /videos/live/markComplete | Completes a live recording
 [**signUpload**](VideosApi.md#signUpload) | **POST** /video/signedUpload | Generate Signed Url
 
+
+# **getVideoEncodingStatus**
+> \Swagger\Client\Model\VideoEncodingStatusResponse getVideoEncodingStatus($videoId)
+
+Video Encoding Status
+
+Get information about the current state of encoding for a given video id.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\VideosApi();
+$videoId = "videoId_example"; // string | The video's id.
+
+try {
+    $result = $api_instance->getVideoEncodingStatus($videoId);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling VideosApi->getVideoEncodingStatus: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **videoId** | **string**| The video&#39;s id. |
+
+### Return type
+
+[**\Swagger\Client\Model\VideoEncodingStatusResponse**](../Model/VideoEncodingStatusResponse.md)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getVideoRecorder**
 > \Swagger\Client\Model\VideoRecorderMethodResponse getVideoRecorder($width, $videoId)

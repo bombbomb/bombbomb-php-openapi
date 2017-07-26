@@ -8,13 +8,16 @@ Method | HTTP request | Description
 [**cancelJerichoSend**](TeamsApi.md#cancelJerichoSend) | **DELETE** /team/{teamId}/jericho/{jerichoId} | Cancel a Jericho Send
 [**createSubteam**](TeamsApi.md#createSubteam) | **POST** /team/{teamId}/subteam | Add a Subteam
 [**deleteSubteam**](TeamsApi.md#deleteSubteam) | **DELETE** /team/{teamId}/subteam | Delete Subteam
+[**getAllClientGroupAssociations**](TeamsApi.md#getAllClientGroupAssociations) | **GET** /team/associations/ | Lists team associations
 [**getClientGroupAssets**](TeamsApi.md#getClientGroupAssets) | **GET** /team/assets/ | Lists team assets
 [**getJerichoSends**](TeamsApi.md#getJerichoSends) | **GET** /team/{teamId}/jericho | List Jericho Sends
 [**getJerichoStats**](TeamsApi.md#getJerichoStats) | **GET** /team/{teamId}/jericho/{jerichoId}/performance | Gets Jericho performance statistics
 [**getSubteams**](TeamsApi.md#getSubteams) | **GET** /team/{teamId}/subteam | List Subteams
 [**queueJerichoSend**](TeamsApi.md#queueJerichoSend) | **POST** /team/{teamId}/jericho | Creates a Jericho send.
 [**removeMemberFromTeam**](TeamsApi.md#removeMemberFromTeam) | **DELETE** /team/{teamId}/member/{userId} | Remove Member from Team
+[**updateJerichoPromptSend**](TeamsApi.md#updateJerichoPromptSend) | **PUT** /team/{teamId}/jericho/{jerichoId} | Updates the Jericho Prompt Settings
 [**updateTeam**](TeamsApi.md#updateTeam) | **POST** /team/{teamId} | Update a team
+[**updateTeamMember**](TeamsApi.md#updateTeamMember) | **PUT** /team/{teamId}/member | Update Member of Team
 
 
 # **addTeamMember**
@@ -206,6 +209,53 @@ Name | Type | Description  | Notes
 ### Return type
 
 **string**
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getAllClientGroupAssociations**
+> getAllClientGroupAssociations($clientId)
+
+Lists team associations
+
+Returns a collection of team associations for a given user
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$clientId = "clientId_example"; // string | The clientId requesting group associations.
+
+try {
+    $api_instance->getAllClientGroupAssociations($clientId);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->getAllClientGroupAssociations: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **clientId** | **string**| The clientId requesting group associations. |
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 
@@ -522,6 +572,55 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **updateJerichoPromptSend**
+> updateJerichoPromptSend($teamId, $jerichoId)
+
+Updates the Jericho Prompt Settings
+
+Updates the prompt settings based on the original email id
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$teamId = "teamId_example"; // string | The team id
+$jerichoId = "jerichoId_example"; // string | ID of the Jericho job
+
+try {
+    $api_instance->updateJerichoPromptSend($teamId, $jerichoId);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->updateJerichoPromptSend: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **string**| The team id |
+ **jerichoId** | **string**| ID of the Jericho job |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **updateTeam**
 > \Swagger\Client\Model\TeamPublicRepresentation updateTeam($teamId, $name)
 
@@ -560,6 +659,57 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Swagger\Client\Model\TeamPublicRepresentation**](../Model/TeamPublicRepresentation.md)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **updateTeamMember**
+> updateTeamMember($teamId, $userId, $admin)
+
+Update Member of Team
+
+Updates a member of a team
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$teamId = "teamId_example"; // string | The team id
+$userId = "userId_example"; // string | The user id of the member being added to the team.
+$admin = true; // bool | Set if the user is an admin of this team.
+
+try {
+    $api_instance->updateTeamMember($teamId, $userId, $admin);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->updateTeamMember: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **string**| The team id |
+ **userId** | **string**| The user id of the member being added to the team. |
+ **admin** | **bool**| Set if the user is an admin of this team. |
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

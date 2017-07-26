@@ -9,13 +9,14 @@ Name | Type | Description | Notes
 **emailSubjectLine** | **string** | The subject line of the final email | 
 **emailContent** | **string** | The HTML content of the final email | 
 **thumbnailUrl** | **string** | The URL of a thumbnail image for this prompt | [optional] 
-**toEmailAddresses** | **string[]** | Email addresses to send the final email to, can be mixed with listIds. | [optional] 
+**contactId** | **string** | Contact Id to send the final email to | [optional] 
 **toLists** | **string[]** | List Ids to send the final email to | [optional] 
 **jerichoId** | **string** | If sent in a jericho context, this will have the jericho id | [optional] 
 **promptSubject** | **string** | The prompt&#39;s subject line | 
 **promptHtml** | **string** | The suggested script of the prompt. | 
 **promptIntro** | **string** | A paragraph intro statement about the purpose of the email you&#39;re recording a video for. | [optional] 
 **exampleVideoId** | **string** | An example or explanatory video to help the user understand what to say. | [optional] 
+**followupVideoId** | **string** | An example or explanatory video to help the user understand what to say. | [optional] 
 **sendWithoutVideo** | **bool** | Whether to send the email if no video is recorded. If set to require a video, and none is added before the videoDueDate, the prompt is cancelled. | [optional] 
 **videoDueDate** | [**\DateTime**](\DateTime.md) | When the video must be recorded by | [optional] 
 **scheduledSendDate** | [**\DateTime**](\DateTime.md) | When the final email is scheduled to be sent | 
