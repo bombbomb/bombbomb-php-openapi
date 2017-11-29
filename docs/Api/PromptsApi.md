@@ -12,12 +12,13 @@ Method | HTTP request | Description
 [**getVideoEmailPrompt**](PromptsApi.md#getVideoEmailPrompt) | **GET** /prompt/{id} | Gets a prompt
 [**getVideoEmailPrompts**](PromptsApi.md#getVideoEmailPrompts) | **GET** /prompt/ | List prompts
 [**respondToVideoEmailPrompt**](PromptsApi.md#respondToVideoEmailPrompt) | **POST** /prompt/{id}/response | Respond to a prompt
+[**updatePrompt**](PromptsApi.md#updatePrompt) | **PUT** /prompts/{id} | Update Prompt
 [**updatePromptBot**](PromptsApi.md#updatePromptBot) | **PUT** /prompts/bots/{id} | Update Prompt Bot
 [**updatePromptCampaign**](PromptsApi.md#updatePromptCampaign) | **PUT** /prompts/campaigns/{id} | Update Prompt Campaign
 
 
 # **createPromptBot**
-> \Swagger\Client\Model\PromptBot createPromptBot($listId, $emailId, $name, $subject, $content, $contactFieldValueColumn, $botTypeId, $templateId, $videoId, $endDate)
+> \Swagger\Client\Model\PromptBot createPromptBot($emailId, $name, $subject, $content, $contactFieldValueColumn, $botTypeId, $templateId, $listId, $videoId, $endDate)
 
 Create a running Prompt Bot for a list
 
@@ -32,7 +33,6 @@ require_once(__DIR__ . '/vendor/autoload.php');
 Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 $api_instance = new Swagger\Client\Api\PromptsApi();
-$listId = "listId_example"; // string | The list id to attach the bot to.
 $emailId = "emailId_example"; // string | The default email to use.
 $name = "name_example"; // string | The name of the bot.
 $subject = "subject_example"; // string | The subject of the default email.
@@ -40,11 +40,12 @@ $content = "content_example"; // string | The content used in the email.
 $contactFieldValueColumn = "contactFieldValueColumn_example"; // string | The custom field value column with dates for this bot.
 $botTypeId = "botTypeId_example"; // string | The type of bot to create.
 $templateId = "templateId_example"; // string | The template used to create the email id.
+$listId = "listId_example"; // string | The list id to attach the bot to.
 $videoId = "videoId_example"; // string | The video used in the email.
 $endDate = "endDate_example"; // string | The time frame to complete sending to the list.
 
 try {
-    $result = $api_instance->createPromptBot($listId, $emailId, $name, $subject, $content, $contactFieldValueColumn, $botTypeId, $templateId, $videoId, $endDate);
+    $result = $api_instance->createPromptBot($emailId, $name, $subject, $content, $contactFieldValueColumn, $botTypeId, $templateId, $listId, $videoId, $endDate);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->createPromptBot: ', $e->getMessage(), PHP_EOL;
@@ -56,7 +57,6 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **listId** | **string**| The list id to attach the bot to. |
  **emailId** | **string**| The default email to use. |
  **name** | **string**| The name of the bot. |
  **subject** | **string**| The subject of the default email. |
@@ -64,6 +64,7 @@ Name | Type | Description  | Notes
  **contactFieldValueColumn** | **string**| The custom field value column with dates for this bot. |
  **botTypeId** | **string**| The type of bot to create. |
  **templateId** | **string**| The template used to create the email id. |
+ **listId** | **string**| The list id to attach the bot to. | [optional]
  **videoId** | **string**| The video used in the email. | [optional]
  **endDate** | **string**| The time frame to complete sending to the list. | [optional]
 
@@ -406,8 +407,67 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **updatePrompt**
+> updatePrompt($id, $sendMechanism, $facebookMessage, $twitterMessage, $videoId, $emailId, $subject)
+
+Update Prompt
+
+Updates a Prompt
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\PromptsApi();
+$id = "id_example"; // string | The prompt's id
+$sendMechanism = "sendMechanism_example"; // string | The mechanism for the prompt to be sent
+$facebookMessage = "facebookMessage_example"; // string | The facebook message assigned to the prompt
+$twitterMessage = "twitterMessage_example"; // string | The twitter message assigned to the prompt
+$videoId = "videoId_example"; // string | The id of the video.
+$emailId = "emailId_example"; // string | The id of the email.
+$subject = "subject_example"; // string | The subject of the email
+
+try {
+    $api_instance->updatePrompt($id, $sendMechanism, $facebookMessage, $twitterMessage, $videoId, $emailId, $subject);
+} catch (Exception $e) {
+    echo 'Exception when calling PromptsApi->updatePrompt: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The prompt&#39;s id |
+ **sendMechanism** | **string**| The mechanism for the prompt to be sent | [optional]
+ **facebookMessage** | **string**| The facebook message assigned to the prompt | [optional]
+ **twitterMessage** | **string**| The twitter message assigned to the prompt | [optional]
+ **videoId** | **string**| The id of the video. | [optional]
+ **emailId** | **string**| The id of the email. | [optional]
+ **subject** | **string**| The subject of the email | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **updatePromptBot**
-> \Swagger\Client\Model\PromptBot updatePromptBot($id, $listId, $emailId, $name, $subject, $content, $contactFieldValueColumn, $templateId, $videoId, $endDate, $status)
+> \Swagger\Client\Model\PromptBot updatePromptBot($id, $emailId, $name, $subject, $content, $contactFieldValueColumn, $templateId, $listId, $videoId, $endDate, $status)
 
 Update Prompt Bot
 
@@ -423,19 +483,19 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_AC
 
 $api_instance = new Swagger\Client\Api\PromptsApi();
 $id = "id_example"; // string | The bot id.
-$listId = "listId_example"; // string | The list id to attach the bot to.
 $emailId = "emailId_example"; // string | The default email to use.
 $name = "name_example"; // string | The name of the bot.
 $subject = "subject_example"; // string | The subject of the default email.
 $content = "content_example"; // string | The content used in the default email.
 $contactFieldValueColumn = "contactFieldValueColumn_example"; // string | The custom field value column with dates for this bot.
 $templateId = "templateId_example"; // string | The template used to create the email id.
+$listId = "listId_example"; // string | The list id to attach the bot to.
 $videoId = "videoId_example"; // string | The video used in the default email.
 $endDate = "endDate_example"; // string | The time frame to complete sending to the list.
 $status = "status_example"; // string | The status of the bot.
 
 try {
-    $result = $api_instance->updatePromptBot($id, $listId, $emailId, $name, $subject, $content, $contactFieldValueColumn, $templateId, $videoId, $endDate, $status);
+    $result = $api_instance->updatePromptBot($id, $emailId, $name, $subject, $content, $contactFieldValueColumn, $templateId, $listId, $videoId, $endDate, $status);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->updatePromptBot: ', $e->getMessage(), PHP_EOL;
@@ -448,13 +508,13 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| The bot id. |
- **listId** | **string**| The list id to attach the bot to. |
  **emailId** | **string**| The default email to use. |
  **name** | **string**| The name of the bot. |
  **subject** | **string**| The subject of the default email. |
  **content** | **string**| The content used in the default email. |
  **contactFieldValueColumn** | **string**| The custom field value column with dates for this bot. |
  **templateId** | **string**| The template used to create the email id. |
+ **listId** | **string**| The list id to attach the bot to. | [optional]
  **videoId** | **string**| The video used in the default email. | [optional]
  **endDate** | **string**| The time frame to complete sending to the list. | [optional]
  **status** | **string**| The status of the bot. | [optional]
@@ -475,7 +535,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updatePromptCampaign**
-> updatePromptCampaign($clientGroupId, $brandedTemplateId, $personalTemplateId, $enabled, $autoShares)
+> updatePromptCampaign($clientGroupId, $brandedTemplateId, $personalTemplateId, $enabled, $sendMechanism)
 
 Update Prompt Campaign
 
@@ -494,10 +554,10 @@ $clientGroupId = "clientGroupId_example"; // string | The client group of the ca
 $brandedTemplateId = "brandedTemplateId_example"; // string | The template to use for branded feel emails.
 $personalTemplateId = "personalTemplateId_example"; // string | The template to use for personal feel emails.
 $enabled = true; // bool | Set whether the user is able to start receiving prompts.
-$autoShares = "autoShares_example"; // string | These are what we are autosharing to
+$sendMechanism = "sendMechanism_example"; // string | The way to send the prompt
 
 try {
-    $api_instance->updatePromptCampaign($clientGroupId, $brandedTemplateId, $personalTemplateId, $enabled, $autoShares);
+    $api_instance->updatePromptCampaign($clientGroupId, $brandedTemplateId, $personalTemplateId, $enabled, $sendMechanism);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->updatePromptCampaign: ', $e->getMessage(), PHP_EOL;
 }
@@ -512,7 +572,7 @@ Name | Type | Description  | Notes
  **brandedTemplateId** | **string**| The template to use for branded feel emails. | [optional]
  **personalTemplateId** | **string**| The template to use for personal feel emails. | [optional]
  **enabled** | **bool**| Set whether the user is able to start receiving prompts. | [optional]
- **autoShares** | **string**| These are what we are autosharing to | [optional]
+ **sendMechanism** | **string**| The way to send the prompt | [optional]
 
 ### Return type
 

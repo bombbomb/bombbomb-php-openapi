@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**getVideoRecorder**](VideosApi.md#getVideoRecorder) | **GET** /videos/live/getRecorder | Get Live Video Recorder HTML
 [**markLiveRecordingComplete**](VideosApi.md#markLiveRecordingComplete) | **POST** /videos/live/markComplete | Completes a live recording
 [**signUpload**](VideosApi.md#signUpload) | **POST** /video/signedUpload | Generate Signed Url
+[**updateVideoThumbnailV2**](VideosApi.md#updateVideoThumbnailV2) | **PUT** /videos/thumbnail | Upload thumbnail
 
 
 # **getVideoEncodingStatus**
@@ -203,6 +204,57 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **updateVideoThumbnailV2**
+> updateVideoThumbnailV2($videoId, $thumbnail, $custom)
+
+Upload thumbnail
+
+Upload a new video thumbnail
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\VideosApi();
+$videoId = "videoId_example"; // string | The id of the video
+$thumbnail = "thumbnail_example"; // string | The thumbnail being uploaded
+$custom = true; // bool | The default email to use.
+
+try {
+    $api_instance->updateVideoThumbnailV2($videoId, $thumbnail, $custom);
+} catch (Exception $e) {
+    echo 'Exception when calling VideosApi->updateVideoThumbnailV2: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **videoId** | **string**| The id of the video |
+ **thumbnail** | **string**| The thumbnail being uploaded |
+ **custom** | **bool**| The default email to use. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

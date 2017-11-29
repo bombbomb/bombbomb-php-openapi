@@ -10,11 +10,16 @@ Method | HTTP request | Description
 [**deleteSubteam**](TeamsApi.md#deleteSubteam) | **DELETE** /team/{teamId}/subteam | Delete Subteam
 [**getAllClientGroupAssociations**](TeamsApi.md#getAllClientGroupAssociations) | **GET** /team/associations/ | Lists team associations
 [**getClientGroupAssets**](TeamsApi.md#getClientGroupAssets) | **GET** /team/assets/ | Lists team assets
+[**getClientGroupStatistics**](TeamsApi.md#getClientGroupStatistics) | **GET** /team/{teamId}/stats | Get Team statistics
 [**getJerichoSends**](TeamsApi.md#getJerichoSends) | **GET** /team/{teamId}/jericho | List Jericho Sends
 [**getJerichoStats**](TeamsApi.md#getJerichoStats) | **GET** /team/{teamId}/jericho/{jerichoId}/performance | Gets Jericho performance statistics
+[**getPagedClientGroupMembers**](TeamsApi.md#getPagedClientGroupMembers) | **GET** /team/{teamId}/members | List Team Members
 [**getSubteams**](TeamsApi.md#getSubteams) | **GET** /team/{teamId}/subteam | List Subteams
+[**getTeamPromptAggregateStats**](TeamsApi.md#getTeamPromptAggregateStats) | **GET** /team/{clientGroupId}/campaign/stats | Get aggregate stats for campaigns
+[**getTeamPromptCampaigns**](TeamsApi.md#getTeamPromptCampaigns) | **GET** /team/{clientGroupId}/campaign | Get campaigns for team
 [**queueJerichoSend**](TeamsApi.md#queueJerichoSend) | **POST** /team/{teamId}/jericho | Creates a Jericho send.
 [**removeMemberFromTeam**](TeamsApi.md#removeMemberFromTeam) | **DELETE** /team/{teamId}/member/{userId} | Remove Member from Team
+[**resendTeamMemberInvitation**](TeamsApi.md#resendTeamMemberInvitation) | **POST** /team/{teamId}/{memberUserId}/rewelcome | Resend invite
 [**updateJerichoPromptSend**](TeamsApi.md#updateJerichoPromptSend) | **PUT** /team/{teamId}/jericho/{jerichoId} | Updates the Jericho Prompt Settings
 [**updateTeam**](TeamsApi.md#updateTeam) | **POST** /team/{teamId} | Update a team
 [**updateTeamMember**](TeamsApi.md#updateTeamMember) | **PUT** /team/{teamId}/member | Update Member of Team
@@ -326,6 +331,55 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **getClientGroupStatistics**
+> getClientGroupStatistics($teamId, $memberStatus)
+
+Get Team statistics
+
+Get top level statistic data for a Team
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$teamId = "teamId_example"; // string | The team id
+$memberStatus = "memberStatus_example"; // string | The status of members to query for
+
+try {
+    $api_instance->getClientGroupStatistics($teamId, $memberStatus);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->getClientGroupStatistics: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **string**| The team id |
+ **memberStatus** | **string**| The status of members to query for | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **getJerichoSends**
 > \Swagger\Client\Model\JerichoConfiguration[] getJerichoSends($teamId)
 
@@ -424,6 +478,65 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **getPagedClientGroupMembers**
+> getPagedClientGroupMembers($teamId, $pageSize, $page, $status, $search, $orderBy, $orderDirection)
+
+List Team Members
+
+Get a paginated listing of Team members
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$teamId = "teamId_example"; // string | The team id
+$pageSize = "pageSize_example"; // string | Amount of records to return in a page.
+$page = "page_example"; // string | The page to return.
+$status = "status_example"; // string | The status type to filter by.
+$search = "search_example"; // string | Filter results with names that match the search term.
+$orderBy = "orderBy_example"; // string | Key to order results by
+$orderDirection = "orderDirection_example"; // string | ASC or DESC
+
+try {
+    $api_instance->getPagedClientGroupMembers($teamId, $pageSize, $page, $status, $search, $orderBy, $orderDirection);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->getPagedClientGroupMembers: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **string**| The team id |
+ **pageSize** | **string**| Amount of records to return in a page. |
+ **page** | **string**| The page to return. |
+ **status** | **string**| The status type to filter by. | [optional]
+ **search** | **string**| Filter results with names that match the search term. | [optional]
+ **orderBy** | **string**| Key to order results by | [optional]
+ **orderDirection** | **string**| ASC or DESC | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **getSubteams**
 > \Swagger\Client\Model\TeamPublicRepresentation[] getSubteams($teamId)
 
@@ -460,6 +573,106 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Swagger\Client\Model\TeamPublicRepresentation[]**](../Model/TeamPublicRepresentation.md)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getTeamPromptAggregateStats**
+> getTeamPromptAggregateStats($clientGroupId)
+
+Get aggregate stats for campaigns
+
+Get all the campaigns aggregate stats
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$clientGroupId = "clientGroupId_example"; // string | ID of the client group association
+
+try {
+    $api_instance->getTeamPromptAggregateStats($clientGroupId);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->getTeamPromptAggregateStats: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **clientGroupId** | **string**| ID of the client group association |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getTeamPromptCampaigns**
+> getTeamPromptCampaigns($clientGroupId, $searchTerm, $orderBy, $asc)
+
+Get campaigns for team
+
+Get campaigns for the team and their stats
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$clientGroupId = "clientGroupId_example"; // string | ID of the client group association
+$searchTerm = "searchTerm_example"; // string | The value to search for in prompt subject
+$orderBy = "orderBy_example"; // string | How to sort the column
+$asc = "asc_example"; // string | Ascending or not
+
+try {
+    $api_instance->getTeamPromptCampaigns($clientGroupId, $searchTerm, $orderBy, $asc);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->getTeamPromptCampaigns: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **clientGroupId** | **string**| ID of the client group association |
+ **searchTerm** | **string**| The value to search for in prompt subject | [optional]
+ **orderBy** | **string**| How to sort the column | [optional]
+ **asc** | **string**| Ascending or not | [optional]
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 
@@ -572,6 +785,56 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **resendTeamMemberInvitation**
+> \Swagger\Client\Model\TeamPublicRepresentation resendTeamMemberInvitation($teamId, $memberUserId)
+
+Resend invite
+
+Resend invitation to a member of a team
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$teamId = "teamId_example"; // string | The team id
+$memberUserId = "memberUserId_example"; // string | The user id of the member being resent an invitation.
+
+try {
+    $result = $api_instance->resendTeamMemberInvitation($teamId, $memberUserId);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->resendTeamMemberInvitation: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **string**| The team id |
+ **memberUserId** | **string**| The user id of the member being resent an invitation. |
+
+### Return type
+
+[**\Swagger\Client\Model\TeamPublicRepresentation**](../Model/TeamPublicRepresentation.md)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **updateJerichoPromptSend**
 > updateJerichoPromptSend($teamId, $jerichoId)
 
@@ -622,7 +885,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateTeam**
-> \Swagger\Client\Model\TeamPublicRepresentation updateTeam($teamId, $name)
+> \Swagger\Client\Model\TeamPublicRepresentation updateTeam($teamId, $name, $state)
 
 Update a team
 
@@ -639,9 +902,10 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_AC
 $api_instance = new Swagger\Client\Api\TeamsApi();
 $teamId = "teamId_example"; // string | The team id
 $name = "name_example"; // string | The name of the team
+$state = "state_example"; // string | The status of the login permissions
 
 try {
-    $result = $api_instance->updateTeam($teamId, $name);
+    $result = $api_instance->updateTeam($teamId, $name, $state);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->updateTeam: ', $e->getMessage(), PHP_EOL;
@@ -655,6 +919,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **teamId** | **string**| The team id |
  **name** | **string**| The name of the team | [optional]
+ **state** | **string**| The status of the login permissions | [optional]
 
 ### Return type
 

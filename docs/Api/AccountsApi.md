@@ -6,11 +6,12 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**accountDetails**](AccountsApi.md#accountDetails) | **GET** /accounts | Get account details.
 [**createAccount**](AccountsApi.md#createAccount) | **POST** /accounts | Create Account
+[**getClientStatistics**](AccountsApi.md#getClientStatistics) | **GET** /accounts/stats | Get Client Statistics
 [**subscriptionPurchaseAllowed**](AccountsApi.md#subscriptionPurchaseAllowed) | **GET** /accounts/purchaseable | Check if subscription purchase allowed.
 
 
 # **accountDetails**
-> accountDetails($email, $pw, $apiKey)
+> accountDetails()
 
 Get account details.
 
@@ -22,12 +23,9 @@ Get the details of the user's account.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\Api\AccountsApi();
-$email = "email_example"; // string | Your login email address
-$pw = "pw_example"; // string | Your password
-$apiKey = "apiKey_example"; // string | Your Api Key
 
 try {
-    $api_instance->accountDetails($email, $pw, $apiKey);
+    $api_instance->accountDetails();
 } catch (Exception $e) {
     echo 'Exception when calling AccountsApi->accountDetails: ', $e->getMessage(), PHP_EOL;
 }
@@ -35,12 +33,7 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **string**| Your login email address | [optional]
- **pw** | **string**| Your password | [optional]
- **apiKey** | **string**| Your Api Key | [optional]
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -58,7 +51,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createAccount**
-> string createAccount($teamId, $firstName, $lastName, $emailAddress, $companyName, $phone, $country, $industry, $address, $city, $postalCode)
+> string createAccount($teamId, $firstName, $lastName, $emailAddress, $companyName, $phone, $country, $industry, $address, $city, $postalCode, $preventWelcomeEmail)
 
 Create Account
 
@@ -84,9 +77,10 @@ $industry = "industry_example"; // string | Industry of the user.
 $address = "address_example"; // string | Street Address of the user.
 $city = "city_example"; // string | City of the user.
 $postalCode = "postalCode_example"; // string | Postal/Zip code of the user.
+$preventWelcomeEmail = "preventWelcomeEmail_example"; // string | prevent an email with login credentials from being sent to the new account. must be set to 'true'
 
 try {
-    $result = $api_instance->createAccount($teamId, $firstName, $lastName, $emailAddress, $companyName, $phone, $country, $industry, $address, $city, $postalCode);
+    $result = $api_instance->createAccount($teamId, $firstName, $lastName, $emailAddress, $companyName, $phone, $country, $industry, $address, $city, $postalCode, $preventWelcomeEmail);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AccountsApi->createAccount: ', $e->getMessage(), PHP_EOL;
@@ -109,6 +103,7 @@ Name | Type | Description  | Notes
  **address** | **string**| Street Address of the user. | [optional]
  **city** | **string**| City of the user. | [optional]
  **postalCode** | **string**| Postal/Zip code of the user. | [optional]
+ **preventWelcomeEmail** | **string**| prevent an email with login credentials from being sent to the new account. must be set to &#39;true&#39; | [optional]
 
 ### Return type
 
@@ -125,8 +120,55 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **getClientStatistics**
+> getClientStatistics($clientId)
+
+Get Client Statistics
+
+Gets general statics for a Client
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\AccountsApi();
+$clientId = "clientId_example"; // string | Client ID of the account to retrieve. Defaults to yourself.
+
+try {
+    $api_instance->getClientStatistics($clientId);
+} catch (Exception $e) {
+    echo 'Exception when calling AccountsApi->getClientStatistics: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **clientId** | **string**| Client ID of the account to retrieve. Defaults to yourself. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **subscriptionPurchaseAllowed**
-> subscriptionPurchaseAllowed($email, $pw, $apiKey)
+> subscriptionPurchaseAllowed()
 
 Check if subscription purchase allowed.
 
@@ -138,12 +180,9 @@ Check whether the user can purchase a subscription.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\Api\AccountsApi();
-$email = "email_example"; // string | Your login email address
-$pw = "pw_example"; // string | Your password
-$apiKey = "apiKey_example"; // string | Your Api Key
 
 try {
-    $api_instance->subscriptionPurchaseAllowed($email, $pw, $apiKey);
+    $api_instance->subscriptionPurchaseAllowed();
 } catch (Exception $e) {
     echo 'Exception when calling AccountsApi->subscriptionPurchaseAllowed: ', $e->getMessage(), PHP_EOL;
 }
@@ -151,12 +190,7 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **string**| Your login email address | [optional]
- **pw** | **string**| Your password | [optional]
- **apiKey** | **string**| Your Api Key | [optional]
+This endpoint does not need any parameter.
 
 ### Return type
 

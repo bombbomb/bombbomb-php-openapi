@@ -1,6 +1,6 @@
 <?php
 /**
- * OrdersApi
+ * IntegrationsApi
  * PHP version 5
  *
  * @category Class
@@ -46,7 +46,7 @@ use \Swagger\Client\ApiException;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * OrdersApi Class Doc Comment
+ * IntegrationsApi Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
@@ -54,7 +54,7 @@ use \Swagger\Client\ObjectSerializer;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class OrdersApi
+class IntegrationsApi
 {
 
     /**
@@ -94,7 +94,7 @@ class OrdersApi
      *
      * @param \Swagger\Client\ApiClient $apiClient set the API client
      *
-     * @return OrdersApi
+     * @return IntegrationsApi
      */
     public function setApiClient(\Swagger\Client\ApiClient $apiClient)
     {
@@ -103,37 +103,33 @@ class OrdersApi
     }
 
     /**
-     * Operation templateAssetDelete
+     * Operation syncUsersIntegratedLists
      *
-     * Deletes image from user s3 store
+     * Synchronize your integration list or lists.
      *
-     * @param string $fileName Filename for deletion (required)
-     * @return void
+     * @param string $integrationId The integration to sync lists for. All integrations will sync if nothing is provided. (optional)
+     * @return string
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function templateAssetDelete($fileName)
+    public function syncUsersIntegratedLists($integrationId = null)
     {
-        list($response) = $this->templateAssetDeleteWithHttpInfo($fileName);
+        list($response) = $this->syncUsersIntegratedListsWithHttpInfo($integrationId);
         return $response;
     }
 
     /**
-     * Operation templateAssetDeleteWithHttpInfo
+     * Operation syncUsersIntegratedListsWithHttpInfo
      *
-     * Deletes image from user s3 store
+     * Synchronize your integration list or lists.
      *
-     * @param string $fileName Filename for deletion (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @param string $integrationId The integration to sync lists for. All integrations will sync if nothing is provided. (optional)
+     * @return Array of string, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function templateAssetDeleteWithHttpInfo($fileName)
+    public function syncUsersIntegratedListsWithHttpInfo($integrationId = null)
     {
-        // verify the required parameter 'fileName' is set
-        if ($fileName === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fileName when calling templateAssetDelete');
-        }
         // parse inputs
-        $resourcePath = "/orders/templates/images";
+        $resourcePath = "/integrations/sync";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -144,13 +140,13 @@ class OrdersApi
         }
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/x-www-form-urlencoded'));
 
+        // query params
+        if ($integrationId !== null) {
+            $queryParams['integration_id'] = $this->apiClient->getSerializer()->toQueryValue($integrationId);
+        }
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
 
-        // form params
-        if ($fileName !== null) {
-            $formParams['fileName'] = $this->apiClient->getSerializer()->toFormValue($fileName);
-        }
         
         // for model (json/xml)
         if (isset($_tempBody)) {
@@ -166,17 +162,33 @@ class OrdersApi
         try {
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath,
-                'DELETE',
+                'GET',
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                null,
-                '/orders/templates/images'
+                'string',
+                '/integrations/sync'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, 'string', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'string', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
             }
 
             throw $e;

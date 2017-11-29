@@ -1,6 +1,6 @@
 <?php
 /**
- * VideoRecorderMethodResponse
+ * HostedDoc
  *
  * PHP version 5
  *
@@ -44,37 +44,35 @@ namespace Swagger\Client\Model;
 use \ArrayAccess;
 
 /**
- * VideoRecorderMethodResponse Class Doc Comment
+ * HostedDoc Class Doc Comment
  *
  * @category    Class */
- // @description The VideoRecorderMethodResponse class
+ // @description The HostedDoc class
 /** 
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class VideoRecorderMethodResponse implements ArrayAccess
+class HostedDoc implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'VideoRecorderMethodResponse';
+    protected static $swaggerModelName = 'HostedDoc';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = array(
+        'id' => 'string',
         'userId' => 'string',
-        'email' => 'string',
-        'clientId' => 'string',
-        'vidId' => 'string',
-        'content' => 'string',
-        'width' => 'int',
-        'height' => 'int',
-        'https' => 'bool'
+        'fileName' => 'string',
+        'shortUrl' => 'string',
+        'longUrl' => 'string',
+        'uploadDate' => '\DateTime'
     );
 
     public static function swaggerTypes()
@@ -87,14 +85,12 @@ class VideoRecorderMethodResponse implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        'userId' => 'user_id',
-        'email' => 'email',
-        'clientId' => 'client_id',
-        'vidId' => 'vid_id',
-        'content' => 'content',
-        'width' => 'width',
-        'height' => 'height',
-        'https' => 'https'
+        'id' => 'id',
+        'userId' => 'userId',
+        'fileName' => 'fileName',
+        'shortUrl' => 'shortUrl',
+        'longUrl' => 'longUrl',
+        'uploadDate' => 'uploadDate'
     );
 
     public static function attributeMap()
@@ -107,14 +103,12 @@ class VideoRecorderMethodResponse implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
+        'id' => 'setId',
         'userId' => 'setUserId',
-        'email' => 'setEmail',
-        'clientId' => 'setClientId',
-        'vidId' => 'setVidId',
-        'content' => 'setContent',
-        'width' => 'setWidth',
-        'height' => 'setHeight',
-        'https' => 'setHttps'
+        'fileName' => 'setFileName',
+        'shortUrl' => 'setShortUrl',
+        'longUrl' => 'setLongUrl',
+        'uploadDate' => 'setUploadDate'
     );
 
     public static function setters()
@@ -127,14 +121,12 @@ class VideoRecorderMethodResponse implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
+        'id' => 'getId',
         'userId' => 'getUserId',
-        'email' => 'getEmail',
-        'clientId' => 'getClientId',
-        'vidId' => 'getVidId',
-        'content' => 'getContent',
-        'width' => 'getWidth',
-        'height' => 'getHeight',
-        'https' => 'getHttps'
+        'fileName' => 'getFileName',
+        'shortUrl' => 'getShortUrl',
+        'longUrl' => 'getLongUrl',
+        'uploadDate' => 'getUploadDate'
     );
 
     public static function getters()
@@ -158,14 +150,12 @@ class VideoRecorderMethodResponse implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['userId'] = isset($data['userId']) ? $data['userId'] : null;
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
-        $this->container['clientId'] = isset($data['clientId']) ? $data['clientId'] : null;
-        $this->container['vidId'] = isset($data['vidId']) ? $data['vidId'] : null;
-        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
-        $this->container['width'] = isset($data['width']) ? $data['width'] : null;
-        $this->container['height'] = isset($data['height']) ? $data['height'] : null;
-        $this->container['https'] = isset($data['https']) ? $data['https'] : null;
+        $this->container['fileName'] = isset($data['fileName']) ? $data['fileName'] : null;
+        $this->container['shortUrl'] = isset($data['shortUrl']) ? $data['shortUrl'] : null;
+        $this->container['longUrl'] = isset($data['longUrl']) ? $data['longUrl'] : null;
+        $this->container['uploadDate'] = isset($data['uploadDate']) ? $data['uploadDate'] : null;
     }
 
     /**
@@ -192,6 +182,27 @@ class VideoRecorderMethodResponse implements ArrayAccess
 
 
     /**
+     * Gets id
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     * @param string $id The doc's id.
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
      * Gets userId
      * @return string
      */
@@ -202,7 +213,7 @@ class VideoRecorderMethodResponse implements ArrayAccess
 
     /**
      * Sets userId
-     * @param string $userId The id of the user for whom this video will be recorded
+     * @param string $userId The doc's owner.
      * @return $this
      */
     public function setUserId($userId)
@@ -213,148 +224,85 @@ class VideoRecorderMethodResponse implements ArrayAccess
     }
 
     /**
-     * Gets email
+     * Gets fileName
      * @return string
      */
-    public function getEmail()
+    public function getFileName()
     {
-        return $this->container['email'];
+        return $this->container['fileName'];
     }
 
     /**
-     * Sets email
-     * @param string $email The email address of the user for whom this video will be recorded
+     * Sets fileName
+     * @param string $fileName docs file name.
      * @return $this
      */
-    public function setEmail($email)
+    public function setFileName($fileName)
     {
-        $this->container['email'] = $email;
+        $this->container['fileName'] = $fileName;
 
         return $this;
     }
 
     /**
-     * Gets clientId
+     * Gets shortUrl
      * @return string
      */
-    public function getClientId()
+    public function getShortUrl()
     {
-        return $this->container['clientId'];
+        return $this->container['shortUrl'];
     }
 
     /**
-     * Sets clientId
-     * @param string $clientId The client_id of the user for whom this video will be recorded
+     * Sets shortUrl
+     * @param string $shortUrl The doc's short url.
      * @return $this
      */
-    public function setClientId($clientId)
+    public function setShortUrl($shortUrl)
     {
-        $this->container['clientId'] = $clientId;
+        $this->container['shortUrl'] = $shortUrl;
 
         return $this;
     }
 
     /**
-     * Gets vidId
+     * Gets longUrl
      * @return string
      */
-    public function getVidId()
+    public function getLongUrl()
     {
-        return $this->container['vidId'];
+        return $this->container['longUrl'];
     }
 
     /**
-     * Sets vidId
-     * @param string $vidId The id of the video that will be recorded
+     * Sets longUrl
+     * @param string $longUrl The doc's long url.
      * @return $this
      */
-    public function setVidId($vidId)
+    public function setLongUrl($longUrl)
     {
-        $this->container['vidId'] = $vidId;
+        $this->container['longUrl'] = $longUrl;
 
         return $this;
     }
 
     /**
-     * Gets content
-     * @return string
+     * Gets uploadDate
+     * @return \DateTime
      */
-    public function getContent()
+    public function getUploadDate()
     {
-        return $this->container['content'];
+        return $this->container['uploadDate'];
     }
 
     /**
-     * Sets content
-     * @param string $content An HTML blob that displays a video recorder
+     * Sets uploadDate
+     * @param \DateTime $uploadDate The doc's upload date.
      * @return $this
      */
-    public function setContent($content)
+    public function setUploadDate($uploadDate)
     {
-        $this->container['content'] = $content;
-
-        return $this;
-    }
-
-    /**
-     * Gets width
-     * @return int
-     */
-    public function getWidth()
-    {
-        return $this->container['width'];
-    }
-
-    /**
-     * Sets width
-     * @param int $width The width of the video recorder
-     * @return $this
-     */
-    public function setWidth($width)
-    {
-        $this->container['width'] = $width;
-
-        return $this;
-    }
-
-    /**
-     * Gets height
-     * @return int
-     */
-    public function getHeight()
-    {
-        return $this->container['height'];
-    }
-
-    /**
-     * Sets height
-     * @param int $height the Height of the video recorder
-     * @return $this
-     */
-    public function setHeight($height)
-    {
-        $this->container['height'] = $height;
-
-        return $this;
-    }
-
-    /**
-     * Gets https
-     * @return bool
-     */
-    public function getHttps()
-    {
-        return $this->container['https'];
-    }
-
-    /**
-     * Sets https
-     * @param bool $https Whether communication from the recorder will be handled via HTTPS (always true)
-     * @return $this
-     */
-    public function setHttps($https)
-    {
-        $this->container['https'] = $https;
+        $this->container['uploadDate'] = $uploadDate;
 
         return $this;
     }
