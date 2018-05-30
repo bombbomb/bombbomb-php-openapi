@@ -1,6 +1,6 @@
 <?php
 /**
- * VideoPublicRepresentation
+ * PromptSocialPrompt
  *
  * PHP version 5
  *
@@ -44,23 +44,23 @@ namespace Swagger\Client\Model;
 use \ArrayAccess;
 
 /**
- * VideoPublicRepresentation Class Doc Comment
+ * PromptSocialPrompt Class Doc Comment
  *
  * @category    Class */
- // @description The VideoPublicRepresentation class
+ // @description The Prompt\\SocialPrompt class
 /** 
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class VideoPublicRepresentation implements ArrayAccess
+class PromptSocialPrompt implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'VideoPublicRepresentation';
+    protected static $swaggerModelName = 'Prompt\SocialPrompt';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -69,15 +69,17 @@ class VideoPublicRepresentation implements ArrayAccess
     protected static $swaggerTypes = array(
         'id' => 'string',
         'userId' => 'string',
-        'status' => 'string',
-        'name' => 'string',
-        'description' => 'string',
-        'thumbUrl' => 'string',
-        'videoUrls' => 'string[]',
-        'shortUrl' => 'string',
-        'height' => 'int',
-        'width' => 'int',
-        'uploadDate' => 'string'
+        'jerichoId' => 'string',
+        'promptSubject' => 'string',
+        'promptHtml' => 'string',
+        'scheduledSendDate' => '\DateTime',
+        'clientGroupId' => 'string',
+        'thumbnailUrl' => 'string',
+        'status' => 'int',
+        'createdDate' => '\DateTime',
+        'lastNotified' => '\DateTime',
+        'sendMechanism' => '\DateTime',
+        'sendTypes' => 'string[]'
     );
 
     public static function swaggerTypes()
@@ -92,15 +94,17 @@ class VideoPublicRepresentation implements ArrayAccess
     protected static $attributeMap = array(
         'id' => 'id',
         'userId' => 'userId',
+        'jerichoId' => 'jerichoId',
+        'promptSubject' => 'promptSubject',
+        'promptHtml' => 'promptHtml',
+        'scheduledSendDate' => 'scheduledSendDate',
+        'clientGroupId' => 'clientGroupId',
+        'thumbnailUrl' => 'thumbnailUrl',
         'status' => 'status',
-        'name' => 'name',
-        'description' => 'description',
-        'thumbUrl' => 'thumbUrl',
-        'videoUrls' => 'videoUrls',
-        'shortUrl' => 'shortUrl',
-        'height' => 'height',
-        'width' => 'width',
-        'uploadDate' => 'uploadDate'
+        'createdDate' => 'createdDate',
+        'lastNotified' => 'lastNotified',
+        'sendMechanism' => 'sendMechanism',
+        'sendTypes' => 'sendTypes'
     );
 
     public static function attributeMap()
@@ -115,15 +119,17 @@ class VideoPublicRepresentation implements ArrayAccess
     protected static $setters = array(
         'id' => 'setId',
         'userId' => 'setUserId',
+        'jerichoId' => 'setJerichoId',
+        'promptSubject' => 'setPromptSubject',
+        'promptHtml' => 'setPromptHtml',
+        'scheduledSendDate' => 'setScheduledSendDate',
+        'clientGroupId' => 'setClientGroupId',
+        'thumbnailUrl' => 'setThumbnailUrl',
         'status' => 'setStatus',
-        'name' => 'setName',
-        'description' => 'setDescription',
-        'thumbUrl' => 'setThumbUrl',
-        'videoUrls' => 'setVideoUrls',
-        'shortUrl' => 'setShortUrl',
-        'height' => 'setHeight',
-        'width' => 'setWidth',
-        'uploadDate' => 'setUploadDate'
+        'createdDate' => 'setCreatedDate',
+        'lastNotified' => 'setLastNotified',
+        'sendMechanism' => 'setSendMechanism',
+        'sendTypes' => 'setSendTypes'
     );
 
     public static function setters()
@@ -138,15 +144,17 @@ class VideoPublicRepresentation implements ArrayAccess
     protected static $getters = array(
         'id' => 'getId',
         'userId' => 'getUserId',
+        'jerichoId' => 'getJerichoId',
+        'promptSubject' => 'getPromptSubject',
+        'promptHtml' => 'getPromptHtml',
+        'scheduledSendDate' => 'getScheduledSendDate',
+        'clientGroupId' => 'getClientGroupId',
+        'thumbnailUrl' => 'getThumbnailUrl',
         'status' => 'getStatus',
-        'name' => 'getName',
-        'description' => 'getDescription',
-        'thumbUrl' => 'getThumbUrl',
-        'videoUrls' => 'getVideoUrls',
-        'shortUrl' => 'getShortUrl',
-        'height' => 'getHeight',
-        'width' => 'getWidth',
-        'uploadDate' => 'getUploadDate'
+        'createdDate' => 'getCreatedDate',
+        'lastNotified' => 'getLastNotified',
+        'sendMechanism' => 'getSendMechanism',
+        'sendTypes' => 'getSendTypes'
     );
 
     public static function getters()
@@ -172,15 +180,17 @@ class VideoPublicRepresentation implements ArrayAccess
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['userId'] = isset($data['userId']) ? $data['userId'] : null;
+        $this->container['jerichoId'] = isset($data['jerichoId']) ? $data['jerichoId'] : null;
+        $this->container['promptSubject'] = isset($data['promptSubject']) ? $data['promptSubject'] : null;
+        $this->container['promptHtml'] = isset($data['promptHtml']) ? $data['promptHtml'] : null;
+        $this->container['scheduledSendDate'] = isset($data['scheduledSendDate']) ? $data['scheduledSendDate'] : null;
+        $this->container['clientGroupId'] = isset($data['clientGroupId']) ? $data['clientGroupId'] : null;
+        $this->container['thumbnailUrl'] = isset($data['thumbnailUrl']) ? $data['thumbnailUrl'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['thumbUrl'] = isset($data['thumbUrl']) ? $data['thumbUrl'] : null;
-        $this->container['videoUrls'] = isset($data['videoUrls']) ? $data['videoUrls'] : null;
-        $this->container['shortUrl'] = isset($data['shortUrl']) ? $data['shortUrl'] : null;
-        $this->container['height'] = isset($data['height']) ? $data['height'] : null;
-        $this->container['width'] = isset($data['width']) ? $data['width'] : null;
-        $this->container['uploadDate'] = isset($data['uploadDate']) ? $data['uploadDate'] : null;
+        $this->container['createdDate'] = isset($data['createdDate']) ? $data['createdDate'] : null;
+        $this->container['lastNotified'] = isset($data['lastNotified']) ? $data['lastNotified'] : null;
+        $this->container['sendMechanism'] = isset($data['sendMechanism']) ? $data['sendMechanism'] : null;
+        $this->container['sendTypes'] = isset($data['sendTypes']) ? $data['sendTypes'] : null;
     }
 
     /**
@@ -217,7 +227,7 @@ class VideoPublicRepresentation implements ArrayAccess
 
     /**
      * Sets id
-     * @param string $id The id of the video
+     * @param string $id The identifier of the prompt. Read Only.
      * @return $this
      */
     public function setId($id)
@@ -238,7 +248,7 @@ class VideoPublicRepresentation implements ArrayAccess
 
     /**
      * Sets userId
-     * @param string $userId The is of the owning user
+     * @param string $userId The prompt's owner. Read Only.
      * @return $this
      */
     public function setUserId($userId)
@@ -249,8 +259,134 @@ class VideoPublicRepresentation implements ArrayAccess
     }
 
     /**
-     * Gets status
+     * Gets jerichoId
      * @return string
+     */
+    public function getJerichoId()
+    {
+        return $this->container['jerichoId'];
+    }
+
+    /**
+     * Sets jerichoId
+     * @param string $jerichoId If sent in a jericho context, this will have the jericho id
+     * @return $this
+     */
+    public function setJerichoId($jerichoId)
+    {
+        $this->container['jerichoId'] = $jerichoId;
+
+        return $this;
+    }
+
+    /**
+     * Gets promptSubject
+     * @return string
+     */
+    public function getPromptSubject()
+    {
+        return $this->container['promptSubject'];
+    }
+
+    /**
+     * Sets promptSubject
+     * @param string $promptSubject The prompt's subject line
+     * @return $this
+     */
+    public function setPromptSubject($promptSubject)
+    {
+        $this->container['promptSubject'] = $promptSubject;
+
+        return $this;
+    }
+
+    /**
+     * Gets promptHtml
+     * @return string
+     */
+    public function getPromptHtml()
+    {
+        return $this->container['promptHtml'];
+    }
+
+    /**
+     * Sets promptHtml
+     * @param string $promptHtml The suggested script of the prompt.
+     * @return $this
+     */
+    public function setPromptHtml($promptHtml)
+    {
+        $this->container['promptHtml'] = $promptHtml;
+
+        return $this;
+    }
+
+    /**
+     * Gets scheduledSendDate
+     * @return \DateTime
+     */
+    public function getScheduledSendDate()
+    {
+        return $this->container['scheduledSendDate'];
+    }
+
+    /**
+     * Sets scheduledSendDate
+     * @param \DateTime $scheduledSendDate When the final email is scheduled to be sent
+     * @return $this
+     */
+    public function setScheduledSendDate($scheduledSendDate)
+    {
+        $this->container['scheduledSendDate'] = $scheduledSendDate;
+
+        return $this;
+    }
+
+    /**
+     * Gets clientGroupId
+     * @return string
+     */
+    public function getClientGroupId()
+    {
+        return $this->container['clientGroupId'];
+    }
+
+    /**
+     * Sets clientGroupId
+     * @param string $clientGroupId The client group campaign that created the prompt.
+     * @return $this
+     */
+    public function setClientGroupId($clientGroupId)
+    {
+        $this->container['clientGroupId'] = $clientGroupId;
+
+        return $this;
+    }
+
+    /**
+     * Gets thumbnailUrl
+     * @return string
+     */
+    public function getThumbnailUrl()
+    {
+        return $this->container['thumbnailUrl'];
+    }
+
+    /**
+     * Sets thumbnailUrl
+     * @param string $thumbnailUrl The URL of a thumbnail image for this prompt
+     * @return $this
+     */
+    public function setThumbnailUrl($thumbnailUrl)
+    {
+        $this->container['thumbnailUrl'] = $thumbnailUrl;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     * @return int
      */
     public function getStatus()
     {
@@ -259,7 +395,7 @@ class VideoPublicRepresentation implements ArrayAccess
 
     /**
      * Sets status
-     * @param string $status The status of the video
+     * @param int $status The status of the prompt: created = 0, sent = 10, recorded = 20, job_created = 30, timed_out = 40, declined = 50 Read Only
      * @return $this
      */
     public function setStatus($status)
@@ -270,169 +406,85 @@ class VideoPublicRepresentation implements ArrayAccess
     }
 
     /**
-     * Gets name
-     * @return string
+     * Gets createdDate
+     * @return \DateTime
      */
-    public function getName()
+    public function getCreatedDate()
     {
-        return $this->container['name'];
+        return $this->container['createdDate'];
     }
 
     /**
-     * Sets name
-     * @param string $name The name of the video
+     * Sets createdDate
+     * @param \DateTime $createdDate When the email was first sent out
      * @return $this
      */
-    public function setName($name)
+    public function setCreatedDate($createdDate)
     {
-        $this->container['name'] = $name;
+        $this->container['createdDate'] = $createdDate;
 
         return $this;
     }
 
     /**
-     * Gets description
-     * @return string
+     * Gets lastNotified
+     * @return \DateTime
      */
-    public function getDescription()
+    public function getLastNotified()
     {
-        return $this->container['description'];
+        return $this->container['lastNotified'];
     }
 
     /**
-     * Sets description
-     * @param string $description A description of the video
+     * Sets lastNotified
+     * @param \DateTime $lastNotified When the user was last notified about a prompt email waiting for a video
      * @return $this
      */
-    public function setDescription($description)
+    public function setLastNotified($lastNotified)
     {
-        $this->container['description'] = $description;
+        $this->container['lastNotified'] = $lastNotified;
 
         return $this;
     }
 
     /**
-     * Gets thumbUrl
-     * @return string
+     * Gets sendMechanism
+     * @return \DateTime
      */
-    public function getThumbUrl()
+    public function getSendMechanism()
     {
-        return $this->container['thumbUrl'];
+        return $this->container['sendMechanism'];
     }
 
     /**
-     * Sets thumbUrl
-     * @param string $thumbUrl The url of the thumbnail for the video
+     * Sets sendMechanism
+     * @param \DateTime $sendMechanism The sendMechanism property
      * @return $this
      */
-    public function setThumbUrl($thumbUrl)
+    public function setSendMechanism($sendMechanism)
     {
-        $this->container['thumbUrl'] = $thumbUrl;
+        $this->container['sendMechanism'] = $sendMechanism;
 
         return $this;
     }
 
     /**
-     * Gets videoUrls
+     * Gets sendTypes
      * @return string[]
      */
-    public function getVideoUrls()
+    public function getSendTypes()
     {
-        return $this->container['videoUrls'];
+        return $this->container['sendTypes'];
     }
 
     /**
-     * Sets videoUrls
-     * @param string[] $videoUrls Urls to different formats of the video
+     * Sets sendTypes
+     * @param string[] $sendTypes The types of mechanisms this prompt can send.
      * @return $this
      */
-    public function setVideoUrls($videoUrls)
+    public function setSendTypes($sendTypes)
     {
-        $this->container['videoUrls'] = $videoUrls;
-
-        return $this;
-    }
-
-    /**
-     * Gets shortUrl
-     * @return string
-     */
-    public function getShortUrl()
-    {
-        return $this->container['shortUrl'];
-    }
-
-    /**
-     * Sets shortUrl
-     * @param string $shortUrl The url to use to link to the video
-     * @return $this
-     */
-    public function setShortUrl($shortUrl)
-    {
-        $this->container['shortUrl'] = $shortUrl;
-
-        return $this;
-    }
-
-    /**
-     * Gets height
-     * @return int
-     */
-    public function getHeight()
-    {
-        return $this->container['height'];
-    }
-
-    /**
-     * Sets height
-     * @param int $height The height of the video in pixels
-     * @return $this
-     */
-    public function setHeight($height)
-    {
-        $this->container['height'] = $height;
-
-        return $this;
-    }
-
-    /**
-     * Gets width
-     * @return int
-     */
-    public function getWidth()
-    {
-        return $this->container['width'];
-    }
-
-    /**
-     * Sets width
-     * @param int $width The width of the video in pixels
-     * @return $this
-     */
-    public function setWidth($width)
-    {
-        $this->container['width'] = $width;
-
-        return $this;
-    }
-
-    /**
-     * Gets uploadDate
-     * @return string
-     */
-    public function getUploadDate()
-    {
-        return $this->container['uploadDate'];
-    }
-
-    /**
-     * Sets uploadDate
-     * @param string $uploadDate The date the video was uploaded
-     * @return $this
-     */
-    public function setUploadDate($uploadDate)
-    {
-        $this->container['uploadDate'] = $uploadDate;
+        $this->container['sendTypes'] = $sendTypes;
 
         return $this;
     }

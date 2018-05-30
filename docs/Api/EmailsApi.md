@@ -9,7 +9,11 @@ Method | HTTP request | Description
 [**getEmailTracking**](EmailsApi.md#getEmailTracking) | **GET** /emails/{emailId}/tracking | Get Email Tracking
 [**getEmailTrackingInteractions**](EmailsApi.md#getEmailTrackingInteractions) | **GET** /emails/{emailId}/tracking/interactions | Get Email Tracking Interactions
 [**getHourlyEmailTracking**](EmailsApi.md#getHourlyEmailTracking) | **GET** /emails/{emailId}/tracking/hourly | Get Hourly Email Tracking
+[**getLiveFireData**](EmailsApi.md#getLiveFireData) | **GET** /emails/livefire | Get livefire feed data
 [**getQuickSendTemplates**](EmailsApi.md#getQuickSendTemplates) | **GET** /emails/quicksend/templates | Get all quicksend templates
+[**getTemplateHtmlForTemplateId**](EmailsApi.md#getTemplateHtmlForTemplateId) | **GET** /emails/templates/{templateId}/html | Get the HTML for a given template
+[**getVideoQuickSenderData**](EmailsApi.md#getVideoQuickSenderData) | **GET** /emails/quicksend | Get quicksend data
+[**saveQuickSenderSettings**](EmailsApi.md#saveQuickSenderSettings) | **POST** /emails/quicksend/settings | Save quicksender settings
 [**videoQuickSender**](EmailsApi.md#videoQuickSender) | **POST** /emails/quicksend | Send a quicksend email
 
 
@@ -268,6 +272,49 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **getLiveFireData**
+> getLiveFireData()
+
+Get livefire feed data
+
+Get the user data for the live fire feed emails
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\EmailsApi();
+
+try {
+    $api_instance->getLiveFireData();
+} catch (Exception $e) {
+    echo 'Exception when calling EmailsApi->getLiveFireData: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **getQuickSendTemplates**
 > getQuickSendTemplates()
 
@@ -295,6 +342,161 @@ try {
 
 ### Parameters
 This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getTemplateHtmlForTemplateId**
+> getTemplateHtmlForTemplateId($templateId, $renderVariables)
+
+Get the HTML for a given template
+
+Get the HTML for a given template, with or without rendered variables
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\EmailsApi();
+$templateId = "templateId_example"; // string | The id of the template.
+$renderVariables = "renderVariables_example"; // string | Whether to render profile variables in the returned HTML.
+
+try {
+    $api_instance->getTemplateHtmlForTemplateId($templateId, $renderVariables);
+} catch (Exception $e) {
+    echo 'Exception when calling EmailsApi->getTemplateHtmlForTemplateId: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **templateId** | **string**| The id of the template. |
+ **renderVariables** | **string**| Whether to render profile variables in the returned HTML. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getVideoQuickSenderData**
+> getVideoQuickSenderData($message, $subject, $videoId, $templateId, $commaDelimEmails)
+
+Get quicksend data
+
+Get the user data for quicksender, including templates and lists.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\EmailsApi();
+$message = "message_example"; // string | A message for the video content.
+$subject = "subject_example"; // string | A subject for the video content.
+$videoId = "videoId_example"; // string | A video ID.
+$templateId = "templateId_example"; // string | A template ID.
+$commaDelimEmails = "commaDelimEmails_example"; // string | Comma delimited emails
+
+try {
+    $api_instance->getVideoQuickSenderData($message, $subject, $videoId, $templateId, $commaDelimEmails);
+} catch (Exception $e) {
+    echo 'Exception when calling EmailsApi->getVideoQuickSenderData: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **message** | **string**| A message for the video content. | [optional]
+ **subject** | **string**| A subject for the video content. | [optional]
+ **videoId** | **string**| A video ID. | [optional]
+ **templateId** | **string**| A template ID. | [optional]
+ **commaDelimEmails** | **string**| Comma delimited emails | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **saveQuickSenderSettings**
+> saveQuickSenderSettings($alertOnPlay, $alertOnOpen, $templateId)
+
+Save quicksender settings
+
+Save the quicksender notification and default template settings
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\EmailsApi();
+$alertOnPlay = "alertOnPlay_example"; // string | A preference setting for whether or not to notify user on quicksend email video plays.
+$alertOnOpen = "alertOnOpen_example"; // string | A preference setting for whether or not to notify user on quicksend email opens.
+$templateId = "templateId_example"; // string | Id of a template to use for this send. A null value means use the default for this user.
+
+try {
+    $api_instance->saveQuickSenderSettings($alertOnPlay, $alertOnOpen, $templateId);
+} catch (Exception $e) {
+    echo 'Exception when calling EmailsApi->saveQuickSenderSettings: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **alertOnPlay** | **string**| A preference setting for whether or not to notify user on quicksend email video plays. | [optional]
+ **alertOnOpen** | **string**| A preference setting for whether or not to notify user on quicksend email opens. | [optional]
+ **templateId** | **string**| Id of a template to use for this send. A null value means use the default for this user. | [optional]
 
 ### Return type
 

@@ -258,11 +258,11 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteContacts**
-> deleteContacts($listId)
+> deleteContacts($listId, $contactIds)
 
 Delete Contacts
 
-Delete contacts
+Delete all contacts within a list, or provide a comma separated list of contactIds to delete.
 
 ### Example
 ```php
@@ -274,9 +274,10 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_AC
 
 $api_instance = new Swagger\Client\Api\ContactsApi();
 $listId = "listId_example"; // string | The list of contacts to be deleted.
+$contactIds = "contactIds_example"; // string | comma separated list of contact ids to delete
 
 try {
-    $api_instance->deleteContacts($listId);
+    $api_instance->deleteContacts($listId, $contactIds);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->deleteContacts: ', $e->getMessage(), PHP_EOL;
 }
@@ -287,7 +288,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **listId** | **string**| The list of contacts to be deleted. |
+ **listId** | **string**| The list of contacts to be deleted. | [optional]
+ **contactIds** | **string**| comma separated list of contact ids to delete | [optional]
 
 ### Return type
 

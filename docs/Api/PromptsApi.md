@@ -6,15 +6,18 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createPromptBot**](PromptsApi.md#createPromptBot) | **POST** /prompts/bots | Create a running Prompt Bot for a list
 [**createVideoEmailPrompt**](PromptsApi.md#createVideoEmailPrompt) | **POST** /prompt | Prompts user to send a video
+[**getAlternateCampaignContent**](PromptsApi.md#getAlternateCampaignContent) | **GET** /campaign/{campaignId}/content/alternate | List alternate campaign content
 [**getPendingVideoEmailPrompts**](PromptsApi.md#getPendingVideoEmailPrompts) | **GET** /prompt/pending | List pending prompts
 [**getPromptBots**](PromptsApi.md#getPromptBots) | **GET** /prompts/bots | List Prompt Bots
-[**getPromptCampaigns**](PromptsApi.md#getPromptCampaigns) | **GET** /prompts/campaigns | List Prompt Campaigns
+[**getPromptCampaigns**](PromptsApi.md#getPromptCampaigns) | **GET** /prompts/{userId}/campaigns | List Prompt Campaigns
 [**getVideoEmailPrompt**](PromptsApi.md#getVideoEmailPrompt) | **GET** /prompt/{id} | Gets a prompt
 [**getVideoEmailPrompts**](PromptsApi.md#getVideoEmailPrompts) | **GET** /prompt/ | List prompts
 [**respondToVideoEmailPrompt**](PromptsApi.md#respondToVideoEmailPrompt) | **POST** /prompt/{id}/response | Respond to a prompt
+[**syncPromptSubscriptions**](PromptsApi.md#syncPromptSubscriptions) | **POST** /prompts/campaigns/sync | Syncs Campaigns and One to Ones Subscriptions for User
 [**updatePrompt**](PromptsApi.md#updatePrompt) | **PUT** /prompts/{id} | Update Prompt
 [**updatePromptBot**](PromptsApi.md#updatePromptBot) | **PUT** /prompts/bots/{id} | Update Prompt Bot
 [**updatePromptCampaign**](PromptsApi.md#updatePromptCampaign) | **PUT** /prompts/campaigns/{id} | Update Prompt Campaign
+[**updatePromptTemplate**](PromptsApi.md#updatePromptTemplate) | **PUT** /prompts/{id}/content | Update Prompt Content
 
 
 # **createPromptBot**
@@ -127,6 +130,53 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getAlternateCampaignContent**
+> getAlternateCampaignContent($clientGroupId)
+
+List alternate campaign content
+
+Returns a list of alternate campaign content by campaign id
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\PromptsApi();
+$clientGroupId = "clientGroupId_example"; // string | Id for the campaign
+
+try {
+    $api_instance->getAlternateCampaignContent($clientGroupId);
+} catch (Exception $e) {
+    echo 'Exception when calling PromptsApi->getAlternateCampaignContent: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **clientGroupId** | **string**| Id for the campaign |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -407,8 +457,55 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **syncPromptSubscriptions**
+> syncPromptSubscriptions($migrate)
+
+Syncs Campaigns and One to Ones Subscriptions for User
+
+Syncs Campaigns and One to Ones Subscriptions for User based on their profile information. The user must be a Prompt Subscriber.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\PromptsApi();
+$migrate = true; // bool | After syncing, migrate away from old campaigns.
+
+try {
+    $api_instance->syncPromptSubscriptions($migrate);
+} catch (Exception $e) {
+    echo 'Exception when calling PromptsApi->syncPromptSubscriptions: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **migrate** | **bool**| After syncing, migrate away from old campaigns. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **updatePrompt**
-> updatePrompt($id, $sendMechanism, $facebookMessage, $twitterMessage, $videoId, $emailId, $subject)
+> updatePrompt($id, $sendMechanism, $facebookMessage, $twitterMessage, $videoId, $emailId, $subject, $resetCache, $resetEmailContent, $status)
 
 Update Prompt
 
@@ -430,9 +527,12 @@ $twitterMessage = "twitterMessage_example"; // string | The twitter message assi
 $videoId = "videoId_example"; // string | The id of the video.
 $emailId = "emailId_example"; // string | The id of the email.
 $subject = "subject_example"; // string | The subject of the email
+$resetCache = "resetCache_example"; // string | The subject of the email
+$resetEmailContent = "resetEmailContent_example"; // string | The subject of the email
+$status = "status_example"; // string | The status of the prompt
 
 try {
-    $api_instance->updatePrompt($id, $sendMechanism, $facebookMessage, $twitterMessage, $videoId, $emailId, $subject);
+    $api_instance->updatePrompt($id, $sendMechanism, $facebookMessage, $twitterMessage, $videoId, $emailId, $subject, $resetCache, $resetEmailContent, $status);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->updatePrompt: ', $e->getMessage(), PHP_EOL;
 }
@@ -450,6 +550,9 @@ Name | Type | Description  | Notes
  **videoId** | **string**| The id of the video. | [optional]
  **emailId** | **string**| The id of the email. | [optional]
  **subject** | **string**| The subject of the email | [optional]
+ **resetCache** | **string**| The subject of the email | [optional]
+ **resetEmailContent** | **string**| The subject of the email | [optional]
+ **status** | **string**| The status of the prompt | [optional]
 
 ### Return type
 
@@ -573,6 +676,61 @@ Name | Type | Description  | Notes
  **personalTemplateId** | **string**| The template to use for personal feel emails. | [optional]
  **enabled** | **bool**| Set whether the user is able to start receiving prompts. | [optional]
  **sendMechanism** | **string**| The way to send the prompt | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **updatePromptTemplate**
+> updatePromptTemplate($id, $alternateContentId, $newEmailId, $ogEmailId, $newExampleVideoId)
+
+Update Prompt Content
+
+Updates a Prompt Content
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\PromptsApi();
+$id = "id_example"; // string | The prompt's id
+$alternateContentId = "alternateContentId_example"; // string | The alternate content id
+$newEmailId = "newEmailId_example"; // string | The prompt's new email id
+$ogEmailId = "ogEmailId_example"; // string | The prompt's original email id
+$newExampleVideoId = "newExampleVideoId_example"; // string | The prompt's new tutorial video id
+
+try {
+    $api_instance->updatePromptTemplate($id, $alternateContentId, $newEmailId, $ogEmailId, $newExampleVideoId);
+} catch (Exception $e) {
+    echo 'Exception when calling PromptsApi->updatePromptTemplate: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The prompt&#39;s id |
+ **alternateContentId** | **string**| The alternate content id |
+ **newEmailId** | **string**| The prompt&#39;s new email id |
+ **ogEmailId** | **string**| The prompt&#39;s original email id |
+ **newExampleVideoId** | **string**| The prompt&#39;s new tutorial video id |
 
 ### Return type
 

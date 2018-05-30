@@ -10,7 +10,10 @@ Method | HTTP request | Description
 [**getSocialProfileProperties**](SocialsApi.md#getSocialProfileProperties) | **GET** /socials/profile | Gets the profile properties
 [**getSocialStats**](SocialsApi.md#getSocialStats) | **GET** /socials/{promptId}/stats | Get social stats for a prompt
 [**postSocialContent**](SocialsApi.md#postSocialContent) | **POST** /socials/content | Creates social content
+[**retrySocialSend**](SocialsApi.md#retrySocialSend) | **POST** /socials/send/retry | Sends social content
+[**sendSocial**](SocialsApi.md#sendSocial) | **POST** /socials/send | Sends social content
 [**updateClientGroupSendMechanism**](SocialsApi.md#updateClientGroupSendMechanism) | **PUT** /socials/client/sendMechanism | Gets the auto shares from the client group assoc id
+[**updateClientGroupsSendMechanism**](SocialsApi.md#updateClientGroupsSendMechanism) | **PUT** /socials/client/sendMechanisms | Toggles the prompt campaigns in a users account
 [**updateFacebookPages**](SocialsApi.md#updateFacebookPages) | **PUT** /socials/facebook/pages | Updates facebook page Ids
 [**updateSocialContent**](SocialsApi.md#updateSocialContent) | **PUT** /socials/content | Updates social content
 
@@ -59,7 +62,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSocialArticleProperties**
-> getSocialArticleProperties($emailId)
+> getSocialArticleProperties($emailId, $socialContentId)
 
 Gets the social email properties
 
@@ -75,9 +78,10 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_AC
 
 $api_instance = new Swagger\Client\Api\SocialsApi();
 $emailId = "emailId_example"; // string | This is the email Id for the email url
+$socialContentId = "socialContentId_example"; // string | This is the social content Id
 
 try {
-    $api_instance->getSocialArticleProperties($emailId);
+    $api_instance->getSocialArticleProperties($emailId, $socialContentId);
 } catch (Exception $e) {
     echo 'Exception when calling SocialsApi->getSocialArticleProperties: ', $e->getMessage(), PHP_EOL;
 }
@@ -89,6 +93,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **emailId** | **string**| This is the email Id for the email url |
+ **socialContentId** | **string**| This is the social content Id |
 
 ### Return type
 
@@ -293,6 +298,102 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **retrySocialSend**
+> retrySocialSend($promptId)
+
+Sends social content
+
+Sends social content that failed for a user via their associated prompt
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\SocialsApi();
+$promptId = "promptId_example"; // string | The prompt id
+
+try {
+    $api_instance->retrySocialSend($promptId);
+} catch (Exception $e) {
+    echo 'Exception when calling SocialsApi->retrySocialSend: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **promptId** | **string**| The prompt id |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **sendSocial**
+> sendSocial($promptId, $socialType)
+
+Sends social content
+
+Sends social content for a user via their associated prompt
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\SocialsApi();
+$promptId = "promptId_example"; // string | The prompt id
+$socialType = "socialType_example"; // string | The destination for social content
+
+try {
+    $api_instance->sendSocial($promptId, $socialType);
+} catch (Exception $e) {
+    echo 'Exception when calling SocialsApi->sendSocial: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **promptId** | **string**| The prompt id |
+ **socialType** | **string**| The destination for social content |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **updateClientGroupSendMechanism**
 > updateClientGroupSendMechanism($sendMechanism, $clientGroupId, $enabled)
 
@@ -328,6 +429,55 @@ Name | Type | Description  | Notes
  **sendMechanism** | **string**| The send mechanism for the prompt |
  **clientGroupId** | **string**| ID of the client group association |
  **enabled** | **string**| Is the send mechanism enabled? | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **updateClientGroupsSendMechanism**
+> updateClientGroupsSendMechanism($sendMechanism, $enabled)
+
+Toggles the prompt campaigns in a users account
+
+Toggles the prompt campaigns in a users account for a social integrations on or off
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\SocialsApi();
+$sendMechanism = "sendMechanism_example"; // string | The send mechanism for the prompt
+$enabled = "enabled_example"; // string | Is the send mechanism enabled?
+
+try {
+    $api_instance->updateClientGroupsSendMechanism($sendMechanism, $enabled);
+} catch (Exception $e) {
+    echo 'Exception when calling SocialsApi->updateClientGroupsSendMechanism: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sendMechanism** | **string**| The send mechanism for the prompt |
+ **enabled** | **string**| Is the send mechanism enabled? |
 
 ### Return type
 

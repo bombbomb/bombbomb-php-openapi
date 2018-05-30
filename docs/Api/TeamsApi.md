@@ -5,6 +5,8 @@ All URIs are relative to *https://api.bombbomb.com/v2*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**addTeamMember**](TeamsApi.md#addTeamMember) | **POST** /team/{teamId}/member | Add Member to Team
+[**addUsers**](TeamsApi.md#addUsers) | **POST** /team/{teamId}/members | Add users to group.
+[**addUsersFromCsv**](TeamsApi.md#addUsersFromCsv) | **POST** /team/{teamId}/members/csv | Add members to group from CSV
 [**cancelJerichoSend**](TeamsApi.md#cancelJerichoSend) | **DELETE** /team/{teamId}/jericho/{jerichoId} | Cancel a Jericho Send
 [**createSubteam**](TeamsApi.md#createSubteam) | **POST** /team/{teamId}/subteam | Add a Subteam
 [**deleteSubteam**](TeamsApi.md#deleteSubteam) | **DELETE** /team/{teamId}/subteam | Delete Subteam
@@ -17,6 +19,7 @@ Method | HTTP request | Description
 [**getSubteams**](TeamsApi.md#getSubteams) | **GET** /team/{teamId}/subteam | List Subteams
 [**getTeamPromptAggregateStats**](TeamsApi.md#getTeamPromptAggregateStats) | **GET** /team/{clientGroupId}/campaign/stats | Get aggregate stats for campaigns
 [**getTeamPromptCampaigns**](TeamsApi.md#getTeamPromptCampaigns) | **GET** /team/{clientGroupId}/campaign | Get campaigns for team
+[**inviteToSocialPromptTeam**](TeamsApi.md#inviteToSocialPromptTeam) | **POST** /teams/prompt/invite | Invite a list to join the admin&#39;s social prompt team
 [**queueJerichoSend**](TeamsApi.md#queueJerichoSend) | **POST** /team/{teamId}/jericho | Creates a Jericho send.
 [**removeMemberFromTeam**](TeamsApi.md#removeMemberFromTeam) | **DELETE** /team/{teamId}/member/{userId} | Remove Member from Team
 [**resendTeamMemberInvitation**](TeamsApi.md#resendTeamMemberInvitation) | **POST** /team/{teamId}/{memberUserId}/rewelcome | Resend invite
@@ -26,7 +29,7 @@ Method | HTTP request | Description
 
 
 # **addTeamMember**
-> string addTeamMember($teamId, $userId, $userEmail, $admin)
+> string addTeamMember($teamId, $admin, $subgroupIds, $userEmail, $userId)
 
 Add Member to Team
 
@@ -42,12 +45,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_AC
 
 $api_instance = new Swagger\Client\Api\TeamsApi();
 $teamId = "teamId_example"; // string | The team id
-$userId = "userId_example"; // string | The user id of the member being added to the team.
-$userEmail = "userEmail_example"; // string | The email of the member being added to the team.
 $admin = true; // bool | Set if the user is an admin of this team.
+$subgroupIds = "subgroupIds_example"; // string | Subgroup IDs to add user to
+$userEmail = "userEmail_example"; // string | The email of the member being added to the team.
+$userId = "userId_example"; // string | The user id of the member being added to the team.
 
 try {
-    $result = $api_instance->addTeamMember($teamId, $userId, $userEmail, $admin);
+    $result = $api_instance->addTeamMember($teamId, $admin, $subgroupIds, $userEmail, $userId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->addTeamMember: ', $e->getMessage(), PHP_EOL;
@@ -60,13 +64,122 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **teamId** | **string**| The team id |
- **userId** | **string**| The user id of the member being added to the team. | [optional]
- **userEmail** | **string**| The email of the member being added to the team. | [optional]
  **admin** | **bool**| Set if the user is an admin of this team. | [optional]
+ **subgroupIds** | **string**| Subgroup IDs to add user to | [optional]
+ **userEmail** | **string**| The email of the member being added to the team. | [optional]
+ **userId** | **string**| The user id of the member being added to the team. | [optional]
 
 ### Return type
 
 **string**
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **addUsers**
+> addUsers($teamId, $userDetails, $sendWelcomeEmail, $subgroupIds)
+
+Add users to group.
+
+Add a new or existing user to group.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$teamId = "teamId_example"; // string | The team id
+$userDetails = "userDetails_example"; // string | Array of emails or objects containing details needed to create user
+$sendWelcomeEmail = "sendWelcomeEmail_example"; // string | Whether to send welcome email to new users
+$subgroupIds = "subgroupIds_example"; // string | Subgroup IDs to add user to
+
+try {
+    $api_instance->addUsers($teamId, $userDetails, $sendWelcomeEmail, $subgroupIds);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->addUsers: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **string**| The team id |
+ **userDetails** | **string**| Array of emails or objects containing details needed to create user |
+ **sendWelcomeEmail** | **string**| Whether to send welcome email to new users | [optional]
+ **subgroupIds** | **string**| Subgroup IDs to add user to | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **addUsersFromCsv**
+> addUsersFromCsv($teamId, $csvImportId, $map, $sendWelcomeEmail, $subgroupIds)
+
+Add members to group from CSV
+
+Imports members to a group from a given CSV ID.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$teamId = "teamId_example"; // string | The team id
+$csvImportId = "csvImportId_example"; // string | ID of the CSV to import
+$map = "map_example"; // string | Object to use when mapping import to AccountCreateDetails. Key is property name on details, value is CSV column number.
+$sendWelcomeEmail = "sendWelcomeEmail_example"; // string | Whether to send welcome email to new users
+$subgroupIds = "subgroupIds_example"; // string | Subgroup IDs to add user to
+
+try {
+    $api_instance->addUsersFromCsv($teamId, $csvImportId, $map, $sendWelcomeEmail, $subgroupIds);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->addUsersFromCsv: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **string**| The team id |
+ **csvImportId** | **string**| ID of the CSV to import |
+ **map** | **string**| Object to use when mapping import to AccountCreateDetails. Key is property name on details, value is CSV column number. |
+ **sendWelcomeEmail** | **string**| Whether to send welcome email to new users | [optional]
+ **subgroupIds** | **string**| Subgroup IDs to add user to | [optional]
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 
@@ -633,7 +746,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getTeamPromptCampaigns**
-> getTeamPromptCampaigns($clientGroupId, $searchTerm, $orderBy, $asc)
+> getTeamPromptCampaigns($clientGroupId, $searchTerm, $currentPage)
 
 Get campaigns for team
 
@@ -650,11 +763,10 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_AC
 $api_instance = new Swagger\Client\Api\TeamsApi();
 $clientGroupId = "clientGroupId_example"; // string | ID of the client group association
 $searchTerm = "searchTerm_example"; // string | The value to search for in prompt subject
-$orderBy = "orderBy_example"; // string | How to sort the column
-$asc = "asc_example"; // string | Ascending or not
+$currentPage = "currentPage_example"; // string | The current page
 
 try {
-    $api_instance->getTeamPromptCampaigns($clientGroupId, $searchTerm, $orderBy, $asc);
+    $api_instance->getTeamPromptCampaigns($clientGroupId, $searchTerm, $currentPage);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->getTeamPromptCampaigns: ', $e->getMessage(), PHP_EOL;
 }
@@ -667,8 +779,56 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **clientGroupId** | **string**| ID of the client group association |
  **searchTerm** | **string**| The value to search for in prompt subject | [optional]
- **orderBy** | **string**| How to sort the column | [optional]
- **asc** | **string**| Ascending or not | [optional]
+ **currentPage** | **string**| The current page | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **inviteToSocialPromptTeam**
+> inviteToSocialPromptTeam($teamId, $listId)
+
+Invite a list to join the admin's social prompt team
+
+Invite to Social Prompt Team
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new Swagger\Client\Api\TeamsApi();
+$teamId = "teamId_example"; // string | The team id
+$listId = "listId_example"; // string | List to invite to the social prompt team.
+
+try {
+    $api_instance->inviteToSocialPromptTeam($teamId, $listId);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->inviteToSocialPromptTeam: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **string**| The team id |
+ **listId** | **string**| List to invite to the social prompt team. |
 
 ### Return type
 
@@ -885,7 +1045,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateTeam**
-> \Swagger\Client\Model\TeamPublicRepresentation updateTeam($teamId, $name, $state)
+> \Swagger\Client\Model\TeamPublicRepresentation updateTeam($teamId, $name, $state, $subteamsCanAddMembers)
 
 Update a team
 
@@ -903,9 +1063,10 @@ $api_instance = new Swagger\Client\Api\TeamsApi();
 $teamId = "teamId_example"; // string | The team id
 $name = "name_example"; // string | The name of the team
 $state = "state_example"; // string | The status of the login permissions
+$subteamsCanAddMembers = true; // bool | Updates subteam member adding setting on group
 
 try {
-    $result = $api_instance->updateTeam($teamId, $name, $state);
+    $result = $api_instance->updateTeam($teamId, $name, $state, $subteamsCanAddMembers);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->updateTeam: ', $e->getMessage(), PHP_EOL;
@@ -920,6 +1081,7 @@ Name | Type | Description  | Notes
  **teamId** | **string**| The team id |
  **name** | **string**| The name of the team | [optional]
  **state** | **string**| The status of the login permissions | [optional]
+ **subteamsCanAddMembers** | **bool**| Updates subteam member adding setting on group | [optional]
 
 ### Return type
 
@@ -937,7 +1099,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateTeamMember**
-> updateTeamMember($teamId, $userId, $admin)
+> updateTeamMember($teamId, $userId, $admin, $permissionSuiteId)
 
 Update Member of Team
 
@@ -955,9 +1117,10 @@ $api_instance = new Swagger\Client\Api\TeamsApi();
 $teamId = "teamId_example"; // string | The team id
 $userId = "userId_example"; // string | The user id of the member being added to the team.
 $admin = true; // bool | Set if the user is an admin of this team.
+$permissionSuiteId = "permissionSuiteId_example"; // string | Set if the user is an admin of this team.
 
 try {
-    $api_instance->updateTeamMember($teamId, $userId, $admin);
+    $api_instance->updateTeamMember($teamId, $userId, $admin, $permissionSuiteId);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->updateTeamMember: ', $e->getMessage(), PHP_EOL;
 }
@@ -971,6 +1134,7 @@ Name | Type | Description  | Notes
  **teamId** | **string**| The team id |
  **userId** | **string**| The user id of the member being added to the team. |
  **admin** | **bool**| Set if the user is an admin of this team. |
+ **permissionSuiteId** | **string**| Set if the user is an admin of this team. | [optional]
 
 ### Return type
 
