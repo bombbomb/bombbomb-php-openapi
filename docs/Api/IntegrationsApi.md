@@ -24,9 +24,14 @@ Provide the correct parameters to enable an integration. Required Parameters var
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\IntegrationsApi();
+$apiInstance = new Swagger\Client\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $code = "code_example"; // string | The identifier of the integration.
 $key = "key_example"; // string | The key value.
 $secret = "secret_example"; // string | The secret value.
@@ -35,7 +40,7 @@ $data = "data_example"; // string | The data value as JSON.
 $overwrite = "overwrite_example"; // string | Boolean value to know whether or not to delete the integration if it already exists
 
 try {
-    $api_instance->connectIntegration($code, $key, $secret, $token, $data, $overwrite);
+    $apiInstance->connectIntegration($code, $key, $secret, $token, $data, $overwrite);
 } catch (Exception $e) {
     echo 'Exception when calling IntegrationsApi->connectIntegration: ', $e->getMessage(), PHP_EOL;
 }
@@ -81,14 +86,19 @@ Remove an integration by providing the integration id or integration code. Only 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\IntegrationsApi();
+$apiInstance = new Swagger\Client\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $id = "id_example"; // string | Integration ID
 $code = "code_example"; // string | Integration Code
 
 try {
-    $api_instance->deleteIntegration($id, $code);
+    $apiInstance->deleteIntegration($id, $code);
 } catch (Exception $e) {
     echo 'Exception when calling IntegrationsApi->deleteIntegration: ', $e->getMessage(), PHP_EOL;
 }
@@ -130,13 +140,18 @@ Get health for an integration.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\IntegrationsApi();
+$apiInstance = new Swagger\Client\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $code = "code_example"; // string | The integration code for which to retrieve the information from
 
 try {
-    $api_instance->getIntegrationHealth($code);
+    $apiInstance->getIntegrationHealth($code);
 } catch (Exception $e) {
     echo 'Exception when calling IntegrationsApi->getIntegrationHealth: ', $e->getMessage(), PHP_EOL;
 }
@@ -177,13 +192,18 @@ Get all page components for an integration.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\IntegrationsApi();
+$apiInstance = new Swagger\Client\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $integrationName = "integrationName_example"; // string | The integration for which to retrieve HTML page components.
 
 try {
-    $api_instance->getIntegrationPageComponents($integrationName);
+    $apiInstance->getIntegrationPageComponents($integrationName);
 } catch (Exception $e) {
     echo 'Exception when calling IntegrationsApi->getIntegrationPageComponents: ', $e->getMessage(), PHP_EOL;
 }
@@ -224,13 +244,18 @@ Synchronize your integration contact list with the service you are integrated wi
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\IntegrationsApi();
+$apiInstance = new Swagger\Client\Api\IntegrationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $integrationId = "integrationId_example"; // string | The integration to sync lists for. All integrations will sync if nothing is provided.
 
 try {
-    $result = $api_instance->syncUsersIntegratedLists($integrationId);
+    $result = $apiInstance->syncUsersIntegratedLists($integrationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling IntegrationsApi->syncUsersIntegratedLists: ', $e->getMessage(), PHP_EOL;

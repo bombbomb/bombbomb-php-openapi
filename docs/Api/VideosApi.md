@@ -24,13 +24,18 @@ Get information about the current state of encoding for a given video id.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\VideosApi();
+$apiInstance = new Swagger\Client\Api\VideosApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $videoId = "videoId_example"; // string | The video's id.
 
 try {
-    $result = $api_instance->getVideoEncodingStatus($videoId);
+    $result = $apiInstance->getVideoEncodingStatus($videoId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling VideosApi->getVideoEncodingStatus: ', $e->getMessage(), PHP_EOL;
@@ -72,14 +77,19 @@ Returns an object with a number of properties to help you put a video recorder o
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\VideosApi();
+$apiInstance = new Swagger\Client\Api\VideosApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $width = 56; // int | The width of the recorder to present.
 $videoId = "videoId_example"; // string | The id of the video to record
 
 try {
-    $result = $api_instance->getVideoRecorder($width, $videoId);
+    $result = $apiInstance->getVideoRecorder($width, $videoId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling VideosApi->getVideoRecorder: ', $e->getMessage(), PHP_EOL;
@@ -122,15 +132,20 @@ Used in conjunction with the live recorder method to mark a video recording as c
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\VideosApi();
+$apiInstance = new Swagger\Client\Api\VideosApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $videoId = "videoId_example"; // string | The id of the video to mark as done.
 $filename = "filename_example"; // string | The filename that was chosen as the final video.
 $title = "title_example"; // string | The title to give the video
 
 try {
-    $result = $api_instance->markLiveRecordingComplete($videoId, $filename, $title);
+    $result = $apiInstance->markLiveRecordingComplete($videoId, $filename, $title);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling VideosApi->markLiveRecordingComplete: ', $e->getMessage(), PHP_EOL;
@@ -173,12 +188,16 @@ Generates a signed url to be used for video uploads.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\VideosApi();
+$apiInstance = new Swagger\Client\Api\VideosApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
 $policy = new \Swagger\Client\Model\SignUploadRequest(); // \Swagger\Client\Model\SignUploadRequest | The policy to sign
 $v4 = true; // bool | Whether to do v4 signing
 
 try {
-    $result = $api_instance->signUpload($policy, $v4);
+    $result = $apiInstance->signUpload($policy, $v4);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling VideosApi->signUpload: ', $e->getMessage(), PHP_EOL;
@@ -190,7 +209,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policy** | [**\Swagger\Client\Model\SignUploadRequest**](../Model/\Swagger\Client\Model\SignUploadRequest.md)| The policy to sign |
+ **policy** | [**\Swagger\Client\Model\SignUploadRequest**](../Model/SignUploadRequest.md)| The policy to sign |
  **v4** | **bool**| Whether to do v4 signing | [optional]
 
 ### Return type
@@ -221,15 +240,20 @@ Upload a new video thumbnail
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\VideosApi();
+$apiInstance = new Swagger\Client\Api\VideosApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $videoId = "videoId_example"; // string | The id of the video
 $thumbnail = "thumbnail_example"; // string | The thumbnail being uploaded
 $custom = true; // bool | The default email to use.
 
 try {
-    $api_instance->updateVideoThumbnailV2($videoId, $thumbnail, $custom);
+    $apiInstance->updateVideoThumbnailV2($videoId, $thumbnail, $custom);
 } catch (Exception $e) {
     echo 'Exception when calling VideosApi->updateVideoThumbnailV2: ', $e->getMessage(), PHP_EOL;
 }

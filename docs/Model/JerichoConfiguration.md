@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **sendWithoutVideo** | **bool** | Video Prompt: Whether to send the final email if no video was recorded. | [optional] 
 **status** | **string** | The state of the send. | [optional] 
 **mediaType** | **string** | The type of media used for a social send | [optional] 
+**customInitialEmailSubjectLine** | **string** | The custom subject line for the prompt initial email | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

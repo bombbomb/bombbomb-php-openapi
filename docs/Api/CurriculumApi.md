@@ -21,13 +21,18 @@ Get Curricula, optionally with progress included.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\CurriculumApi();
+$apiInstance = new Swagger\Client\Api\CurriculumApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $includeProgress = true; // bool | Whether to return progress with the curriculum.
 
 try {
-    $result = $api_instance->getCurricula($includeProgress);
+    $result = $apiInstance->getCurricula($includeProgress);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CurriculumApi->getCurricula: ', $e->getMessage(), PHP_EOL;
@@ -69,12 +74,17 @@ Get all curricula for user including progress for each curriculum.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\CurriculumApi();
+$apiInstance = new Swagger\Client\Api\CurriculumApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $result = $api_instance->getUserCurriculumWithProgress();
+    $result = $apiInstance->getUserCurriculumWithProgress();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CurriculumApi->getUserCurriculumWithProgress: ', $e->getMessage(), PHP_EOL;

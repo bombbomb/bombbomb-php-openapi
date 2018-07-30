@@ -24,13 +24,18 @@ Add a list to the users account.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\ListsApi();
+$apiInstance = new Swagger\Client\Api\ListsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $listName = "listName_example"; // string | Name of the new list being added
 
 try {
-    $api_instance->addNewList($listName);
+    $apiInstance->addNewList($listName);
 } catch (Exception $e) {
     echo 'Exception when calling ListsApi->addNewList: ', $e->getMessage(), PHP_EOL;
 }
@@ -71,13 +76,18 @@ Clears all contacts from a list.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\ListsApi();
+$apiInstance = new Swagger\Client\Api\ListsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $listId = "listId_example"; // string | The list to be cleared.
 
 try {
-    $api_instance->clearList($listId);
+    $apiInstance->clearList($listId);
 } catch (Exception $e) {
     echo 'Exception when calling ListsApi->clearList: ', $e->getMessage(), PHP_EOL;
 }
@@ -118,14 +128,19 @@ Copy all contacts from a list.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\ListsApi();
+$apiInstance = new Swagger\Client\Api\ListsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $fromListId = "fromListId_example"; // string | The list to be cleared.
 $listId = "listId_example"; // string | The list to be cleared.
 
 try {
-    $api_instance->copyListContacts($fromListId, $listId);
+    $apiInstance->copyListContacts($fromListId, $listId);
 } catch (Exception $e) {
     echo 'Exception when calling ListsApi->copyListContacts: ', $e->getMessage(), PHP_EOL;
 }
@@ -167,12 +182,17 @@ Get all the lists for a specific user.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\ListsApi();
+$apiInstance = new Swagger\Client\Api\ListsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $api_instance->getAllLists();
+    $apiInstance->getAllLists();
 } catch (Exception $e) {
     echo 'Exception when calling ListsApi->getAllLists: ', $e->getMessage(), PHP_EOL;
 }
@@ -210,13 +230,18 @@ Suppresses all contacts in a list.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\ListsApi();
+$apiInstance = new Swagger\Client\Api\ListsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $listId = "listId_example"; // string | The list to be cleared.
 
 try {
-    $api_instance->suppressAllInList($listId);
+    $apiInstance->suppressAllInList($listId);
 } catch (Exception $e) {
     echo 'Exception when calling ListsApi->suppressAllInList: ', $e->getMessage(), PHP_EOL;
 }

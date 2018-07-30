@@ -16,6 +16,8 @@ Method | HTTP request | Description
 [**getJerichoSends**](TeamsApi.md#getJerichoSends) | **GET** /team/{teamId}/jericho | List Jericho Sends
 [**getJerichoStats**](TeamsApi.md#getJerichoStats) | **GET** /team/{teamId}/jericho/{jerichoId}/performance | Gets Jericho performance statistics
 [**getPagedClientGroupMembers**](TeamsApi.md#getPagedClientGroupMembers) | **GET** /team/{teamId}/members | List Team Members
+[**getPromptMonthlyStats**](TeamsApi.md#getPromptMonthlyStats) | **GET** /team/{month}/{year}/monthStats | Jericho Monthly Stats
+[**getPromptOverview**](TeamsApi.md#getPromptOverview) | **GET** /team/promptOverview | Get Prompt Overview
 [**getSubteams**](TeamsApi.md#getSubteams) | **GET** /team/{teamId}/subteam | List Subteams
 [**getTeamPromptAggregateStats**](TeamsApi.md#getTeamPromptAggregateStats) | **GET** /team/{clientGroupId}/campaign/stats | Get aggregate stats for campaigns
 [**getTeamPromptCampaigns**](TeamsApi.md#getTeamPromptCampaigns) | **GET** /team/{clientGroupId}/campaign | Get campaigns for team
@@ -41,9 +43,14 @@ Adds a member to a team.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $teamId = "teamId_example"; // string | The team id
 $admin = true; // bool | Set if the user is an admin of this team.
 $subgroupIds = "subgroupIds_example"; // string | Subgroup IDs to add user to
@@ -51,7 +58,7 @@ $userEmail = "userEmail_example"; // string | The email of the member being adde
 $userId = "userId_example"; // string | The user id of the member being added to the team.
 
 try {
-    $result = $api_instance->addTeamMember($teamId, $admin, $subgroupIds, $userEmail, $userId);
+    $result = $apiInstance->addTeamMember($teamId, $admin, $subgroupIds, $userEmail, $userId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->addTeamMember: ', $e->getMessage(), PHP_EOL;
@@ -97,16 +104,21 @@ Add a new or existing user to group.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $teamId = "teamId_example"; // string | The team id
 $userDetails = "userDetails_example"; // string | Array of emails or objects containing details needed to create user
 $sendWelcomeEmail = "sendWelcomeEmail_example"; // string | Whether to send welcome email to new users
 $subgroupIds = "subgroupIds_example"; // string | Subgroup IDs to add user to
 
 try {
-    $api_instance->addUsers($teamId, $userDetails, $sendWelcomeEmail, $subgroupIds);
+    $apiInstance->addUsers($teamId, $userDetails, $sendWelcomeEmail, $subgroupIds);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->addUsers: ', $e->getMessage(), PHP_EOL;
 }
@@ -150,9 +162,14 @@ Imports members to a group from a given CSV ID.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $teamId = "teamId_example"; // string | The team id
 $csvImportId = "csvImportId_example"; // string | ID of the CSV to import
 $map = "map_example"; // string | Object to use when mapping import to AccountCreateDetails. Key is property name on details, value is CSV column number.
@@ -160,7 +177,7 @@ $sendWelcomeEmail = "sendWelcomeEmail_example"; // string | Whether to send welc
 $subgroupIds = "subgroupIds_example"; // string | Subgroup IDs to add user to
 
 try {
-    $api_instance->addUsersFromCsv($teamId, $csvImportId, $map, $sendWelcomeEmail, $subgroupIds);
+    $apiInstance->addUsersFromCsv($teamId, $csvImportId, $map, $sendWelcomeEmail, $subgroupIds);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->addUsersFromCsv: ', $e->getMessage(), PHP_EOL;
 }
@@ -205,13 +222,18 @@ Cancels a scheduled Jericho send from being sent.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $jerichoId = "jerichoId_example"; // string | ID of the Jericho Job to cancel
 
 try {
-    $api_instance->cancelJerichoSend($jerichoId);
+    $apiInstance->cancelJerichoSend($jerichoId);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->cancelJerichoSend: ', $e->getMessage(), PHP_EOL;
 }
@@ -252,14 +274,19 @@ Adds a subteam to a parent team
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $teamId = "teamId_example"; // string | The team id
 $name = "name_example"; // string | The subteam's name.
 
 try {
-    $result = $api_instance->createSubteam($teamId, $name);
+    $result = $apiInstance->createSubteam($teamId, $name);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->createSubteam: ', $e->getMessage(), PHP_EOL;
@@ -302,14 +329,19 @@ Deletes a subteam
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $teamId = "teamId_example"; // string | The team id
 $subteamId = "subteamId_example"; // string | The subteam you wish to delete.
 
 try {
-    $result = $api_instance->deleteSubteam($teamId, $subteamId);
+    $result = $apiInstance->deleteSubteam($teamId, $subteamId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->deleteSubteam: ', $e->getMessage(), PHP_EOL;
@@ -352,13 +384,18 @@ Returns a collection of team associations for a given user
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $clientId = "clientId_example"; // string | The clientId requesting group associations.
 
 try {
-    $api_instance->getAllClientGroupAssociations($clientId);
+    $apiInstance->getAllClientGroupAssociations($clientId);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->getAllClientGroupAssociations: ', $e->getMessage(), PHP_EOL;
 }
@@ -399,9 +436,14 @@ Returns a collection of assets
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $assetType = "assetType_example"; // string | The type of assets.
 $teamId = "teamId_example"; // string | The team containing the assets.
 $autoTagName = "autoTagName_example"; // string | The auto tag name containing the assets.
@@ -410,7 +452,7 @@ $page = "page_example"; // string | Zero-based index of the page of data to retr
 $search = "search_example"; // string | Search words.
 
 try {
-    $result = $api_instance->getClientGroupAssets($assetType, $teamId, $autoTagName, $pageSize, $page, $search);
+    $result = $apiInstance->getClientGroupAssets($assetType, $teamId, $autoTagName, $pageSize, $page, $search);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->getClientGroupAssets: ', $e->getMessage(), PHP_EOL;
@@ -457,14 +499,19 @@ Get top level statistic data for a Team
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $teamId = "teamId_example"; // string | The team id
 $memberStatus = "memberStatus_example"; // string | The status of members to query for
 
 try {
-    $api_instance->getClientGroupStatistics($teamId, $memberStatus);
+    $apiInstance->getClientGroupStatistics($teamId, $memberStatus);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->getClientGroupStatistics: ', $e->getMessage(), PHP_EOL;
 }
@@ -506,13 +553,18 @@ Lists Jericho sends, both pending and sent.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $teamId = "teamId_example"; // string | The team whose Jericho sends you wish to see.
 
 try {
-    $result = $api_instance->getJerichoSends($teamId);
+    $result = $apiInstance->getJerichoSends($teamId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->getJerichoSends: ', $e->getMessage(), PHP_EOL;
@@ -554,14 +606,19 @@ Returns an aggregate view of the performance of a Jericho send
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $jerichoId = "jerichoId_example"; // string | ID of the Jericho job
 $teamId = "teamId_example"; // string | ID of team through which Jericho was sent
 
 try {
-    $result = $api_instance->getJerichoStats($jerichoId, $teamId);
+    $result = $apiInstance->getJerichoStats($jerichoId, $teamId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->getJerichoStats: ', $e->getMessage(), PHP_EOL;
@@ -604,9 +661,14 @@ Get a paginated listing of Team members
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $teamId = "teamId_example"; // string | The team id
 $pageSize = "pageSize_example"; // string | Amount of records to return in a page.
 $page = "page_example"; // string | The page to return.
@@ -616,7 +678,7 @@ $orderBy = "orderBy_example"; // string | Key to order results by
 $orderDirection = "orderDirection_example"; // string | ASC or DESC
 
 try {
-    $api_instance->getPagedClientGroupMembers($teamId, $pageSize, $page, $status, $search, $orderBy, $orderDirection);
+    $apiInstance->getPagedClientGroupMembers($teamId, $pageSize, $page, $status, $search, $orderBy, $orderDirection);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->getPagedClientGroupMembers: ', $e->getMessage(), PHP_EOL;
 }
@@ -650,6 +712,110 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **getPromptMonthlyStats**
+> string getPromptMonthlyStats($month, $year)
+
+Jericho Monthly Stats
+
+Jericho Monthly Stats
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$month = "month_example"; // string | The month whose Jericho sends you wish to see.
+$year = "year_example"; // string | The year whose Jericho sends you wish to see.
+
+try {
+    $result = $apiInstance->getPromptMonthlyStats($month, $year);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->getPromptMonthlyStats: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **month** | **string**| The month whose Jericho sends you wish to see. |
+ **year** | **string**| The year whose Jericho sends you wish to see. |
+
+### Return type
+
+**string**
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getPromptOverview**
+> string getPromptOverview()
+
+Get Prompt Overview
+
+Get Prompt Overview
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $result = $apiInstance->getPromptOverview();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling TeamsApi->getPromptOverview: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**string**
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **getSubteams**
 > \Swagger\Client\Model\TeamPublicRepresentation[] getSubteams($teamId)
 
@@ -662,14 +828,15 @@ Returns a collection of subteams for a parent team
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-// Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
 $teamId = "teamId_example"; // string | The team id
 
 try {
-    $result = $api_instance->getSubteams($teamId);
+    $result = $apiInstance->getSubteams($teamId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->getSubteams: ', $e->getMessage(), PHP_EOL;
@@ -689,7 +856,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BBOAuth2](../../README.md#BBOAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -711,13 +878,18 @@ Get all the campaigns aggregate stats
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $clientGroupId = "clientGroupId_example"; // string | ID of the client group association
 
 try {
-    $api_instance->getTeamPromptAggregateStats($clientGroupId);
+    $apiInstance->getTeamPromptAggregateStats($clientGroupId);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->getTeamPromptAggregateStats: ', $e->getMessage(), PHP_EOL;
 }
@@ -758,15 +930,20 @@ Get campaigns for the team and their stats
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $clientGroupId = "clientGroupId_example"; // string | ID of the client group association
 $searchTerm = "searchTerm_example"; // string | The value to search for in prompt subject
 $currentPage = "currentPage_example"; // string | The current page
 
 try {
-    $api_instance->getTeamPromptCampaigns($clientGroupId, $searchTerm, $currentPage);
+    $apiInstance->getTeamPromptCampaigns($clientGroupId, $searchTerm, $currentPage);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->getTeamPromptCampaigns: ', $e->getMessage(), PHP_EOL;
 }
@@ -809,14 +986,19 @@ Invite to Social Prompt Team
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $teamId = "teamId_example"; // string | The team id
 $listId = "listId_example"; // string | List to invite to the social prompt team.
 
 try {
-    $api_instance->inviteToSocialPromptTeam($teamId, $listId);
+    $apiInstance->inviteToSocialPromptTeam($teamId, $listId);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->inviteToSocialPromptTeam: ', $e->getMessage(), PHP_EOL;
 }
@@ -858,14 +1040,19 @@ Sends email content on behalf of members of a client group. There are two forms 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $config = new \Swagger\Client\Model\JerichoConfiguration(); // \Swagger\Client\Model\JerichoConfiguration | JSON representing a Jericho configuration
 $teamId = "teamId_example"; // string | The ID of the team.
 
 try {
-    $result = $api_instance->queueJerichoSend($config, $teamId);
+    $result = $apiInstance->queueJerichoSend($config, $teamId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->queueJerichoSend: ', $e->getMessage(), PHP_EOL;
@@ -877,7 +1064,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **config** | [**\Swagger\Client\Model\JerichoConfiguration**](../Model/\Swagger\Client\Model\JerichoConfiguration.md)| JSON representing a Jericho configuration |
+ **config** | [**\Swagger\Client\Model\JerichoConfiguration**](../Model/JerichoConfiguration.md)| JSON representing a Jericho configuration |
  **teamId** | **string**| The ID of the team. |
 
 ### Return type
@@ -908,14 +1095,19 @@ Removes a member from a team.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $teamId = "teamId_example"; // string | The team id
 $userId = "userId_example"; // string | The user id of the member being removed.
 
 try {
-    $result = $api_instance->removeMemberFromTeam($teamId, $userId);
+    $result = $apiInstance->removeMemberFromTeam($teamId, $userId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->removeMemberFromTeam: ', $e->getMessage(), PHP_EOL;
@@ -958,14 +1150,19 @@ Resend invitation to a member of a team
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $teamId = "teamId_example"; // string | The team id
 $memberUserId = "memberUserId_example"; // string | The user id of the member being resent an invitation.
 
 try {
-    $result = $api_instance->resendTeamMemberInvitation($teamId, $memberUserId);
+    $result = $apiInstance->resendTeamMemberInvitation($teamId, $memberUserId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->resendTeamMemberInvitation: ', $e->getMessage(), PHP_EOL;
@@ -1008,14 +1205,19 @@ Updates the prompt settings based on the original email id
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $teamId = "teamId_example"; // string | The team id
 $jerichoId = "jerichoId_example"; // string | ID of the Jericho job
 
 try {
-    $api_instance->updateJerichoPromptSend($teamId, $jerichoId);
+    $apiInstance->updateJerichoPromptSend($teamId, $jerichoId);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->updateJerichoPromptSend: ', $e->getMessage(), PHP_EOL;
 }
@@ -1057,16 +1259,21 @@ Update fields on a team
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $teamId = "teamId_example"; // string | The team id
 $name = "name_example"; // string | The name of the team
 $state = "state_example"; // string | The status of the login permissions
 $subteamsCanAddMembers = true; // bool | Updates subteam member adding setting on group
 
 try {
-    $result = $api_instance->updateTeam($teamId, $name, $state, $subteamsCanAddMembers);
+    $result = $apiInstance->updateTeam($teamId, $name, $state, $subteamsCanAddMembers);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->updateTeam: ', $e->getMessage(), PHP_EOL;
@@ -1111,16 +1318,21 @@ Updates a member of a team
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\TeamsApi();
+$apiInstance = new Swagger\Client\Api\TeamsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $teamId = "teamId_example"; // string | The team id
 $userId = "userId_example"; // string | The user id of the member being added to the team.
 $admin = true; // bool | Set if the user is an admin of this team.
 $permissionSuiteId = "permissionSuiteId_example"; // string | Set if the user is an admin of this team.
 
 try {
-    $api_instance->updateTeamMember($teamId, $userId, $admin, $permissionSuiteId);
+    $apiInstance->updateTeamMember($teamId, $userId, $admin, $permissionSuiteId);
 } catch (Exception $e) {
     echo 'Exception when calling TeamsApi->updateTeamMember: ', $e->getMessage(), PHP_EOL;
 }

@@ -23,14 +23,19 @@ Creates an OAuth Client managed by the user
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\UtilitiesApi();
+$apiInstance = new Swagger\Client\Api\UtilitiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $name = "name_example"; // string | The name of the OAuth client. e.g. MyCrm DEV, or MyCrm PROD
 $redirectUri = "redirectUri_example"; // string | The URI to direct the client to after logging in.
 
 try {
-    $result = $api_instance->createOAuthClient($name, $redirectUri);
+    $result = $apiInstance->createOAuthClient($name, $redirectUri);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UtilitiesApi->createOAuthClient: ', $e->getMessage(), PHP_EOL;
@@ -73,13 +78,18 @@ Deletes an OAuth Client managed by the user
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\UtilitiesApi();
+$apiInstance = new Swagger\Client\Api\UtilitiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $id = "id_example"; // string | The id of the OAuth Client
 
 try {
-    $api_instance->deleteOAuthClient($id);
+    $apiInstance->deleteOAuthClient($id);
 } catch (Exception $e) {
     echo 'Exception when calling UtilitiesApi->deleteOAuthClient: ', $e->getMessage(), PHP_EOL;
 }
@@ -120,12 +130,17 @@ Enumerates OAuth Clients managed by the user
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\UtilitiesApi();
+$apiInstance = new Swagger\Client\Api\UtilitiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $result = $api_instance->getOAuthClients();
+    $result = $apiInstance->getOAuthClients();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UtilitiesApi->getOAuthClients: ', $e->getMessage(), PHP_EOL;
@@ -163,10 +178,14 @@ Describes methods available through the API.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UtilitiesApi();
+$apiInstance = new Swagger\Client\Api\UtilitiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
 
 try {
-    $api_instance->getSpec();
+    $apiInstance->getSpec();
 } catch (Exception $e) {
     echo 'Exception when calling UtilitiesApi->getSpec: ', $e->getMessage(), PHP_EOL;
 }

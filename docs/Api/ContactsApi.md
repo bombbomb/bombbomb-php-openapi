@@ -27,14 +27,19 @@ Add multiple contacts through the upload importer from a CSV file.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\ContactsApi();
+$apiInstance = new Swagger\Client\Api\ContactsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $mappingData = "mappingData_example"; // string | The info sent for the contacts
 $listData = "listData_example"; // string | The info sent with the import for the list
 
 try {
-    $api_instance->addContactsCSV($mappingData, $listData);
+    $apiInstance->addContactsCSV($mappingData, $listData);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->addContactsCSV: ', $e->getMessage(), PHP_EOL;
 }
@@ -76,14 +81,19 @@ Add a contact to the users list.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\ContactsApi();
+$apiInstance = new Swagger\Client\Api\ContactsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $contactEmail = "contactEmail_example"; // string | Email of the new contact we are adding
 $contactInfo = "contactInfo_example"; // string | The info sent for this contact
 
 try {
-    $api_instance->addNewContact($contactEmail, $contactInfo);
+    $apiInstance->addNewContact($contactEmail, $contactInfo);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->addNewContact: ', $e->getMessage(), PHP_EOL;
 }
@@ -125,14 +135,19 @@ Add a new custom field.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\ContactsApi();
+$apiInstance = new Swagger\Client\Api\ContactsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $fieldName = "fieldName_example"; // string | Custom field name to be added
 $fieldType = "fieldType_example"; // string | Custom field type for the field to be added
 
 try {
-    $api_instance->addNewCustomField($fieldName, $fieldType);
+    $apiInstance->addNewCustomField($fieldName, $fieldType);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->addNewCustomField: ', $e->getMessage(), PHP_EOL;
 }
@@ -174,14 +189,19 @@ Add the pasted contacts to the users list.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\ContactsApi();
+$apiInstance = new Swagger\Client\Api\ContactsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $contactEmails = "contactEmails_example"; // string | Emails array of the new contacts we are adding
 $listInfo = "listInfo_example"; // string | Information about the lists id, recalculations on totals, consent etc
 
 try {
-    $api_instance->addPastedContacts($contactEmails, $listInfo);
+    $apiInstance->addPastedContacts($contactEmails, $listInfo);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->addPastedContacts: ', $e->getMessage(), PHP_EOL;
 }
@@ -223,13 +243,18 @@ Format a CSV file to an object.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\ContactsApi();
+$apiInstance = new Swagger\Client\Api\ContactsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $file = "file_example"; // string | The CSV file being uploaded
 
 try {
-    $api_instance->cSVToObject($file);
+    $apiInstance->cSVToObject($file);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->cSVToObject: ', $e->getMessage(), PHP_EOL;
 }
@@ -270,14 +295,19 @@ Delete all contacts within a list, or provide a comma separated list of contactI
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\ContactsApi();
+$apiInstance = new Swagger\Client\Api\ContactsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $listId = "listId_example"; // string | The list of contacts to be deleted.
 $contactIds = "contactIds_example"; // string | comma separated list of contact ids to delete
 
 try {
-    $api_instance->deleteContacts($listId, $contactIds);
+    $apiInstance->deleteContacts($listId, $contactIds);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->deleteContacts: ', $e->getMessage(), PHP_EOL;
 }
@@ -319,13 +349,18 @@ Get the contact details
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\ContactsApi();
+$apiInstance = new Swagger\Client\Api\ContactsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $id = "id_example"; // string | Guid for the contact.
 
 try {
-    $api_instance->getContactById($id);
+    $apiInstance->getContactById($id);
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->getContactById: ', $e->getMessage(), PHP_EOL;
 }
@@ -366,12 +401,17 @@ Get the current users custom fields.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\ContactsApi();
+$apiInstance = new Swagger\Client\Api\ContactsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $api_instance->getCustomFields();
+    $apiInstance->getCustomFields();
 } catch (Exception $e) {
     echo 'Exception when calling ContactsApi->getCustomFields: ', $e->getMessage(), PHP_EOL;
 }

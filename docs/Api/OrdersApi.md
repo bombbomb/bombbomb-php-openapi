@@ -20,13 +20,18 @@ Deletes image from user s3 store
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\OrdersApi();
+$apiInstance = new Swagger\Client\Api\OrdersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $fileName = "fileName_example"; // string | Filename for deletion
 
 try {
-    $api_instance->templateAssetDelete($fileName);
+    $apiInstance->templateAssetDelete($fileName);
 } catch (Exception $e) {
     echo 'Exception when calling OrdersApi->templateAssetDelete: ', $e->getMessage(), PHP_EOL;
 }

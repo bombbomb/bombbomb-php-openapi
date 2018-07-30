@@ -20,13 +20,18 @@ Get form tracking as csv
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\FormsApi();
+$apiInstance = new Swagger\Client\Api\FormsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $id = "id_example"; // string | Id of the form
 
 try {
-    $api_instance->getFormTrackingAsCsv($id);
+    $apiInstance->getFormTrackingAsCsv($id);
 } catch (Exception $e) {
     echo 'Exception when calling FormsApi->getFormTrackingAsCsv: ', $e->getMessage(), PHP_EOL;
 }

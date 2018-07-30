@@ -13,10 +13,11 @@ Method | HTTP request | Description
 [**getVideoEmailPrompt**](PromptsApi.md#getVideoEmailPrompt) | **GET** /prompt/{id} | Gets a prompt
 [**getVideoEmailPrompts**](PromptsApi.md#getVideoEmailPrompts) | **GET** /prompt/ | List prompts
 [**respondToVideoEmailPrompt**](PromptsApi.md#respondToVideoEmailPrompt) | **POST** /prompt/{id}/response | Respond to a prompt
+[**sendPromptImmediately**](PromptsApi.md#sendPromptImmediately) | **POST** /prompt/{id}/sendit | 
 [**syncPromptSubscriptions**](PromptsApi.md#syncPromptSubscriptions) | **POST** /prompts/campaigns/sync | Syncs Campaigns and One to Ones Subscriptions for User
 [**updatePrompt**](PromptsApi.md#updatePrompt) | **PUT** /prompts/{id} | Update Prompt
 [**updatePromptBot**](PromptsApi.md#updatePromptBot) | **PUT** /prompts/bots/{id} | Update Prompt Bot
-[**updatePromptCampaign**](PromptsApi.md#updatePromptCampaign) | **PUT** /prompts/campaigns/{id} | Update Prompt Campaign
+[**updatePromptCampaign**](PromptsApi.md#updatePromptCampaign) | **PUT** /prompts/campaigns/{clientGroupId} | Update Prompt Campaign
 [**updatePromptTemplate**](PromptsApi.md#updatePromptTemplate) | **PUT** /prompts/{id}/content | Update Prompt Content
 
 
@@ -33,9 +34,14 @@ Creates a Prompt Bot that sends emails to contacts on a list over the span of ti
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\PromptsApi();
+$apiInstance = new Swagger\Client\Api\PromptsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $emailId = "emailId_example"; // string | The default email to use.
 $name = "name_example"; // string | The name of the bot.
 $subject = "subject_example"; // string | The subject of the default email.
@@ -48,7 +54,7 @@ $videoId = "videoId_example"; // string | The video used in the email.
 $endDate = "endDate_example"; // string | The time frame to complete sending to the list.
 
 try {
-    $result = $api_instance->createPromptBot($emailId, $name, $subject, $content, $contactFieldValueColumn, $botTypeId, $templateId, $listId, $videoId, $endDate);
+    $result = $apiInstance->createPromptBot($emailId, $name, $subject, $content, $contactFieldValueColumn, $botTypeId, $templateId, $listId, $videoId, $endDate);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->createPromptBot: ', $e->getMessage(), PHP_EOL;
@@ -99,13 +105,18 @@ Sends the account holder an email prompting them to add a video to a scheduled o
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\PromptsApi();
+$apiInstance = new Swagger\Client\Api\PromptsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $prompt = new \Swagger\Client\Model\VideoEmailPrompt(); // \Swagger\Client\Model\VideoEmailPrompt | The Video Email Prompt to be created
 
 try {
-    $result = $api_instance->createVideoEmailPrompt($prompt);
+    $result = $apiInstance->createVideoEmailPrompt($prompt);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->createVideoEmailPrompt: ', $e->getMessage(), PHP_EOL;
@@ -117,7 +128,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **prompt** | [**\Swagger\Client\Model\VideoEmailPrompt**](../Model/\Swagger\Client\Model\VideoEmailPrompt.md)| The Video Email Prompt to be created |
+ **prompt** | [**\Swagger\Client\Model\VideoEmailPrompt**](../Model/VideoEmailPrompt.md)| The Video Email Prompt to be created |
 
 ### Return type
 
@@ -147,13 +158,18 @@ Returns a list of alternate campaign content by campaign id
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\PromptsApi();
+$apiInstance = new Swagger\Client\Api\PromptsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $clientGroupId = "clientGroupId_example"; // string | Id for the campaign
 
 try {
-    $api_instance->getAlternateCampaignContent($clientGroupId);
+    $apiInstance->getAlternateCampaignContent($clientGroupId);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->getAlternateCampaignContent: ', $e->getMessage(), PHP_EOL;
 }
@@ -194,12 +210,17 @@ Returns a list of prompts that have not been sent yet, and can still be customiz
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\PromptsApi();
+$apiInstance = new Swagger\Client\Api\PromptsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $result = $api_instance->getPendingVideoEmailPrompts();
+    $result = $apiInstance->getPendingVideoEmailPrompts();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->getPendingVideoEmailPrompts: ', $e->getMessage(), PHP_EOL;
@@ -238,12 +259,17 @@ Returns a list of all Prompt Bots for the user.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\PromptsApi();
+$apiInstance = new Swagger\Client\Api\PromptsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $result = $api_instance->getPromptBots();
+    $result = $apiInstance->getPromptBots();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->getPromptBots: ', $e->getMessage(), PHP_EOL;
@@ -282,12 +308,17 @@ Returns a list of all Prompt Campaigns for the user.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\PromptsApi();
+$apiInstance = new Swagger\Client\Api\PromptsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $api_instance->getPromptCampaigns();
+    $apiInstance->getPromptCampaigns();
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->getPromptCampaigns: ', $e->getMessage(), PHP_EOL;
 }
@@ -325,13 +356,18 @@ Gets a prompt
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\PromptsApi();
+$apiInstance = new Swagger\Client\Api\PromptsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $id = "id_example"; // string | The Id of the prompt
 
 try {
-    $result = $api_instance->getVideoEmailPrompt($id);
+    $result = $apiInstance->getVideoEmailPrompt($id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->getVideoEmailPrompt: ', $e->getMessage(), PHP_EOL;
@@ -373,12 +409,17 @@ Returns a list of all prompts.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\PromptsApi();
+$apiInstance = new Swagger\Client\Api\PromptsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $result = $api_instance->getVideoEmailPrompts();
+    $result = $apiInstance->getVideoEmailPrompts();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->getVideoEmailPrompts: ', $e->getMessage(), PHP_EOL;
@@ -416,7 +457,11 @@ Respond to a prompt by either adding a video, sending without a video or cancell
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\PromptsApi();
+$apiInstance = new Swagger\Client\Api\PromptsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
 $id = "id_example"; // string | The id of the prompt.
 $choice = "choice_example"; // string | The users' selection. Can be: WithVideo, WithEmail, Cancel, Restore, Reset, Manual
 $videoId = "videoId_example"; // string | The id of the video.
@@ -424,7 +469,7 @@ $emailId = "emailId_example"; // string | The id of the email.
 $subject = "subject_example"; // string | The subject of the email
 
 try {
-    $result = $api_instance->respondToVideoEmailPrompt($id, $choice, $videoId, $emailId, $subject);
+    $result = $apiInstance->respondToVideoEmailPrompt($id, $choice, $videoId, $emailId, $subject);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->respondToVideoEmailPrompt: ', $e->getMessage(), PHP_EOL;
@@ -457,6 +502,58 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **sendPromptImmediately**
+> sendPromptImmediately($id)
+
+
+
+Ignore send date and send the prompt now.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: BBOAuth2
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Swagger\Client\Api\PromptsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = "id_example"; // string | The Id of the prompt
+
+try {
+    $apiInstance->sendPromptImmediately($id);
+} catch (Exception $e) {
+    echo 'Exception when calling PromptsApi->sendPromptImmediately: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The Id of the prompt |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **syncPromptSubscriptions**
 > syncPromptSubscriptions($migrate)
 
@@ -470,13 +567,18 @@ Syncs Campaigns and One to Ones Subscriptions for User based on their profile in
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\PromptsApi();
+$apiInstance = new Swagger\Client\Api\PromptsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $migrate = true; // bool | After syncing, migrate away from old campaigns.
 
 try {
-    $api_instance->syncPromptSubscriptions($migrate);
+    $apiInstance->syncPromptSubscriptions($migrate);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->syncPromptSubscriptions: ', $e->getMessage(), PHP_EOL;
 }
@@ -517,9 +619,14 @@ Updates a Prompt
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\PromptsApi();
+$apiInstance = new Swagger\Client\Api\PromptsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $id = "id_example"; // string | The prompt's id
 $sendMechanism = "sendMechanism_example"; // string | The mechanism for the prompt to be sent
 $facebookMessage = "facebookMessage_example"; // string | The facebook message assigned to the prompt
@@ -532,7 +639,7 @@ $resetEmailContent = "resetEmailContent_example"; // string | The subject of the
 $status = "status_example"; // string | The status of the prompt
 
 try {
-    $api_instance->updatePrompt($id, $sendMechanism, $facebookMessage, $twitterMessage, $videoId, $emailId, $subject, $resetCache, $resetEmailContent, $status);
+    $apiInstance->updatePrompt($id, $sendMechanism, $facebookMessage, $twitterMessage, $videoId, $emailId, $subject, $resetCache, $resetEmailContent, $status);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->updatePrompt: ', $e->getMessage(), PHP_EOL;
 }
@@ -582,9 +689,14 @@ Updates a Prompt Bot's settings.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\PromptsApi();
+$apiInstance = new Swagger\Client\Api\PromptsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $id = "id_example"; // string | The bot id.
 $emailId = "emailId_example"; // string | The default email to use.
 $name = "name_example"; // string | The name of the bot.
@@ -598,7 +710,7 @@ $endDate = "endDate_example"; // string | The time frame to complete sending to 
 $status = "status_example"; // string | The status of the bot.
 
 try {
-    $result = $api_instance->updatePromptBot($id, $emailId, $name, $subject, $content, $contactFieldValueColumn, $templateId, $listId, $videoId, $endDate, $status);
+    $result = $apiInstance->updatePromptBot($id, $emailId, $name, $subject, $content, $contactFieldValueColumn, $templateId, $listId, $videoId, $endDate, $status);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->updatePromptBot: ', $e->getMessage(), PHP_EOL;
@@ -650,9 +762,14 @@ Updates a Prompt Campaign's Settings
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\PromptsApi();
+$apiInstance = new Swagger\Client\Api\PromptsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $clientGroupId = "clientGroupId_example"; // string | The client group of the campaign.
 $brandedTemplateId = "brandedTemplateId_example"; // string | The template to use for branded feel emails.
 $personalTemplateId = "personalTemplateId_example"; // string | The template to use for personal feel emails.
@@ -660,7 +777,7 @@ $enabled = true; // bool | Set whether the user is able to start receiving promp
 $sendMechanism = "sendMechanism_example"; // string | The way to send the prompt
 
 try {
-    $api_instance->updatePromptCampaign($clientGroupId, $brandedTemplateId, $personalTemplateId, $enabled, $sendMechanism);
+    $apiInstance->updatePromptCampaign($clientGroupId, $brandedTemplateId, $personalTemplateId, $enabled, $sendMechanism);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->updatePromptCampaign: ', $e->getMessage(), PHP_EOL;
 }
@@ -705,9 +822,14 @@ Updates a Prompt Content
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\PromptsApi();
+$apiInstance = new Swagger\Client\Api\PromptsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $id = "id_example"; // string | The prompt's id
 $alternateContentId = "alternateContentId_example"; // string | The alternate content id
 $newEmailId = "newEmailId_example"; // string | The prompt's new email id
@@ -715,7 +837,7 @@ $ogEmailId = "ogEmailId_example"; // string | The prompt's original email id
 $newExampleVideoId = "newExampleVideoId_example"; // string | The prompt's new tutorial video id
 
 try {
-    $api_instance->updatePromptTemplate($id, $alternateContentId, $newEmailId, $ogEmailId, $newExampleVideoId);
+    $apiInstance->updatePromptTemplate($id, $alternateContentId, $newEmailId, $ogEmailId, $newExampleVideoId);
 } catch (Exception $e) {
     echo 'Exception when calling PromptsApi->updatePromptTemplate: ', $e->getMessage(), PHP_EOL;
 }

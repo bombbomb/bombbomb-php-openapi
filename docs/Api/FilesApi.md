@@ -24,13 +24,18 @@ Deletes a users file
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\FilesApi();
+$apiInstance = new Swagger\Client\Api\FilesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $docId = "docId_example"; // string | Id of document
 
 try {
-    $api_instance->docHostDelete($docId);
+    $apiInstance->docHostDelete($docId);
 } catch (Exception $e) {
     echo 'Exception when calling FilesApi->docHostDelete: ', $e->getMessage(), PHP_EOL;
 }
@@ -71,13 +76,18 @@ Get a single file by id
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\FilesApi();
+$apiInstance = new Swagger\Client\Api\FilesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $docId = "docId_example"; // string | Id of document
 
 try {
-    $result = $api_instance->docHostGet($docId);
+    $result = $apiInstance->docHostGet($docId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FilesApi->docHostGet: ', $e->getMessage(), PHP_EOL;
@@ -119,12 +129,17 @@ List all uploaded user files
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\FilesApi();
+$apiInstance = new Swagger\Client\Api\FilesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $result = $api_instance->docHostList();
+    $result = $apiInstance->docHostList();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FilesApi->docHostList: ', $e->getMessage(), PHP_EOL;
@@ -163,13 +178,18 @@ Upload a new file
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\FilesApi();
+$apiInstance = new Swagger\Client\Api\FilesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $file = "file_example"; // string | The file being uploaded
 
 try {
-    $result = $api_instance->docHostUploadV2($file);
+    $result = $apiInstance->docHostUploadV2($file);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FilesApi->docHostUploadV2: ', $e->getMessage(), PHP_EOL;
@@ -211,15 +231,20 @@ Get a specific page of uploaded images available to the user.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\FilesApi();
+$apiInstance = new Swagger\Client\Api\FilesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $pageSize = "pageSize_example"; // string | The number of items to retrieve in a single db query.
 $page = "page_example"; // string | Zero-based index of the page of data to retrieve from the db.
 $search = "search_example"; // string | Filter results with names that match the search term.
 
 try {
-    $api_instance->getHostedImagesPaged($pageSize, $page, $search);
+    $apiInstance->getHostedImagesPaged($pageSize, $page, $search);
 } catch (Exception $e) {
     echo 'Exception when calling FilesApi->getHostedImagesPaged: ', $e->getMessage(), PHP_EOL;
 }

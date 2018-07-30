@@ -24,13 +24,18 @@ Idempotently adds a Webhook url
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\WebhooksApi();
+$apiInstance = new Swagger\Client\Api\WebhooksApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $hookUrl = "hookUrl_example"; // string | The Url of your listener
 
 try {
-    $result = $api_instance->addWebHook($hookUrl);
+    $result = $apiInstance->addWebHook($hookUrl);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling WebhooksApi->addWebHook: ', $e->getMessage(), PHP_EOL;
@@ -72,13 +77,18 @@ Deletes a Webhook
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\WebhooksApi();
+$apiInstance = new Swagger\Client\Api\WebhooksApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $hookId = "hookId_example"; // string | The id of the webhook to delete
 
 try {
-    $result = $api_instance->deleteWebHook($hookId);
+    $result = $apiInstance->deleteWebHook($hookId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling WebhooksApi->deleteWebHook: ', $e->getMessage(), PHP_EOL;
@@ -120,12 +130,17 @@ Lists all registered Webhooks
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\WebhooksApi();
+$apiInstance = new Swagger\Client\Api\WebhooksApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $result = $api_instance->getWebHooks();
+    $result = $apiInstance->getWebHooks();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling WebhooksApi->getWebHooks: ', $e->getMessage(), PHP_EOL;
@@ -163,10 +178,14 @@ Returns example Webhook events for each kind of possible event.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\WebhooksApi();
+$apiInstance = new Swagger\Client\Api\WebhooksApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
 
 try {
-    $api_instance->listWebHookEvents();
+    $apiInstance->listWebHookEvents();
 } catch (Exception $e) {
     echo 'Exception when calling WebhooksApi->listWebHookEvents: ', $e->getMessage(), PHP_EOL;
 }
@@ -204,12 +223,17 @@ Triggers a test webhook to be sent to your endpoints.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\WebhooksApi();
+$apiInstance = new Swagger\Client\Api\WebhooksApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $api_instance->sendWebhookExample();
+    $apiInstance->sendWebhookExample();
 } catch (Exception $e) {
     echo 'Exception when calling WebhooksApi->sendWebhookExample: ', $e->getMessage(), PHP_EOL;
 }

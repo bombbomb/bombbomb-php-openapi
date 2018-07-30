@@ -31,12 +31,17 @@ Gets facebook pages by client id
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\SocialsApi();
+$apiInstance = new Swagger\Client\Api\SocialsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $api_instance->getFacebookPages();
+    $apiInstance->getFacebookPages();
 } catch (Exception $e) {
     echo 'Exception when calling SocialsApi->getFacebookPages: ', $e->getMessage(), PHP_EOL;
 }
@@ -74,14 +79,19 @@ Gets the social email properties
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\SocialsApi();
+$apiInstance = new Swagger\Client\Api\SocialsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $emailId = "emailId_example"; // string | This is the email Id for the email url
 $socialContentId = "socialContentId_example"; // string | This is the social content Id
 
 try {
-    $api_instance->getSocialArticleProperties($emailId, $socialContentId);
+    $apiInstance->getSocialArticleProperties($emailId, $socialContentId);
 } catch (Exception $e) {
     echo 'Exception when calling SocialsApi->getSocialArticleProperties: ', $e->getMessage(), PHP_EOL;
 }
@@ -123,13 +133,18 @@ Get authorizations and autoshares for all social integration and has redirect fo
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\SocialsApi();
+$apiInstance = new Swagger\Client\Api\SocialsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $clientGroupId = "clientGroupId_example"; // string | ID of the client group association
 
 try {
-    $api_instance->getSocialAuthorizations($clientGroupId);
+    $apiInstance->getSocialAuthorizations($clientGroupId);
 } catch (Exception $e) {
     echo 'Exception when calling SocialsApi->getSocialAuthorizations: ', $e->getMessage(), PHP_EOL;
 }
@@ -170,13 +185,18 @@ Gets the social profile properties
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\SocialsApi();
+$apiInstance = new Swagger\Client\Api\SocialsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $socialType = "socialType_example"; // string | The social type
 
 try {
-    $api_instance->getSocialProfileProperties($socialType);
+    $apiInstance->getSocialProfileProperties($socialType);
 } catch (Exception $e) {
     echo 'Exception when calling SocialsApi->getSocialProfileProperties: ', $e->getMessage(), PHP_EOL;
 }
@@ -217,13 +237,18 @@ Get social stats for a prompt by id
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\SocialsApi();
+$apiInstance = new Swagger\Client\Api\SocialsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $promptId = "promptId_example"; // string | ID of the prompt
 
 try {
-    $api_instance->getSocialStats($promptId);
+    $apiInstance->getSocialStats($promptId);
 } catch (Exception $e) {
     echo 'Exception when calling SocialsApi->getSocialStats: ', $e->getMessage(), PHP_EOL;
 }
@@ -264,13 +289,18 @@ Creates social content for an email
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\SocialsApi();
+$apiInstance = new Swagger\Client\Api\SocialsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $emailId = "emailId_example"; // string | The email's id
 
 try {
-    $api_instance->postSocialContent($emailId);
+    $apiInstance->postSocialContent($emailId);
 } catch (Exception $e) {
     echo 'Exception when calling SocialsApi->postSocialContent: ', $e->getMessage(), PHP_EOL;
 }
@@ -311,13 +341,18 @@ Sends social content that failed for a user via their associated prompt
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\SocialsApi();
+$apiInstance = new Swagger\Client\Api\SocialsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $promptId = "promptId_example"; // string | The prompt id
 
 try {
-    $api_instance->retrySocialSend($promptId);
+    $apiInstance->retrySocialSend($promptId);
 } catch (Exception $e) {
     echo 'Exception when calling SocialsApi->retrySocialSend: ', $e->getMessage(), PHP_EOL;
 }
@@ -358,14 +393,19 @@ Sends social content for a user via their associated prompt
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\SocialsApi();
+$apiInstance = new Swagger\Client\Api\SocialsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $promptId = "promptId_example"; // string | The prompt id
 $socialType = "socialType_example"; // string | The destination for social content
 
 try {
-    $api_instance->sendSocial($promptId, $socialType);
+    $apiInstance->sendSocial($promptId, $socialType);
 } catch (Exception $e) {
     echo 'Exception when calling SocialsApi->sendSocial: ', $e->getMessage(), PHP_EOL;
 }
@@ -407,15 +447,20 @@ Gets the auto shares from the client group assoc id
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\SocialsApi();
+$apiInstance = new Swagger\Client\Api\SocialsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $sendMechanism = "sendMechanism_example"; // string | The send mechanism for the prompt
 $clientGroupId = "clientGroupId_example"; // string | ID of the client group association
 $enabled = "enabled_example"; // string | Is the send mechanism enabled?
 
 try {
-    $api_instance->updateClientGroupSendMechanism($sendMechanism, $clientGroupId, $enabled);
+    $apiInstance->updateClientGroupSendMechanism($sendMechanism, $clientGroupId, $enabled);
 } catch (Exception $e) {
     echo 'Exception when calling SocialsApi->updateClientGroupSendMechanism: ', $e->getMessage(), PHP_EOL;
 }
@@ -458,14 +503,19 @@ Toggles the prompt campaigns in a users account for a social integrations on or 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\SocialsApi();
+$apiInstance = new Swagger\Client\Api\SocialsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $sendMechanism = "sendMechanism_example"; // string | The send mechanism for the prompt
 $enabled = "enabled_example"; // string | Is the send mechanism enabled?
 
 try {
-    $api_instance->updateClientGroupsSendMechanism($sendMechanism, $enabled);
+    $apiInstance->updateClientGroupsSendMechanism($sendMechanism, $enabled);
 } catch (Exception $e) {
     echo 'Exception when calling SocialsApi->updateClientGroupsSendMechanism: ', $e->getMessage(), PHP_EOL;
 }
@@ -507,13 +557,18 @@ Updates facebook page Ids to be sent to for prompts
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\SocialsApi();
+$apiInstance = new Swagger\Client\Api\SocialsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $pageIds = "pageIds_example"; // string | Page Ids for the prompt
 
 try {
-    $api_instance->updateFacebookPages($pageIds);
+    $apiInstance->updateFacebookPages($pageIds);
 } catch (Exception $e) {
     echo 'Exception when calling SocialsApi->updateFacebookPages: ', $e->getMessage(), PHP_EOL;
 }
@@ -554,9 +609,14 @@ Updates social content for an email
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\SocialsApi();
+$apiInstance = new Swagger\Client\Api\SocialsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $socialId = "socialId_example"; // string | The social id
 $title = "title_example"; // string | The title for the article
 $description = "description_example"; // string | The article description
@@ -564,7 +624,7 @@ $pictureUrl = "pictureUrl_example"; // string | The article picture url
 $suggestedMessage = "suggestedMessage_example"; // string | The suggested message to use
 
 try {
-    $api_instance->updateSocialContent($socialId, $title, $description, $pictureUrl, $suggestedMessage);
+    $apiInstance->updateSocialContent($socialId, $title, $description, $pictureUrl, $suggestedMessage);
 } catch (Exception $e) {
     echo 'Exception when calling SocialsApi->updateSocialContent: ', $e->getMessage(), PHP_EOL;
 }

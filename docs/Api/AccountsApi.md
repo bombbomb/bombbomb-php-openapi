@@ -26,12 +26,17 @@ Get the details of the user's account.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\AccountsApi();
+$apiInstance = new Swagger\Client\Api\AccountsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $api_instance->accountDetails();
+    $apiInstance->accountDetails();
 } catch (Exception $e) {
     echo 'Exception when calling AccountsApi->accountDetails: ', $e->getMessage(), PHP_EOL;
 }
@@ -69,9 +74,14 @@ Creates a new BombBomb account. This method is currently only available to paid 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\AccountsApi();
+$apiInstance = new Swagger\Client\Api\AccountsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $teamId = "teamId_example"; // string | The team id
 $firstName = "firstName_example"; // string | First name of the user.
 $lastName = "lastName_example"; // string | Last name of the user.
@@ -86,7 +96,7 @@ $postalCode = "postalCode_example"; // string | Postal/Zip code of the user.
 $preventWelcomeEmail = true; // bool | prevent an email with login credentials from being sent to the new account. must be set to 'true'
 
 try {
-    $result = $api_instance->createAccount($teamId, $firstName, $lastName, $emailAddress, $companyName, $phone, $country, $industry, $address, $city, $postalCode, $preventWelcomeEmail);
+    $result = $apiInstance->createAccount($teamId, $firstName, $lastName, $emailAddress, $companyName, $phone, $country, $industry, $address, $city, $postalCode, $preventWelcomeEmail);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AccountsApi->createAccount: ', $e->getMessage(), PHP_EOL;
@@ -139,15 +149,20 @@ Gets general statics for a Client
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\AccountsApi();
+$apiInstance = new Swagger\Client\Api\AccountsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $clientId = "clientId_example"; // string | Client ID of the account to retrieve. Defaults to yourself.
 $refresh = true; // bool | Boolean for whether data returned should be from cache or not.
 $statisticValues = "statisticValues_example"; // string | Array of data that should be returned, used exclusively for cacheless data
 
 try {
-    $api_instance->getClientStatistics($clientId, $refresh, $statisticValues);
+    $apiInstance->getClientStatistics($clientId, $refresh, $statisticValues);
 } catch (Exception $e) {
     echo 'Exception when calling AccountsApi->getClientStatistics: ', $e->getMessage(), PHP_EOL;
 }
@@ -190,12 +205,17 @@ Gets the users country
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\AccountsApi();
+$apiInstance = new Swagger\Client\Api\AccountsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $api_instance->getUserCountry();
+    $apiInstance->getUserCountry();
 } catch (Exception $e) {
     echo 'Exception when calling AccountsApi->getUserCountry: ', $e->getMessage(), PHP_EOL;
 }
@@ -233,12 +253,17 @@ Resets the current user's API key and returns the new key
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\AccountsApi();
+$apiInstance = new Swagger\Client\Api\AccountsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $api_instance->resetApiKey();
+    $apiInstance->resetApiKey();
 } catch (Exception $e) {
     echo 'Exception when calling AccountsApi->resetApiKey: ', $e->getMessage(), PHP_EOL;
 }
@@ -276,12 +301,17 @@ Check whether the user can purchase a subscription.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\AccountsApi();
+$apiInstance = new Swagger\Client\Api\AccountsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $api_instance->subscriptionPurchaseAllowed();
+    $apiInstance->subscriptionPurchaseAllowed();
 } catch (Exception $e) {
     echo 'Exception when calling AccountsApi->subscriptionPurchaseAllowed: ', $e->getMessage(), PHP_EOL;
 }
@@ -319,13 +349,18 @@ Add profile information to this users account
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\AccountsApi();
+$apiInstance = new Swagger\Client\Api\AccountsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $profileData = "profileData_example"; // string | Profile field information for the account
 
 try {
-    $api_instance->updateProfileData($profileData);
+    $apiInstance->updateProfileData($profileData);
 } catch (Exception $e) {
     echo 'Exception when calling AccountsApi->updateProfileData: ', $e->getMessage(), PHP_EOL;
 }

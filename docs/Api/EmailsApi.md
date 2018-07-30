@@ -30,9 +30,14 @@ Prints an email using the template id and content to the users account.If a vide
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\EmailsApi();
+$apiInstance = new Swagger\Client\Api\EmailsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $templateId = "templateId_example"; // string | The template id to be printed.
 $content = "content_example"; // string | The content of the email.
 $emailId = "emailId_example"; // string | The email id to be printed to.
@@ -40,7 +45,7 @@ $videoId = "videoId_example"; // string | A video to replace video place holders
 $subjectLine = "subjectLine_example"; // string | The subject line to be printed.
 
 try {
-    $api_instance->createPrintingPressEmail($templateId, $content, $emailId, $videoId, $subjectLine);
+    $apiInstance->createPrintingPressEmail($templateId, $content, $emailId, $videoId, $subjectLine);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->createPrintingPressEmail: ', $e->getMessage(), PHP_EOL;
 }
@@ -85,13 +90,18 @@ Get all templates accessible to the current user
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\EmailsApi();
+$apiInstance = new Swagger\Client\Api\EmailsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $quickSendOnly = true; // bool | Whether to return only quick send templates.
 
 try {
-    $api_instance->getAllTemplatesForCurrentUser($quickSendOnly);
+    $apiInstance->getAllTemplatesForCurrentUser($quickSendOnly);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->getAllTemplatesForCurrentUser: ', $e->getMessage(), PHP_EOL;
 }
@@ -132,14 +142,19 @@ Get Tracking data for all sends of an Email
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\EmailsApi();
+$apiInstance = new Swagger\Client\Api\EmailsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $emailId = "emailId_example"; // string | ID of the email
 $jobId = "jobId_example"; // string | ID of the Job (or null for all jobs)
 
 try {
-    $api_instance->getEmailTracking($emailId, $jobId);
+    $apiInstance->getEmailTracking($emailId, $jobId);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->getEmailTracking: ', $e->getMessage(), PHP_EOL;
 }
@@ -181,16 +196,21 @@ Get Contact detail interactions for an Email
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\EmailsApi();
+$apiInstance = new Swagger\Client\Api\EmailsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $emailId = "emailId_example"; // string | ID of the email
 $jobId = "jobId_example"; // string | ID of the Job (or null for all jobs)
 $interactionType = "interactionType_example"; // string | Interaction type to order and filter by
 $searchTerm = "searchTerm_example"; // string | Search term to filer by
 
 try {
-    $api_instance->getEmailTrackingInteractions($emailId, $jobId, $interactionType, $searchTerm);
+    $apiInstance->getEmailTrackingInteractions($emailId, $jobId, $interactionType, $searchTerm);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->getEmailTrackingInteractions: ', $e->getMessage(), PHP_EOL;
 }
@@ -234,15 +254,20 @@ Get Tracking data for an Email,             broken down by the hour and filterab
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\EmailsApi();
+$apiInstance = new Swagger\Client\Api\EmailsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $emailId = "emailId_example"; // string | ID of the email
 $jobId = "jobId_example"; // string | ID of the Job (or null for all jobs)
 $interactionType = "interactionType_example"; // string | Interaction type to filter by
 
 try {
-    $api_instance->getHourlyEmailTracking($emailId, $jobId, $interactionType);
+    $apiInstance->getHourlyEmailTracking($emailId, $jobId, $interactionType);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->getHourlyEmailTracking: ', $e->getMessage(), PHP_EOL;
 }
@@ -285,12 +310,17 @@ Get the user data for the live fire feed emails
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\EmailsApi();
+$apiInstance = new Swagger\Client\Api\EmailsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $api_instance->getLiveFireData();
+    $apiInstance->getLiveFireData();
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->getLiveFireData: ', $e->getMessage(), PHP_EOL;
 }
@@ -328,12 +358,17 @@ Get all quicksend templates accessible to the user.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\EmailsApi();
+$apiInstance = new Swagger\Client\Api\EmailsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $api_instance->getQuickSendTemplates();
+    $apiInstance->getQuickSendTemplates();
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->getQuickSendTemplates: ', $e->getMessage(), PHP_EOL;
 }
@@ -371,14 +406,19 @@ Get the HTML for a given template, with or without rendered variables
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\EmailsApi();
+$apiInstance = new Swagger\Client\Api\EmailsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $templateId = "templateId_example"; // string | The id of the template.
 $renderVariables = "renderVariables_example"; // string | Whether to render profile variables in the returned HTML.
 
 try {
-    $api_instance->getTemplateHtmlForTemplateId($templateId, $renderVariables);
+    $apiInstance->getTemplateHtmlForTemplateId($templateId, $renderVariables);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->getTemplateHtmlForTemplateId: ', $e->getMessage(), PHP_EOL;
 }
@@ -420,9 +460,14 @@ Get the user data for quicksender, including templates and lists.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\EmailsApi();
+$apiInstance = new Swagger\Client\Api\EmailsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $message = "message_example"; // string | A message for the video content.
 $subject = "subject_example"; // string | A subject for the video content.
 $videoId = "videoId_example"; // string | A video ID.
@@ -430,7 +475,7 @@ $templateId = "templateId_example"; // string | A template ID.
 $commaDelimEmails = "commaDelimEmails_example"; // string | Comma delimited emails
 
 try {
-    $api_instance->getVideoQuickSenderData($message, $subject, $videoId, $templateId, $commaDelimEmails);
+    $apiInstance->getVideoQuickSenderData($message, $subject, $videoId, $templateId, $commaDelimEmails);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->getVideoQuickSenderData: ', $e->getMessage(), PHP_EOL;
 }
@@ -475,15 +520,20 @@ Save the quicksender notification and default template settings
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\EmailsApi();
+$apiInstance = new Swagger\Client\Api\EmailsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $alertOnPlay = "alertOnPlay_example"; // string | A preference setting for whether or not to notify user on quicksend email video plays.
 $alertOnOpen = "alertOnOpen_example"; // string | A preference setting for whether or not to notify user on quicksend email opens.
 $templateId = "templateId_example"; // string | Id of a template to use for this send. A null value means use the default for this user.
 
 try {
-    $api_instance->saveQuickSenderSettings($alertOnPlay, $alertOnOpen, $templateId);
+    $apiInstance->saveQuickSenderSettings($alertOnPlay, $alertOnOpen, $templateId);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->saveQuickSenderSettings: ', $e->getMessage(), PHP_EOL;
 }
@@ -526,9 +576,14 @@ Send a quicksend video email to the list or users provided.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure OAuth2 access token for authorization: BBOAuth2
-Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$api_instance = new Swagger\Client\Api\EmailsApi();
+$apiInstance = new Swagger\Client\Api\EmailsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $videoId = "videoId_example"; // string | A guid id for the video.
 $emailAddresses = "emailAddresses_example"; // string | A semi-colon separated list of email addresses to send to.
 $subject = "subject_example"; // string | Subject line for the email.
@@ -540,7 +595,7 @@ $templateId = "templateId_example"; // string | Id of a template to use for this
 $stripHTML = "stripHTML_example"; // string | remove HTML elements
 
 try {
-    $api_instance->videoQuickSender($videoId, $emailAddresses, $subject, $message, $listIds, $scheduledSendTimestamp, $extendedProperties, $templateId, $stripHTML);
+    $apiInstance->videoQuickSender($videoId, $emailAddresses, $subject, $message, $listIds, $scheduledSendTimestamp, $extendedProperties, $templateId, $stripHTML);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->videoQuickSender: ', $e->getMessage(), PHP_EOL;
 }
